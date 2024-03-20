@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wsxrbsbbsvsj"]
+
+[ext_resource type="Script" path="res://scripts/FPS_Counter.gd" id="1_g8k3l"]
+
+[node name="main" type="Node3D"]
+
+[node name="FPS_Counter" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_g8k3l")

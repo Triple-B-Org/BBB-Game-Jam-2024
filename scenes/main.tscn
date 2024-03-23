@@ -18,7 +18,8 @@ offset_bottom = 23.0
 script = ExtResource("1_g8k3l")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100236, 1.98277, 3.02044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849133, 1.56653, -0.0804796)
+fov = 90.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -27,4 +28,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113888, 0.020443, 0.044074
 mesh = SubResource("PlaneMesh_hikpt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00491333, -0.00928164, 0.000721455)
 shape = SubResource("BoxShape3D_b88c8")

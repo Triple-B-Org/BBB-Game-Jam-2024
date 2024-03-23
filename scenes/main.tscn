@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=6 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/FPS_Counter.gd" id="1_g8k3l"]
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_mgt5c"]
+[ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="3_lm01q"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]
-size = Vector2(10, 10)
+size = Vector2(20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b88c8"]
-size = Vector3(10, 0, 10)
+size = Vector3(20, 0, 20)
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_mgt5c")
@@ -18,15 +19,17 @@ offset_bottom = 23.0
 script = ExtResource("1_g8k3l")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0849133, 1.56653, -0.0804796)
-fov = 90.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113888, 0.020443, 0.0440741)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0265908, 0.0271487, 0.0200334)
 mesh = SubResource("PlaneMesh_hikpt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00491333, -0.00928164, 0.000721455)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0135899, 0.0135741, 0.000415802)
 shape = SubResource("BoxShape3D_b88c8")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_lm01q")]

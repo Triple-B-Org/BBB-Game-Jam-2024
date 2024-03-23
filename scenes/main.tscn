@@ -1,10 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=4 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/FPS_Counter.gd" id="1_g8k3l"]
+[ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_mgt5c"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]
 
 [node name="main" type="Node3D"]
+script = ExtResource("1_mgt5c")
 
 [node name="FPS_Counter" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("1_g8k3l")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100236, 1.98277, 3.02044)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0113888, 0.020443, 0.0440741)
+mesh = SubResource("PlaneMesh_hikpt")

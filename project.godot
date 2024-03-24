@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="BBB-Game-Jam-2024-Dungeon-Crawler"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/Startup.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/image="res://assets/boot.png"
 config/icon="res://assets/icon.svg"
 
 [autoload]
@@ -61,6 +62,5 @@ turn_right={
 
 [rendering]
 
-anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/screen_space_aa=1

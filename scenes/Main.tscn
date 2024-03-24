@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=13 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
@@ -6,8 +6,13 @@
 [ext_resource type="Script" path="res://scripts/UI/FPSCounter.gd" id="3_mbl4p"]
 [ext_resource type="Script" path="res://scripts/UI/UI.gd" id="4_jqup2"]
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="4_sesmw"]
+[ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
 [ext_resource type="Script" path="res://scripts/UI/PauseMenu.gd" id="6_ccdor"]
 [ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="7_xfttg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
+albedo_texture = ExtResource("5_x2hxo")
+uv1_scale = Vector3(8, 8, 8)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]
 size = Vector2(20, 20)
@@ -30,6 +35,7 @@ metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0265908, 0.0271487, 0.0200334)
+material_override = SubResource("StandardMaterial3D_em84r")
 mesh = SubResource("PlaneMesh_hikpt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]

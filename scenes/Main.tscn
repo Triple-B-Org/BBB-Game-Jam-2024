@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=12 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
+[ext_resource type="Environment" uid="uid://dudksep7s6q0c" path="res://scenes/Graphics/WorldEnvironment.tres" id="3_eoxxv"]
 [ext_resource type="Script" path="res://scripts/UI/FPSCounter.gd" id="3_mbl4p"]
 [ext_resource type="Script" path="res://scripts/UI/UI.gd" id="4_jqup2"]
+[ext_resource type="Script" path="res://scripts/Camera3D.gd" id="4_sesmw"]
 [ext_resource type="PackedScene" uid="uid://uxx6j310mdtw" path="res://scenes/Wall.tscn" id="4_xxjyt"]
 [ext_resource type="Script" path="res://scripts/UI/PauseMenu.gd" id="6_ccdor"]
 [ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="7_xfttg"]
@@ -21,6 +23,8 @@ script = ExtResource("1_j7vjs")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.5)
+environment = ExtResource("3_eoxxv")
+script = ExtResource("4_sesmw")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0174351, 0.0404975, -0.00386429)

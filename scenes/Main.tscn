@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=12 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
@@ -7,8 +7,7 @@
 [ext_resource type="Script" path="res://scripts/UI/UI.gd" id="4_jqup2"]
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="4_sesmw"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
-[ext_resource type="Script" path="res://scripts/UI/PauseMenu.gd" id="6_ccdor"]
-[ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="7_xfttg"]
+[ext_resource type="PackedScene" uid="uid://7onwkhkw62ni" path="res://scenes/UI/PauseMenu.tscn" id="8_q074q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
 albedo_texture = ExtResource("5_x2hxo")
@@ -62,79 +61,10 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_mbl4p")
 
-[node name="PauseMenu" type="Control" parent="UI" node_paths=PackedStringArray("pause_menu_ui", "settings_menu_ui")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_ccdor")
-main_menu_scene = "res://scenes/UI/MainMenu.tscn"
-pause_menu_ui = NodePath("PauseMenuButtons")
-settings_menu_ui = NodePath("SettingsMenu")
-
-[node name="PauseMenuButtons" type="Control" parent="UI/PauseMenu"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ContinueButton" type="Button" parent="UI/PauseMenu/PauseMenuButtons"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 505.0
-offset_top = 180.0
-offset_right = 735.0
-offset_bottom = 257.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Continue"
-
-[node name="SettingsButton" type="Button" parent="UI/PauseMenu/PauseMenuButtons"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 519.0
-offset_top = 280.0
-offset_right = 721.0
-offset_bottom = 357.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="UI/PauseMenu/PauseMenuButtons"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 563.5
-offset_top = 380.0
-offset_right = 676.5
-offset_bottom = 457.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Quit"
-
-[node name="SettingsMenu" parent="UI/PauseMenu" instance=ExtResource("7_xfttg")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("8_q074q")]
 visible = false
 layout_mode = 1
 
 [node name="Walls" type="Node3D" parent="."]
 
-[connection signal="pressed" from="UI/PauseMenu/PauseMenuButtons/ContinueButton" to="UI" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="UI/PauseMenu/PauseMenuButtons/SettingsButton" to="UI/PauseMenu" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="UI/PauseMenu/PauseMenuButtons/QuitButton" to="UI/PauseMenu" method="_on_quit_button_pressed"]
-[connection signal="close_settings" from="UI/PauseMenu/SettingsMenu" to="UI/PauseMenu" method="_on_back_button_pressed"]
+[connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]

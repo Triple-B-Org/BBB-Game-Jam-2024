@@ -14,6 +14,7 @@ func _on_start_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	main_menu_ui.visible = false
 	settings_menu_ui.visible = true
+	settings_menu_ui.set_options()
 
 
 func _on_quit_button_pressed() -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cubd82v0rugyx"]
 
 [ext_resource type="VideoStream" path="res://assets/boot.ogv" id="1_08lej"]
-[ext_resource type="Script" path="res://scenes/BootVideo.gd" id="2_sp7h1"]
+[ext_resource type="Script" path="res://scripts/BootVideo.gd" id="2_sp7h1"]
 [ext_resource type="Texture2D" uid="uid://ctyg6a5aens4q" path="res://assets/boot.png" id="3_0nsys"]
 [ext_resource type="PackedScene" uid="uid://wsxrbsbbsvsj" path="res://scenes/Main.tscn" id="3_ckvjq"]
 

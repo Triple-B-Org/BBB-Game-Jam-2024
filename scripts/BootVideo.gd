@@ -1,8 +1,10 @@
 extends VideoStreamPlayer
 
+
 @export var boot_picture: TextureRect
 @export var end_timer: Timer
 @export var main_menu: PackedScene
+
 
 func _process(_delta: float) -> void:
 	if not paused and stream_position >= 1.9:

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="BBB-Game-Jam-2024-Dungeon-Crawler"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+Settings="*res://scripts/Settings.gd"
 
 [debug]
 

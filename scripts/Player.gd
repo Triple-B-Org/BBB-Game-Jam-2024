@@ -49,22 +49,15 @@ func _physics_process(delta: float) -> void:
 			t_rotation = 1
 			rotation.y = lerp(start_rotation, end_rotation, t_rotation)
 	else:
-		if Input.is_action_just_pressed("move_forward") &&  t_movement >= 1:
+		if Input.is_action_just_pressed("move_forward"):
 			position.x -= direction.x
 			position.z -= direction.y
-			t_movement = 0
-		elif Input.is_action_just_pressed("move_backward") &&  t_movement >= 1:
+		elif Input.is_action_just_pressed("move_backward"):
 			position.x += direction.x
 			position.z += direction.y
-			t_movement = 0
-		elif Input.is_action_just_pressed("turn_right") && t_rotation >= 1:
+		elif Input.is_action_just_pressed("turn_right"):
 			rotation.y -= PI/2
 			direction = Vector2(sin(rotation.y), cos(rotation.y))
-			t_rotation = 0
-		elif Input.is_action_just_pressed("turn_left") &&  t_rotation >= 1:
+		elif Input.is_action_just_pressed("turn_left"):
 			rotation.y += PI/2
 			direction = Vector2(sin(rotation.y), cos(rotation.y))
-			t_rotation = 0
-		else:
-			t_movement = 1
-			t_rotation = 1

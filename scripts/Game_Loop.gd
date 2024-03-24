@@ -9,3 +9,4 @@ var wall_gen: Wall_Gen = Wall_Gen.new()
 func _ready() -> void:
 	grid_map.load_rooms()
 	wall_gen.generate_walls($Walls, grid_map.get_random_room())
+	$Player.spawn_player(grid_map.Current_Room)

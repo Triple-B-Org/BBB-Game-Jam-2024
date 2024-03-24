@@ -2,15 +2,15 @@ class_name Grid_Map
 
 #THIS IS ONLY FOR TESTING FOR N0W, NEEDS TO BE MADE DINAMIC, ADDED TO MY LIST (KELAN)
 var Rooms: Array = []
-var Current_Room: int = -1
+var Current_Room: Array = []
 
 func _ready() -> void:
 	load_rooms()
 	
 # Returns a random room to be generated
 func get_random_room() -> Array:
-	Current_Room = randi() % Rooms.size()
-	return Rooms[Current_Room]
+	Current_Room = Rooms[randi() % Rooms.size()]
+	return Current_Room
 
 
 
@@ -22,7 +22,7 @@ func load_rooms() -> void:
 		[3,0,3,0,3,0,3],
 		[3,0,0,0,0,0,3],
 		[3,0,3,0,3,0,3],
-		[3,0,0,2,0,0,3],
+		[3,0,0,1,0,0,3],
 		[3,3,3,3,3,3,3]
 	]);
 	
@@ -35,6 +35,6 @@ func load_rooms() -> void:
 		[3,3,3,0,3,3,3,3,0,0,3],
 		[3,3,3,0,3,3,3,3,0,0,3],
 		[3,0,0,0,0,0,0,0,0,0,3],
-		[3,0,0,0,0,3,3,3,2,0,3],
+		[3,0,0,0,0,3,3,3,1,0,3],
 		[3,3,3,3,3,3,3,3,3,3,3],
 	])

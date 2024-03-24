@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED: float = 5
 
 var direction: Vector2 = Vector2.DOWN
@@ -61,3 +60,16 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_just_pressed("turn_left"):
 			rotation.y += PI/2
 			direction = Vector2(sin(rotation.y), cos(rotation.y))
+			
+func check_move_forward():
+	print($Grid_Map.Current_Room)
+	
+func check_move_backward():
+	print($Grid_Map.Current_Room)
+	
+func spawn_player(grid: Array):
+	var start_position: Vector3 = Vector3(-9.5,1,-9.5)
+	for row in range(grid.size()):
+		for col in range(grid[0].size()):
+			if grid[row][col] == 1:
+				position = start_position + Vector3(col, 0, row);

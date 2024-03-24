@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/UI/UI.gd" id="4_jqup2"]
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="4_sesmw"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
-[ext_resource type="PackedScene" uid="uid://7onwkhkw62ni" path="res://scenes/UI/PauseMenu.tscn" id="8_q074q"]
+[ext_resource type="PackedScene" path="res://scenes/UI/PauseMenu.tscn" id="8_q074q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
 albedo_texture = ExtResource("5_x2hxo")
@@ -66,5 +66,3 @@ visible = false
 layout_mode = 1
 
 [node name="Walls" type="Node3D" parent="."]
-
-[connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]

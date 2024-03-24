@@ -1,6 +1,7 @@
 extends Node
 
-var smooth_movement: bool = false
+
+var smooth_movement: bool = true
 
 
 func _notification(what: int) -> void:

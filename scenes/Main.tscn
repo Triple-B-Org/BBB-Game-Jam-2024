@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
-[ext_resource type="Script" path="res://scripts/FPS_Counter.gd" id="3_mbl4p"]
+[ext_resource type="Script" path="res://scripts/UI/FPS_Counter.gd" id="3_mbl4p"]
 [ext_resource type="PackedScene" uid="uid://uxx6j310mdtw" path="res://scenes/Wall.tscn" id="4_xxjyt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]

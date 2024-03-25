@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d262wvxep2i0p"]
+[gd_scene load_steps=6 format=3 uid="uid://d262wvxep2i0p"]
 
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_g0vrm"]
 [ext_resource type="Script" path="res://scripts/UI/SettingsMenu.gd" id="1_ubhd4"]
+
+[sub_resource type="Theme" id="Theme_0bls7"]
+default_font = ExtResource("1_g0vrm")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fovyp"]
 
@@ -13,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_0bls7")
 script = ExtResource("1_ubhd4")
 
 [node name="Fullscreen" type="Control" parent="."]

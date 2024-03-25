@@ -24,6 +24,15 @@ var t_rotation: float = 1
 var grid_x: int = -1
 var grid_y: int = -1
 
+#Adding this audio player for player noises
+@onready var audio_player = $AudioStreamPlayer3D
+
+func reset_audio():
+	if audio_player.playing() == true:
+		audio_player.stop()
+
+var footsteps = preload("res://assets/footsteps.wav")
+var reverseFootsteps = preload("res://assets/footstepsReverse.wav")
 
 func _physics_process(delta: float) -> void:
 	if Settings.smooth_movement:
@@ -33,11 +42,17 @@ func _physics_process(delta: float) -> void:
 					start_position = position
 					end_position = start_position - Vector3(direction.x, 0, direction.y)
 					t_movement = 0
+					audio_player.stream = footsteps
+					audio_player.play()
+					
 			elif Input.is_action_just_pressed("move_backward"):
 				if check_move_backward() == true:
 					start_position = position
 					end_position = start_position + Vector3(direction.x, 0, direction.y)
 					t_movement = 0
+					audio_player.stream = reverseFootsteps
+					audio_player.play()
+					
 			elif Input.is_action_just_pressed("turn_right"):
 				start_rotation = rotation.y
 				end_rotation = start_rotation - PI/2

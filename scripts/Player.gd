@@ -5,7 +5,7 @@ const SPEED: float = 5
 var direction: Vector2 = Vector2.DOWN
 
 #GABOR the direction values where unreliable for checking on the grid, Im sorry
-var facing = "N"
+var facing: String = "N"
 
 # required for smooth movements
 var start_position: Vector3 = Vector3.ZERO
@@ -17,8 +17,9 @@ var t_rotation: float = 1
 
 # grid map tracking
 var map: Array = []
-var grid_x = -1
-var grid_y = -1
+var grid_x: int = -1
+var grid_y: int = -1
+
 
 func _physics_process(delta: float) -> void:
 	if Settings.smooth_movement:
@@ -105,7 +106,8 @@ func _physics_process(delta: float) -> void:
 				facing = "E"
 			else:
 				facing = "S"
-			
+
+
 func check_move_forward() -> bool:
 	var can_move: bool = false
 
@@ -123,8 +125,9 @@ func check_move_forward() -> bool:
 		grid_x -= 1
 		
 	return can_move
-	
-func check_move_backward():
+
+
+func check_move_backward() -> bool:
 	var can_move: bool = false
 
 	if facing == "N" and map[grid_y + 1][grid_x] == 0:
@@ -141,13 +144,15 @@ func check_move_backward():
 		grid_x += 1
 		
 	return can_move
-	
-func spawn_player(grid: Array):
+
+
+func spawn_player(grid: Array) -> void:
 	map = grid
-	var start_position: Vector3 = Vector3(-9.5,1,-9.5)
-	for row in range(grid.size()):
-		for col in range(grid[0].size()):
+	var start_position_2: Vector3 = Vector3(-9.5,1,-9.5)
+	var grid_row: Array = grid[0]
+	for row: int in range(grid.size()):
+		for col: int in range(grid_row.size()):
 			if grid[row][col] == 1:
 				grid_x = col
 				grid_y = row
-				position = start_position + Vector3(col, 0, row)
+				position = start_position_2 + Vector3(col, 0, row)

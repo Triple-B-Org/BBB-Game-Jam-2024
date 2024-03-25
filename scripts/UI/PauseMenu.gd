@@ -2,6 +2,7 @@ extends Control
 
 
 signal continue_game
+signal set_options
 
 
 @export var main_menu_scene: String
@@ -13,7 +14,7 @@ signal continue_game
 func _on_settings_button_pressed() -> void:
 	pause_menu_ui.visible = false
 	settings_menu_ui.visible = true
-	settings_menu_ui.set_options()
+	var _result: Error = emit_signal("set_options")
 
 
 func _on_quit_button_pressed() -> void:
@@ -26,5 +27,5 @@ func _on_back_button_pressed() -> void:
 	settings_menu_ui.visible = false
 
 
-func _on_continue_button_pressed():
-	emit_signal("continue_game")
+func _on_continue_button_pressed() -> void:
+	var _result: Error = emit_signal("continue_game")

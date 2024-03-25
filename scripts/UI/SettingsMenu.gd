@@ -21,7 +21,7 @@ func set_options() -> void:
 	resolution_option.selected = Settings.resolution_index
 	smooth_movement_button.button_pressed = Settings.smooth_movement
 	smooth_value_bar.value = Settings.move_speed
-	#smooth_value_label.text = str(Settings.move_speed * 10)
+
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	Settings.smooth_movement = toggled_on
@@ -53,3 +53,4 @@ func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	get_window().size = resolution_lookup[Settings.resolution_index]
 	get_window().content_scale_size = resolution_lookup[Settings.resolution_index]
+

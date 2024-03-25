@@ -33,7 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0174351, 0.0404975, -0.0038
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0265908, 0.0271487, 0.0200334)
 material_override = SubResource("StandardMaterial3D_em84r")
 mesh = SubResource("PlaneMesh_hikpt")
 
@@ -66,6 +65,8 @@ visible = false
 layout_mode = 1
 
 [node name="Walls" type="Node3D" parent="."]
+
+[node name="Enemies" type="Node3D" parent="."]
 
 [connection signal="spawn_player" from="." to="Player" method="spawn_player"]
 [connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]

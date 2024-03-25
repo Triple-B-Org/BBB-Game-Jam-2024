@@ -9,11 +9,13 @@ signal spawn_player(current_room: Array)
 #global variables (scoping stops us from setting them in _ready)
 var grid_map: Grid_Map = Grid_Map.new()
 var wall_gen: Wall_Gen = Wall_Gen.new()
+var enemy_gen: Enemy_Gen = Enemy_Gen.new()
 
 func _ready() -> void:
 	grid_map.load_rooms()
 	grid_map.get_random_room()
 	wall_gen.generate_walls($Walls)
+	enemy_gen.generate_enemies($Enemies)
 	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
 
 func unload_level():

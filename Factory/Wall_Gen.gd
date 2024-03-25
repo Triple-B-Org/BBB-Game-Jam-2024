@@ -14,3 +14,8 @@ func generate_walls(caller: Node) -> void:
 				var wall_instance: StaticBody3D = Wall.instantiate()
 				caller.add_child(wall_instance)
 				wall_instance.position = start_position + Vector3(col, 0, row)
+
+func unload_walls(caller: Node):
+	for n in caller.get_children():
+		caller.remove_child(n)
+		n.queue_free()

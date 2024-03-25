@@ -15,3 +15,7 @@ func _ready() -> void:
 	grid_map.get_random_room()
 	wall_gen.generate_walls($Walls)
 	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
+	unload_level()
+
+func unload_level():
+	wall_gen.unload_walls($Walls)

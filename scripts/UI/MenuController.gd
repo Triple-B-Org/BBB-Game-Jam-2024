@@ -6,8 +6,14 @@ extends Control
 @export var settings_menu_ui: Control
 @export var credits_menu_ui: Control
 
+@onready var audioplayer = $AudioStreamPlayer
+
+func _ready():
+	audioplayer.play()
+	pass
 
 func _on_start_button_pressed() -> void:
+	audioplayer.stop()
 	var _result: Error = get_tree().change_scene_to_file(start_game_scene)
 
 

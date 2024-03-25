@@ -1,6 +1,5 @@
 class_name Enemy_Gen
 
-
 var Enemy: PackedScene = preload("res://scenes/Enemy.tscn")
 
 #generates walls
@@ -14,8 +13,10 @@ func generate_enemies(caller: Node) -> void:
 				var enemy_instance: Node3D = Enemy.instantiate()
 				caller.add_child(enemy_instance)
 				enemy_instance.position = start_position + Vector3(col, 0, row)
+				GlobalVar.enemies.append([row, col])
 
 func unload_enemies(caller: Node):
 	for n in caller.get_children():
 		caller.remove_child(n)
 		n.queue_free()
+		GlobalVar.enemies = []

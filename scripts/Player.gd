@@ -1,5 +1,10 @@
 extends CharacterBody3D
 
+#player stats
+var max_actions: int = 3;
+var actions: int = 3;
+var health: int = 3;
+
 const SPEED: float = 5
 
 var direction: Vector2 = Vector2.DOWN
@@ -15,8 +20,7 @@ var start_rotation: float = 0
 var end_rotation: float = 0
 var t_rotation: float = 1
 
-# grid map tracking
-var map: Array = []
+# grid GlobalVar.Current_Room tracking
 var grid_x: int = -1
 var grid_y: int = -1
 
@@ -111,43 +115,59 @@ func _physics_process(delta: float) -> void:
 func check_move_forward() -> bool:
 	var can_move: bool = false
 
-	if facing == "N" and map[grid_y - 1][grid_x] == 0:
+	if facing == "N" and GlobalVar.Current_Room[grid_y - 1][grid_x] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y - 1][grid_x] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_y -= 1
-	elif facing == "E" and map[grid_y][grid_x + 1] == 0:
+	elif facing == "E" and GlobalVar.Current_Room[grid_y][grid_x + 1] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y][grid_x + 1] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_x += 1
-	elif facing == "S" and map[grid_y + 1][grid_x] == 0:
+	elif facing == "S" and GlobalVar.Current_Room[grid_y + 1][grid_x] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y + 1][grid_x] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_y += 1
-	elif facing == "W" and map[grid_y][grid_x - 1] == 0:
+	elif facing == "W" and GlobalVar.Current_Room[grid_y][grid_x - 1] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y][grid_x - 1] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_x -= 1
-		
+
 	return can_move
 
 
 func check_move_backward() -> bool:
 	var can_move: bool = false
 
-	if facing == "N" and map[grid_y + 1][grid_x] == 0:
+	if facing == "N" and GlobalVar.Current_Room[grid_y + 1][grid_x] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y + 1][grid_x] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_y += 1
-	elif facing == "E" and map[grid_y][grid_x - 1] == 0:
+	elif facing == "E" and GlobalVar.Current_Room[grid_y][grid_x - 1] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y][grid_x - 1] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_x -= 1
-	elif facing == "S" and map[grid_y - 1][grid_x] == 0:
+	elif facing == "S" and GlobalVar.Current_Room[grid_y - 1][grid_x] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y - 1][grid_x] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_y -= 1
-	elif facing == "W" and map[grid_y][grid_x + 1] == 0:
+	elif facing == "W" and GlobalVar.Current_Room[grid_y][grid_x + 1] == 0:
 		can_move = true
+		GlobalVar.Current_Room[grid_y][grid_x + 1] = 1
+		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_x += 1
 		
 	return can_move
 
 
 func spawn_player(grid: Array) -> void:
-	map = grid
+	GlobalVar.Current_Room = grid
 	var start_position_2: Vector3 = Vector3(-9.5,1,-9.5)
 	var grid_row: Array = grid[0]
 	for row: int in range(grid.size()):

@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Settings="*res://scripts/Settings.gd"
+GlobalVar="*res://scripts/Global_var.gd"
 
 [debug]
 

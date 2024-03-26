@@ -4,30 +4,33 @@ class_name Enemy_Turn
 
 var start_position: Vector3 = Vector3(-9.5,1,-9.5)
 
-func enemys_turn(caller: Node) -> void:
-	for enemy in range(GlobalVar.enemies.size()):
-		var move = find_shortest_path(GlobalVar.enemies[enemy])
+
+func enemys_turn(parent: Node) -> void:
+	for enemy: int in range(GlobalVar.enemies.size()):
+		var move: String = find_shortest_path(GlobalVar.enemies[enemy])
+		var enemy_node: Node3D = parent.get_child(enemy)
+		var enemy_positions: Array[float] = GlobalVar.enemies[enemy]
 		
 		if move == "N":
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
 			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0]-1,GlobalVar.enemies[enemy][1]]
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+			enemy_node.position = start_position + Vector3(enemy_positions[1], 0, enemy_positions[0])
 		elif  move == "S":
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
 			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0]+1,GlobalVar.enemies[enemy][1]]
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+			enemy_node.position = start_position + Vector3(enemy_positions[1], 0, enemy_positions[0])
 		elif move == "E":
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
 			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0],GlobalVar.enemies[enemy][1]-1]
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+			enemy_node.position = start_position + Vector3(enemy_positions[1], 0, enemy_positions[0])
 		elif move == "W":
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
 			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0],GlobalVar.enemies[enemy][1]+1]
 			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+			enemy_node.position = start_position + Vector3(enemy_positions[1], 0, enemy_positions[0])
 			
 
 func find_shortest_path(enemy: Array) -> String:

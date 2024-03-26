@@ -10,16 +10,18 @@ signal spawn_player(current_room: Array)
 var grid_map: Grid_Map = Grid_Map.new()
 var wall_gen: Wall_Gen = Wall_Gen.new()
 var enemy_gen: Enemy_Gen = Enemy_Gen.new()
+var map_generator: Map_Gen = Map_Gen.new()
 
 var enemy_turn: Enemy_Turn = Enemy_Turn.new()
 
 func _ready() -> void:
+	map_generator.load_map()
 	#initial room load
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
 	
 	#gives room
-	grid_map.get_random_room()
+	grid_map.get_random_fight_room()
 	
 	#gnerates walls and enemies
 	wall_gen.generate_walls($Walls)

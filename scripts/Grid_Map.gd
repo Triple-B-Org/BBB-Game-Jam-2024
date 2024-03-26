@@ -5,8 +5,11 @@ var fight_rooms: Array = []
 var rest_rooms: Array = []
 	
 # Returns a random room to be generated
-func get_random_room() -> void:
+func get_random_fight_room() -> void:
 	GlobalVar.Current_Room = fight_rooms[0]
+
+func get_random_rest_room() -> void:
+	GlobalVar.Current_Room = rest_rooms[0]
 
 #this function is for putting in your room layouts
 func load_fight_rooms() -> void:

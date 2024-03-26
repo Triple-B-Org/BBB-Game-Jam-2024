@@ -26,14 +26,14 @@ var grid_x: int = -1
 var grid_y: int = -1
 
 #Adding this audio player for player noises
-@onready var audio_player = $AudioStreamPlayer3D
+@onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
-func reset_audio():
-	if audio_player.playing() == true:
+func reset_audio() -> void:
+	if audio_player.playing == true:
 		audio_player.stop()
 
-var footsteps = preload("res://assets/footsteps.wav")
-var reverseFootsteps = preload("res://assets/footstepsReverse.wav")
+var footsteps: AudioStreamWAV = preload("res://assets/footsteps.wav")
+var reverseFootsteps: AudioStreamWAV = preload("res://assets/footstepsReverse.wav")
 
 func _physics_process(delta: float) -> void:
 	if Settings.smooth_movement:

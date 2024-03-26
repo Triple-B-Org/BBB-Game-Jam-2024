@@ -1,16 +1,21 @@
 extends Control
 
+
+signal set_options
+
+
 @export var start_game_scene: String
 
 @export var main_menu_ui: Control
 @export var settings_menu_ui: Control
 @export var credits_menu_ui: Control
 
-@onready var audioplayer = $AudioStreamPlayer
+@onready var audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 
-func _ready():
+
+func _ready() -> void:
 	audioplayer.play()
-	pass
+
 
 func _on_start_button_pressed() -> void:
 	audioplayer.stop()
@@ -20,7 +25,7 @@ func _on_start_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	main_menu_ui.visible = false
 	settings_menu_ui.visible = true
-	settings_menu_ui.set_options()
+	var _result: Error = emit_signal("set_options")
 
 
 func _on_quit_button_pressed() -> void:

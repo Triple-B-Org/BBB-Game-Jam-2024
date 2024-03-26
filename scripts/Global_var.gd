@@ -1,4 +1,4 @@
 extends Node
 
-var Current_Room = []
-var enemies = []
+var Current_Room: Array = []
+var enemies: Array[Array] = []

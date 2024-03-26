@@ -21,7 +21,7 @@ func _ready() -> void:
 	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
 
 #REMOVE AFTER TESTING ONLY WAY FOR NOW, ILL DO TURNS TOMORROW (KELAN)
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_end"):
 		enemy_move.enemys_turn($Enemies)
 

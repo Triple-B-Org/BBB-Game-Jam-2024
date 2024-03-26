@@ -170,6 +170,7 @@ text = "Back"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MenuController"]
 stream = ExtResource("3_1fb5w")
 
+[connection signal="set_options" from="MenuController" to="MenuController/SettingsMenu" method="set_options"]
 [connection signal="pressed" from="MenuController/MainMenu/StartButton" to="MenuController" method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuController/MainMenu/SettingsButton" to="MenuController" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuController/MainMenu/QuitButton" to="MenuController" method="_on_quit_button_pressed"]

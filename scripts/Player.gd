@@ -1,11 +1,5 @@
 extends CharacterBody3D
 
-#player stats
-var max_actions: int = 3;
-var actions: int = 3;
-var max_health: int = 3;
-var health: int = 3;
-
 const SPEED: float = 5
 
 var direction: Vector2 = Vector2.DOWN

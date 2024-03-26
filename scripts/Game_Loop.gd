@@ -11,7 +11,7 @@ var grid_map: Grid_Map = Grid_Map.new()
 var wall_gen: Wall_Gen = Wall_Gen.new()
 var enemy_gen: Enemy_Gen = Enemy_Gen.new()
 
-var enemy_move: Enemy_Move = Enemy_Move.new()
+var enemy_turn: Enemy_Turn = Enemy_Turn.new()
 
 func _ready() -> void:
 	grid_map.load_rooms()
@@ -23,7 +23,7 @@ func _ready() -> void:
 #REMOVE AFTER TESTING ONLY WAY FOR NOW, ILL DO TURNS TOMORROW (KELAN)
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_end"):
-		enemy_move.enemys_turn($Enemies)
+		enemy_turn.enemys_turn($Enemies)
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)

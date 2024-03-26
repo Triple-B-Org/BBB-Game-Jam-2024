@@ -1,25 +1,16 @@
 class_name Grid_Map
 
 #THIS IS ONLY FOR TESTING FOR N0W, NEEDS TO BE MADE DINAMIC, ADDED TO MY LIST (KELAN)
-var Rooms: Array = []
+var fight_rooms: Array = []
+var rest_rooms: Array = []
 	
 # Returns a random room to be generated
 func get_random_room() -> void:
-	GlobalVar.Current_Room = Rooms[randi() % Rooms.size()]
+	GlobalVar.Current_Room = fight_rooms[0]
 
 #this function is for putting in your room layouts
-func load_rooms() -> void:
-	Rooms.append([
-		[3,3,3,3,3,3,3],
-		[3,0,0,0,0,0,3],
-		[3,0,3,0,3,0,3],
-		[3,0,0,0,0,0,3],
-		[3,0,3,0,3,0,3],
-		[3,0,0,1,0,0,3],
-		[3,3,3,3,3,3,3]
-	]);
-	
-	Rooms.append([
+func load_fight_rooms() -> void:
+	fight_rooms.append([
 		[3,3,3,3,3,3,3,3,3,3,3],
 		[3,3,3,0,2,0,3,0,0,3,3],
 		[3,3,0,0,0,0,0,0,0,3,3],
@@ -32,7 +23,7 @@ func load_rooms() -> void:
 		[3,3,3,3,3,3,3,3,3,3,3],
 	])
 	
-	Rooms.append([
+	fight_rooms.append([
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 		[3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,3],
 		[3,3,3,3,3,3,3,3,0,3,3,0,0,2,0,3],
@@ -46,7 +37,7 @@ func load_rooms() -> void:
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 	])
 	
-	Rooms.append([
+	fight_rooms.append([
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 		[3,0,0,2,0,0,3,3,3,0,3,3,3,3,3],
 		[3,0,0,3,0,0,3,3,3,0,3,3,3,3,3],
@@ -63,7 +54,7 @@ func load_rooms() -> void:
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 	])
 	
-	Rooms.append([
+	fight_rooms.append([
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 		[3,0,2,3,3,0,0,0,0,0,0,3,3,3,3],
 		[3,0,3,3,3,0,3,3,3,3,0,0,3,3,3],
@@ -76,7 +67,7 @@ func load_rooms() -> void:
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 	])
 	
-	Rooms.append([
+	fight_rooms.append([
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 		[3,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,3],
 		[3,0,0,3,3,3,0,0,0,0,0,0,3,0,0,0,3],
@@ -87,3 +78,14 @@ func load_rooms() -> void:
 		[3,0,0,3,3,0,0,0,0,0,0,0,3,0,1,0,3],
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 	])
+
+func load_rest_rooms():
+	rest_rooms.append([
+		[3,3,3,3,3,3,3],
+		[3,0,0,0,0,0,3],
+		[3,0,3,0,3,0,3],
+		[3,0,0,0,0,0,3],
+		[3,0,3,0,3,0,3],
+		[3,0,0,1,0,0,3],
+		[3,3,3,3,3,3,3]
+	]);

@@ -14,10 +14,18 @@ var enemy_gen: Enemy_Gen = Enemy_Gen.new()
 var enemy_turn: Enemy_Turn = Enemy_Turn.new()
 
 func _ready() -> void:
-	grid_map.load_rooms()
+	#initial room load
+	grid_map.load_fight_rooms()
+	grid_map.load_rest_rooms()
+	
+	#gives room
 	grid_map.get_random_room()
+	
+	#gnerates walls and enemies
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
+	
+	#spawns player
 	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
 
 #REMOVE AFTER TESTING ONLY WAY FOR NOW, ILL DO TURNS TOMORROW (KELAN)
@@ -27,3 +35,4 @@ func _physics_process(_delta: float) -> void:
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)
+	enemy_gen.unload_enemies($Enemies)

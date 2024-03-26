@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=13 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/Camera3D.gd" id="4_sesmw"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
 [ext_resource type="PackedScene" uid="uid://7onwkhkw62ni" path="res://scenes/UI/PauseMenu.tscn" id="8_q074q"]
+[ext_resource type="Script" path="res://scripts/Enemy_move.gd" id="9_jff1q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
 albedo_texture = ExtResource("5_x2hxo")
@@ -67,6 +68,7 @@ layout_mode = 1
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Enemies" type="Node3D" parent="."]
+script = ExtResource("9_jff1q")
 
 [connection signal="spawn_player" from="." to="Player" method="spawn_player"]
 [connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]

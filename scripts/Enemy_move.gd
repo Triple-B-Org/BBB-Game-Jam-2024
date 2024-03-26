@@ -3,14 +3,37 @@ extends Node
 class_name Enemy_Move
 
 var player_found: bool = false
+var start_position: Vector3 = Vector3(-9.5,1,-9.5)
 
-func enemys_turn() -> void:
-	for enemy: Array in GlobalVar.enemies:
-		print(find_shortest_path(enemy))
+func enemys_turn(caller: Node) -> void:
+	for enemy in range(GlobalVar.enemies.size()):
+		var move = find_shortest_path(GlobalVar.enemies[enemy])
+		
+		if move == "N":
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
+			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0]-1,GlobalVar.enemies[enemy][1]]
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
+			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+		elif  move == "S":
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
+			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0]+1,GlobalVar.enemies[enemy][1]]
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
+			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+		elif move == "E":
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
+			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0],GlobalVar.enemies[enemy][1]-1]
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
+			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+		elif move == "W":
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
+			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0],GlobalVar.enemies[enemy][1]+1]
+			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
+			caller.get_child(enemy).position = start_position + Vector3(GlobalVar.enemies[enemy][1], 0, GlobalVar.enemies[enemy][0])
+			
 		player_found = false
 
 func find_shortest_path(enemy: Array) -> String:
-	var room_check: Array = GlobalVar.Current_Room.copy()
+	var room_check: Array = GlobalVar.Current_Room.duplicate(true)
 	var current_check: Array = [enemy]
 	var next_check: Array = []
 	var current_offset: int =  0
@@ -63,10 +86,12 @@ func find_shortest_path(enemy: Array) -> String:
 		current_offset += 1
 			
 	if enemy[0] < player_position[0]:
-		return "N"
-	if enemy[0] > player_position[0]:
 		return "S"
-	if enemy[1] < player_position[1]:
+	elif enemy[0] > player_position[0]:
+		return "N"
+	elif enemy[1] < player_position[1]:
 		return "W"
-	else:
+	elif enemy[1] > player_position[1]:
 		return "E"
+	else:
+		return ""

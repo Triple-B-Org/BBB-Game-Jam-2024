@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq125elvxkix5"]
+[gd_scene load_steps=6 format=3 uid="uid://cq125elvxkix5"]
 
 [ext_resource type="Script" path="res://scripts/UI/MenuController.gd" id="1_p4a23"]
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_sya7p"]
 [ext_resource type="AudioStream" uid="uid://bwrcvourbebam" path="res://assets/menuLow.wav" id="3_1fb5w"]
 [ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="3_xks8n"]
+
+[sub_resource type="Theme" id="Theme_k080w"]
+default_font = ExtResource("1_sya7p")
 
 [node name="MainMenu" type="Node3D"]
 
@@ -13,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_k080w")
 script = ExtResource("1_p4a23")
 start_game_scene = "res://scenes/Main.tscn"
 main_menu_ui = NodePath("MainMenu")
@@ -130,7 +135,8 @@ offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "NotYetTerminal"
+text = "NotYetTerminal
+VitoFuji"
 
 [node name="Padding" type="Control" parent="MenuController/CreditsMenu"]
 layout_mode = 1

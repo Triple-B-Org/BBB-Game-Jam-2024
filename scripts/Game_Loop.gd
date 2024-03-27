@@ -14,7 +14,7 @@ var map_generator: Map_Gen = Map_Gen.new()
 var enemy_turn: Enemy_Turn = Enemy_Turn.new()
 
 func _ready() -> void:
-	map_generator.load_map()
+	map_generator.initialize_map()
 	#initial room load
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()

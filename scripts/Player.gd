@@ -209,33 +209,37 @@ func player_hit(enemies: Node):
 			enemy += 1
 			if GlobalVar.enemies[enemy] == [grid_y-1, grid_x]:
 				GlobalVar.Current_Room[grid_y-1][grid_x] = 0
-				GlobalVar.enemies.erase(enemy)
+				GlobalVar.enemies.pop_at(enemy)
 				enemies.remove_child(enemy_node)
 				enemy_node.queue_free()
+				break
 	elif facing == "E":
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if GlobalVar.enemies[enemy] == [grid_y, grid_x+1]:
 				GlobalVar.Current_Room[grid_y][grid_x+1] = 0
-				GlobalVar.enemies.erase(enemy)
+				GlobalVar.enemies.pop_at(enemy)
 				enemies.remove_child(enemy_node)
 				enemy_node.queue_free()
+				break
 	elif facing == "S":
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if GlobalVar.enemies[enemy] == [grid_y+1, grid_x]:
 				GlobalVar.Current_Room[grid_y+1][grid_x] = 0
-				GlobalVar.enemies.erase(enemy)
+				GlobalVar.enemies.pop_at(enemy)
 				enemies.remove_child(enemy_node)
 				enemy_node.queue_free()
+				break
 	else:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if GlobalVar.enemies[enemy] == [grid_y, grid_x-1]:
 				GlobalVar.Current_Room[grid_y][grid_x-1] = 0
-				GlobalVar.enemies.erase(enemy)
+				GlobalVar.enemies.pop_at(enemy)
 				enemies.remove_child(enemy_node)
 				enemy_node.queue_free()
+				break
 
 func spawn_player(grid: Array) -> void:
 	

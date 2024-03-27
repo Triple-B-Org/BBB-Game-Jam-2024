@@ -183,26 +183,19 @@ script = ExtResource("5_qac5u")
 
 [node name="Map_Pos1" type="Button" parent="MenuController/MapMenu"]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 308.0
-offset_right = 345.0
-offset_bottom = 544.0
+offset_left = 111.0
+offset_top = 583.0
+offset_right = 171.0
+offset_bottom = 643.0
 text = "Test"
 
 [node name="Map_Pos2" type="Button" parent="MenuController/MapMenu"]
 layout_mode = 0
-offset_left = 483.0
-offset_top = 295.0
-offset_right = 747.0
-offset_bottom = 535.0
+offset_left = 111.0
+offset_top = 421.0
+offset_right = 171.0
+offset_bottom = 481.0
 text = "Test 2"
-
-[node name="Button" type="Button" parent="MenuController/MapMenu"]
-layout_mode = 0
-offset_left = 876.0
-offset_top = 290.0
-offset_right = 1152.0
-offset_bottom = 534.0
 
 [connection signal="set_options" from="MenuController" to="MenuController/SettingsMenu" method="set_options"]
 [connection signal="pressed" from="MenuController/MainMenu/StartButton" to="MenuController" method="_on_start_button_pressed"]

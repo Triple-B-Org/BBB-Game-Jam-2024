@@ -1,37 +1,25 @@
 class_name Map_Gen
 
+var num_rooms_visited: int = 0
+var selectable_rooms: Array = []
 
-var world_map: Array = []
-
-
-func load_map() -> void:
-	# Initialize world_map with appropriate size
-	for row_index: int in range(4):
-		var row: Array = []
-		for column_index: int in range(4):
-			row.append(column_index)
-		world_map.append(row)	
-	print(world_map)
-
-	# Fill first row with fight rooms
-	for column_index: int in range(4):
-		world_map[0][column_index] = 1
-	print(world_map)
-
+func initialize_map() -> void:
 	# Define the weights for choosing fights and rests
-	var fight_weight: int = 3  # Adjust this value to increase or decrease the likelihood of picking fight
-	var rest_weight: int = 1  # Adjust this value to increase or decrease the likelihood of picking rest
+	while selectable_rooms.size() != 3:
+		if num_rooms_visited % 5 == 0 && num_rooms_visited != 0:
+			selectable_rooms.append(3)
+		var fight_weight: int = 3  # Adjust this value to increase or decrease the likelihood of picking fight
+		var rest_weight: int = 1  # Adjust this value to increase or decrease the likelihood of picking rest
+		var random_room_value: int = randi() % (fight_weight + rest_weight)
+		if random_room_value < fight_weight:
+			selectable_rooms.append(1)
+		else:
+			selectable_rooms.append(2)
+	print(selectable_rooms)
 
-	# Fill the rest of the matrix with random numbers between 1 and 2, based on weights
-	for row_index: int in range(1, 4):  # Start from the second row
-		for column_index: int in range(4):
-			var random_room_value: int = randi() % (fight_weight + rest_weight)
-			if random_room_value < fight_weight:
-				world_map[row_index][column_index] = 1
-			else:
-				world_map[row_index][column_index] = 2
-	print(world_map)
-
+func reset_selectable_rooms() -> void:
+	selectable_rooms.resize(0)
+	print(selectable_rooms)
 
 func _ready() -> void:
-	load_map()
+	initialize_map()

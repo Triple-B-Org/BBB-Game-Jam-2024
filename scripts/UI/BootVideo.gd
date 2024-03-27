@@ -12,7 +12,6 @@ func _process(_delta: float) -> void:
 		end_timer.start()
 		stop()
 
-
 func _on_timer_timeout() -> void:
 	play()
 

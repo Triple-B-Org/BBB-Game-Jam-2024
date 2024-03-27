@@ -30,6 +30,15 @@ var reverseFootsteps: AudioStreamWAV = preload("res://assets/footstepsReverse.wa
 
 func _physics_process(delta: float) -> void:
 	if GlobalVar.players_turn == 2:
+		#Attack
+		if Input.is_action_just_pressed("hit"):
+			player_hit(get_tree().get_root().get_node("Main/Enemies"))
+			GlobalVar.player_actions -= 1
+			if GlobalVar.player_actions == 0:
+				GlobalVar.players_turn = 0
+				GlobalVar.enemy_turn = 1
+		
+		#Movement
 		if Settings.smooth_movement:
 			if t_movement == 1 and t_rotation == 1:
 				if Input.is_action_just_pressed("move_forward"):
@@ -192,7 +201,41 @@ func check_move_backward() -> bool:
 		grid_x += 1
 		
 	return can_move
-
+	
+func player_hit(enemies: Node):
+	var enemy = -1;
+	if facing == "N":
+		for enemy_node: Node in enemies.get_children():
+			enemy += 1
+			if GlobalVar.enemies[enemy] == [grid_y-1, grid_x]:
+				GlobalVar.Current_Room[grid_y-1][grid_x] = 0
+				GlobalVar.enemies.erase(enemy)
+				enemies.remove_child(enemy_node)
+				enemy_node.queue_free()
+	elif facing == "E":
+		for enemy_node: Node in enemies.get_children():
+			enemy += 1
+			if GlobalVar.enemies[enemy] == [grid_y, grid_x+1]:
+				GlobalVar.Current_Room[grid_y][grid_x+1] = 0
+				GlobalVar.enemies.erase(enemy)
+				enemies.remove_child(enemy_node)
+				enemy_node.queue_free()
+	elif facing == "S":
+		for enemy_node: Node in enemies.get_children():
+			enemy += 1
+			if GlobalVar.enemies[enemy] == [grid_y+1, grid_x]:
+				GlobalVar.Current_Room[grid_y+1][grid_x] = 0
+				GlobalVar.enemies.erase(enemy)
+				enemies.remove_child(enemy_node)
+				enemy_node.queue_free()
+	else:
+		for enemy_node: Node in enemies.get_children():
+			enemy += 1
+			if GlobalVar.enemies[enemy] == [grid_y, grid_x-1]:
+				GlobalVar.Current_Room[grid_y][grid_x-1] = 0
+				GlobalVar.enemies.erase(enemy)
+				enemies.remove_child(enemy_node)
+				enemy_node.queue_free()
 
 func spawn_player(grid: Array) -> void:
 	

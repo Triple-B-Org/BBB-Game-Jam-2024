@@ -6,7 +6,7 @@ var start_position: Vector3 = Vector3(-9.5,1,-9.5)
 
 
 func enemys_turn(parent: Node) -> void:
-	for enemy: int in range(GlobalVar.enemies.size()):
+	for enemy: int in range(parent.get_children().size()):
 		var enemy_pos: Array = GlobalVar.enemies[enemy]
 		var move: String = find_shortest_path(enemy_pos)
 		var enemy_node: Node3D = parent.get_child(enemy)

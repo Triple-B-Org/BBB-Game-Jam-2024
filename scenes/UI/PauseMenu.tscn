@@ -77,7 +77,7 @@ text = "Quit"
 visible = false
 layout_mode = 1
 
-[connection signal="set_options" from="." to="SettingsMenu" method="set_options"]
+[connection signal="set_options_2" from="." to="SettingsMenu" method="set_options"]
 [connection signal="pressed" from="PauseMenuButtons/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PauseMenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PauseMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]

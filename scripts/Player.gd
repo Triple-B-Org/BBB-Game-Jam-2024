@@ -195,6 +195,19 @@ func check_move_backward() -> bool:
 
 
 func spawn_player(grid: Array) -> void:
+	
+	if facing == "W":
+		rotation.y -= PI/2
+		direction = Vector2(sin(rotation.y), cos(rotation.y))
+	if facing == "E":
+		rotation.y += PI/2
+		direction = Vector2(sin(rotation.y), cos(rotation.y))
+	if facing == "S":
+		rotation.y += PI
+		direction = Vector2(sin(rotation.y), cos(rotation.y))
+		
+	facing = "N"
+	
 	GlobalVar.Current_Room = grid
 	var start_position_2: Vector3 = Vector3(-9.5,1,-9.5)
 	var grid_row: Array = grid[0]

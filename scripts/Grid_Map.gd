@@ -1,8 +1,8 @@
 class_name Grid_Map
 
 #THIS IS ONLY FOR TESTING FOR N0W, NEEDS TO BE MADE DINAMIC, ADDED TO MY LIST (KELAN)
-var fight_rooms: Array = []
-var rest_rooms: Array = []
+var fight_rooms = []
+var rest_rooms = []
 	
 # Returns a random room to be generated
 func get_random_fight_room() -> void:
@@ -82,7 +82,7 @@ func load_fight_rooms() -> void:
 		[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
 	])
 
-func load_rest_rooms():
+func load_rest_rooms() -> void:
 	rest_rooms.append([
 		[3,3,3,3,3,3,3],
 		[3,0,0,0,0,0,3],

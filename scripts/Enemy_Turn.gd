@@ -7,31 +7,27 @@ var start_position: Vector3 = Vector3(-9.5,1,-9.5)
 
 func enemys_turn(parent: Node) -> void:
 	for enemy: int in range(GlobalVar.enemies.size()):
-		var move: String = find_shortest_path(GlobalVar.enemies[enemy])
+		var enemy_pos: Array = GlobalVar.enemies[enemy]
+		var move: String = find_shortest_path(enemy_pos)
 		var enemy_node: Node3D = parent.get_child(enemy)
-		var enemy_positions: Array = GlobalVar.enemies[enemy]
+		var enemy_position: Vector2i = Vector2i(round(enemy_pos[0]), round(enemy_pos[1]))
+		var direction: Vector2i =  Vector2i.ZERO
 		
 		if move == "N":
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
-			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0]-1,GlobalVar.enemies[enemy][1]]
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			enemy_node.position = start_position + Vector3(enemy_positions[1], 0, enemy_positions[0]-1)
+			direction.x = -1
 		elif  move == "S":
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
-			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0]+1,GlobalVar.enemies[enemy][1]]
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			enemy_node.position = start_position + Vector3(enemy_positions[1], 0, enemy_positions[0]+1)
+			direction.x = 1
 		elif move == "E":
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
-			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0],GlobalVar.enemies[enemy][1]-1]
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			enemy_node.position = start_position + Vector3(enemy_positions[1]-1, 0, enemy_positions[0])
+			direction.y = -1
 		elif move == "W":
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 0
-			GlobalVar.enemies[enemy] = [GlobalVar.enemies[enemy][0],GlobalVar.enemies[enemy][1]+1]
-			GlobalVar.Current_Room[GlobalVar.enemies[enemy][0]][GlobalVar.enemies[enemy][1]] = 2
-			enemy_node.position = start_position + Vector3(enemy_positions[1]+1, 0, enemy_positions[0])
-			
+			direction.y = 1
+		
+		GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 0
+		enemy_position += direction
+		GlobalVar.enemies[enemy] = [enemy_position.x,enemy_position.y]
+		GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 2
+		enemy_node.position = start_position + Vector3(enemy_position.y, 0, enemy_position.x)
+
 
 func find_shortest_path(enemy: Array) -> String:
 	var player_found: bool = false
@@ -107,7 +103,8 @@ func find_shortest_path(enemy: Array) -> String:
 		return "E"
 	else:
 		return ""
-		
-func hit_player():
+
+
+func hit_player() -> void:
 	GlobalVar.player_health -= 1
 	print(GlobalVar.player_health)

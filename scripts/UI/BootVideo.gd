@@ -7,7 +7,7 @@ extends VideoStreamPlayer
 
 
 func _process(_delta: float) -> void:
-	if not paused and stream_position >= 1.9:
+	if not paused and stream_position >= 1.8:
 		boot_picture.texture = ImageTexture.create_from_image(get_video_texture().get_image())
 		end_timer.start()
 		stop()

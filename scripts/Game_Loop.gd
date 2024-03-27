@@ -3,7 +3,6 @@ extends Node
 
 signal spawn_player(current_room: Array)
 
-
 @export var player: Node
 
 #global variables (scoping stops us from setting them in _ready)
@@ -32,8 +31,14 @@ func _ready() -> void:
 
 #REMOVE AFTER TESTING ONLY WAY FOR NOW, ILL DO TURNS TOMORROW (KELAN)
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_end"):
+	if GlobalVar.players_turn == 1:
+		GlobalVar.players_turn = 2
+	
+	if GlobalVar.enemy_turn == 1:
+		GlobalVar.enemy_turn = 0
 		enemy_turn.enemys_turn($Enemies)
+		GlobalVar.player_actions = GlobalVar.player_max_actions
+		GlobalVar.players_turn = 1
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)

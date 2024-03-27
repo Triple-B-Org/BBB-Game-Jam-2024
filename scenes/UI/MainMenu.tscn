@@ -136,7 +136,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "NotYetTerminal
-VitoFuji"
+VitoFuji
+Qadeer1813
+Nalekrm"
 
 [node name="Padding" type="Control" parent="MenuController/CreditsMenu"]
 layout_mode = 1

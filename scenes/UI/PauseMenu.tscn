@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://7onwkhkw62ni"]
+
+[ext_resource type="Script" path="res://scripts/UI/PauseMenu.gd" id="1_ino1b"]
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_oee6s"]
+[ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="2_ina4b"]
+
+[sub_resource type="Theme" id="Theme_5fdiq"]
+default_font = ExtResource("1_oee6s")
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("pause_menu_ui", "settings_menu_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5fdiq")
+script = ExtResource("1_ino1b")
+main_menu_scene = "res://scenes/UI/MainMenu.tscn"
+pause_menu_ui = NodePath("PauseMenuButtons")
+settings_menu_ui = NodePath("SettingsMenu")
+
+[node name="PauseMenuButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContinueButton" type="Button" parent="PauseMenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 505.0
+offset_top = 180.0
+offset_right = 735.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="PauseMenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 519.0
+offset_top = 280.0
+offset_right = 721.0
+offset_bottom = 357.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PauseMenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 563.5
+offset_top = 380.0
+offset_right = 676.5
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("2_ina4b")]
+visible = false
+layout_mode = 1
+
+[connection signal="set_options_2" from="." to="SettingsMenu" method="set_options"]
+[connection signal="pressed" from="PauseMenuButtons/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseMenuButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseMenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="close_settings" from="SettingsMenu" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cubd82v0rugyx"]
+
+[ext_resource type="VideoStream" path="res://assets/boot.ogv" id="1_08lej"]
+[ext_resource type="Script" path="res://scripts/UI/BootVideo.gd" id="2_sp7h1"]
+[ext_resource type="Texture2D" uid="uid://ctyg6a5aens4q" path="res://assets/boot.png" id="3_0nsys"]
+[ext_resource type="PackedScene" uid="uid://cq125elvxkix5" path="res://scenes/UI/MainMenu.tscn" id="3_4xyq5"]
+
+[node name="Startup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BootVideo" type="VideoStreamPlayer" parent="." node_paths=PackedStringArray("boot_picture", "end_timer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_08lej")
+expand = true
+script = ExtResource("2_sp7h1")
+boot_picture = NodePath("../BootPicture")
+end_timer = NodePath("../EndTimer")
+main_menu = ExtResource("3_4xyq5")
+
+[node name="BootPicture" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0nsys")
+expand_mode = 1
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="EndTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StartTimer" to="BootVideo" method="_on_timer_timeout"]
+[connection signal="timeout" from="EndTimer" to="BootVideo" method="_on_end_timer_timeout"]

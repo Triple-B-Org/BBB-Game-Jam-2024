@@ -1,0 +1,213 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq125elvxkix5"]
+
+[ext_resource type="Script" path="res://scripts/UI/MenuController.gd" id="1_p4a23"]
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_sya7p"]
+[ext_resource type="AudioStream" uid="uid://bwrcvourbebam" path="res://assets/menuLow.wav" id="3_1fb5w"]
+[ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="3_xks8n"]
+[ext_resource type="Script" path="res://scenes/UI/MapMenu.gd" id="5_qac5u"]
+
+[sub_resource type="Theme" id="Theme_k080w"]
+default_font = ExtResource("1_sya7p")
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="MenuController" type="Control" parent="." node_paths=PackedStringArray("main_menu_ui", "settings_menu_ui", "credits_menu_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_k080w")
+script = ExtResource("1_p4a23")
+start_game_scene = "res://scenes/Main.tscn"
+main_menu_ui = NodePath("MainMenu")
+settings_menu_ui = NodePath("SettingsMenu")
+credits_menu_ui = NodePath("CreditsMenu")
+
+[node name="MainMenu" type="Control" parent="MenuController"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="MenuController/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.5
+offset_top = -160.0
+offset_right = 140.5
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Start Game"
+
+[node name="SettingsButton" type="Button" parent="MenuController/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -60.0
+offset_right = 101.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MenuController/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = 40.0
+offset_right = 56.5
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="Padding" type="Control" parent="MenuController/MainMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CreditsButton" type="Button" parent="MenuController/MainMenu/Padding"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -25.0
+offset_right = 55.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+
+[node name="SettingsMenu" parent="MenuController" instance=ExtResource("3_xks8n")]
+visible = false
+layout_mode = 1
+
+[node name="CreditsMenu" type="Control" parent="MenuController"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuController/CreditsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.5
+offset_top = -34.5
+offset_right = 192.5
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "NotYetTerminal
+VitoFuji
+Qadeer1813
+Nalekrm"
+
+[node name="Padding" type="Control" parent="MenuController/CreditsMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="MenuController/CreditsMenu/Padding"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -38.5
+offset_right = 62.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MenuController"]
+stream = ExtResource("3_1fb5w")
+
+[node name="MapMenu" type="Control" parent="MenuController"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("5_qac5u")
+
+[node name="Map_Pos1" type="Button" parent="MenuController/MapMenu"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 308.0
+offset_right = 345.0
+offset_bottom = 544.0
+text = "Test"
+
+[node name="Map_Pos2" type="Button" parent="MenuController/MapMenu"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 295.0
+offset_right = 747.0
+offset_bottom = 535.0
+text = "Test 2"
+
+[node name="Button" type="Button" parent="MenuController/MapMenu"]
+layout_mode = 0
+offset_left = 876.0
+offset_top = 290.0
+offset_right = 1152.0
+offset_bottom = 534.0
+
+[connection signal="set_options" from="MenuController" to="MenuController/SettingsMenu" method="set_options"]
+[connection signal="pressed" from="MenuController/MainMenu/StartButton" to="MenuController" method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuController/MainMenu/SettingsButton" to="MenuController" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuController/MainMenu/QuitButton" to="MenuController" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuController/MainMenu/Padding/CreditsButton" to="MenuController" method="_on_credits_button_pressed"]
+[connection signal="close_settings" from="MenuController/SettingsMenu" to="MenuController" method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuController/CreditsMenu/Padding/BackButton" to="MenuController" method="_on_back_button_pressed"]

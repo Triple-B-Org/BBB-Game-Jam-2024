@@ -1,0 +1,226 @@
+[gd_scene load_steps=6 format=3 uid="uid://d262wvxep2i0p"]
+
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_g0vrm"]
+[ext_resource type="Script" path="res://scripts/UI/SettingsMenu.gd" id="1_ubhd4"]
+
+[sub_resource type="Theme" id="Theme_0bls7"]
+default_font = ExtResource("1_g0vrm")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fovyp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3e8f6"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0bls7")
+script = ExtResource("1_ubhd4")
+
+[node name="Fullscreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -326.0
+offset_right = 170.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FullscreenButton" type="CheckButton" parent="Fullscreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -38.5
+offset_right = 148.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fovyp")
+text = "Fullscreen"
+
+[node name="Resolution" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -228.0
+offset_right = 240.0
+offset_bottom = -148.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionButton" type="OptionButton" parent="Resolution"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 68.0
+offset_top = -15.5
+offset_right = 204.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 5
+selected = 4
+popup/item_0/text = "2560 x 1440"
+popup/item_0/id = 0
+popup/item_1/text = "1920 x 1080"
+popup/item_1/id = 1
+popup/item_2/text = "1440 x 1080"
+popup/item_2/id = 2
+popup/item_3/text = "1280 x 1080"
+popup/item_3/id = 3
+popup/item_4/text = "1280 x 720"
+popup/item_4/id = 4
+
+[node name="Label" type="Label" parent="Resolution"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -27.5
+offset_right = 29.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Resolution: "
+
+[node name="SmoothTransition" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = 66.0
+offset_right = 288.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckButton" type="CheckButton" parent="SmoothTransition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -70.0
+offset_right = 260.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3e8f6")
+button_pressed = true
+text = "Smooth Transitions"
+
+[node name="Label" type="Label" parent="SmoothTransition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = 20.0
+offset_right = -93.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Speed:"
+
+[node name="HSlider" type="HSlider" parent="SmoothTransition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 35.0
+offset_right = 158.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 5.0
+
+[node name="SmoothValueLabel" type="Label" parent="SmoothTransition"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 180.0
+offset_top = 20.0
+offset_right = 214.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "50"
+
+[node name="Padding2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 199.0
+offset_right = 100.0
+offset_bottom = 349.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Padding2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -38.5
+offset_right = 62.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Back"
+
+[connection signal="toggled" from="Fullscreen/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="item_selected" from="Resolution/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="toggled" from="SmoothTransition/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="SmoothTransition/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Padding2/BackButton" to="." method="_on_back_button_pressed"]

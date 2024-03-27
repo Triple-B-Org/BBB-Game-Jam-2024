@@ -1,12 +1,15 @@
 class_name Grid_Map
 
+var rng = RandomNumberGenerator.new()
+
 #THIS IS ONLY FOR TESTING FOR N0W, NEEDS TO BE MADE DINAMIC, ADDED TO MY LIST (KELAN)
 var fight_rooms = []
 var rest_rooms = []
 	
 # Returns a random room to be generated
 func get_random_fight_room() -> void:
-	GlobalVar.Current_Room = fight_rooms[0]
+	rng.randomize()
+	GlobalVar.Current_Room = fight_rooms[rng.randf_range(0, 5)]
 
 func get_random_rest_room() -> void:
 	GlobalVar.Current_Room = rest_rooms[0]

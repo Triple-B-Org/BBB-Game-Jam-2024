@@ -39,6 +39,16 @@ func _physics_process(_delta: float) -> void:
 		enemy_turn.enemys_turn($Enemies)
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
+		
+	if Input.is_action_just_pressed("ui_end"):
+		unload_level()
+		grid_map.get_random_fight_room()
+		load_level()
+		emit_signal("spawn_player", GlobalVar.Current_Room)
+
+func load_level() -> void:
+	wall_gen.generate_walls($Walls)
+	enemy_gen.generate_enemies($Enemies)
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)

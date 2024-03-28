@@ -20,6 +20,18 @@ func initialize_map() -> void:
 func reset_selectable_rooms() -> void:
 	var _result: int = selectable_rooms.resize(0)
 	print(selectable_rooms)
+	
+func get_left_option() -> int:
+	var left_room: int = selectable_rooms[0]
+	return left_room
 
+func get_middle_option() -> int:
+	var middle_room: int = selectable_rooms[1]
+	return middle_room
+	
+func get_right_option() -> int:
+	var right_room: int = selectable_rooms[2]
+	return right_room
+	
 func _ready() -> void:
 	initialize_map()

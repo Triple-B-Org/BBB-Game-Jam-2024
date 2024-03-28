@@ -18,7 +18,7 @@ func initialize_map() -> void:
 	print(selectable_rooms)
 
 func reset_selectable_rooms() -> void:
-	selectable_rooms.resize(0)
+	var _result: int = selectable_rooms.resize(0)
 	print(selectable_rooms)
 
 func _ready() -> void:

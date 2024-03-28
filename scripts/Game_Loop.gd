@@ -44,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 		unload_level()
 		grid_map.get_random_fight_room()
 		load_level()
-		emit_signal("spawn_player", GlobalVar.Current_Room)
+		var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
 
 func load_level() -> void:
 	wall_gen.generate_walls($Walls)

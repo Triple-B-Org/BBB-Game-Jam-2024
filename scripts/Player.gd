@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 		
 		#Movement
 		if Settings.smooth_movement:
-			if t_movement == 1 and t_rotation == 1:
+			if t_movement >= 1 and t_rotation >= 1:
 				if Input.is_action_just_pressed("move_forward"):
 					if check_move_forward() == true:
 						start_position = position
@@ -96,12 +96,12 @@ func _physics_process(delta: float) -> void:
 					else:
 						facing = "S"
 			# only rotation or movement is allowed at a time
-			elif t_rotation == 1:
-				t_movement += Settings.move_speed * delta
-				position = start_position.lerp(end_position, clamp(t_movement, 0, 1))
-			elif t_movement == 1:
-				t_rotation += Settings.move_speed * delta
-				rotation.y = lerp(start_rotation, end_rotation, clamp(t_rotation, 0, 1))
+			elif t_rotation >= 1:
+				t_movement = clamp((Settings.move_speed * delta) + t_movement, 0, 1)
+				position = start_position.lerp(end_position, t_movement)
+			elif t_movement >= 1:
+				t_rotation = clamp((Settings.move_speed * delta) + t_rotation, 0, 1)
+				rotation.y = lerp(start_rotation, end_rotation, t_rotation)
 			# however if for some reason both are activated they are both moved to their end positions
 			else:
 				t_movement = 1
@@ -202,8 +202,8 @@ func check_move_backward() -> bool:
 		
 	return can_move
 	
-func player_hit(enemies: Node):
-	var enemy = -1;
+func player_hit(enemies: Node) -> void:
+	var enemy: int = -1;
 	if facing == "N":
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1

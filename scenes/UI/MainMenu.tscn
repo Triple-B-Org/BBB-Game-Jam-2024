@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_sya7p"]
 [ext_resource type="AudioStream" uid="uid://bwrcvourbebam" path="res://assets/menuLow.wav" id="3_1fb5w"]
 [ext_resource type="PackedScene" uid="uid://d262wvxep2i0p" path="res://scenes/UI/SettingsMenu.tscn" id="3_xks8n"]
-[ext_resource type="Script" path="res://scenes/UI/MapMenu.gd" id="5_qac5u"]
+[ext_resource type="Script" path="res://scripts/UI/MapMenu.gd" id="5_qac5u"]
 
 [sub_resource type="Theme" id="Theme_k080w"]
 default_font = ExtResource("1_sya7p")

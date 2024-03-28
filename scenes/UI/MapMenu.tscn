@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://fnqpogkvslqx"]
+
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_vu2st"]
+[ext_resource type="Script" path="res://scripts/MapMenu.gd" id="2_jpcr1"]
+
+[sub_resource type="Theme" id="Theme_sfskt"]
+default_font = ExtResource("1_vu2st")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MapMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_sfskt")
+script = ExtResource("2_jpcr1")
+
+[node name="Menu_Controller" type="Control" parent="MapMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="MapMenu/Menu_Controller"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 0.337255)
+
+[node name="MarginContainer" type="MarginContainer" parent="MapMenu/Menu_Controller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 442.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MapMenu/Menu_Controller/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 10.04
+alignment = 1
+
+[node name="Left_Choice" type="Button" parent="MapMenu/Menu_Controller/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+text = "Test"
+
+[node name="Middle_Choice" type="Button" parent="MapMenu/Menu_Controller/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+text = "test 2"
+
+[node name="Right_Choice" type="Button" parent="MapMenu/Menu_Controller/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+text = "test 3"
+
+[connection signal="pressed" from="MapMenu/Menu_Controller/MarginContainer/HBoxContainer/Left_Choice" to="MapMenu" method="on_left_pressed"]
+[connection signal="pressed" from="MapMenu/Menu_Controller/MarginContainer/HBoxContainer/Middle_Choice" to="MapMenu" method="on_middle_pressed"]
+[connection signal="pressed" from="MapMenu/Menu_Controller/MarginContainer/HBoxContainer/Right_Choice" to="MapMenu" method="on_right_pressed"]

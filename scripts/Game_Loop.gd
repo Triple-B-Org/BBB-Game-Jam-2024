@@ -53,3 +53,22 @@ func load_level() -> void:
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)
 	enemy_gen.unload_enemies($Enemies)
+	
+func game_restart() -> void:
+	#reset global variables
+	GlobalVar.Current_Room = []
+	GlobalVar.enemies = []
+	GlobalVar.player_max_actions = 3
+	GlobalVar.player_actions = 3
+	GlobalVar.player_max_health = 3
+	GlobalVar.player_health = 3
+	GlobalVar.players_turn = 1
+	GlobalVar.enemy_turn = 0
+	
+	#reset grid maps
+	grid_map.fight_rooms = []
+	grid_map.rest_rooms = []
+	grid_map.load_fight_rooms()
+	grid_map.load_rest_rooms()
+	
+	unload_level()

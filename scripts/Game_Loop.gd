@@ -31,10 +31,13 @@ func _ready() -> void:
 
 #REMOVE AFTER TESTING ONLY WAY FOR NOW, ILL DO TURNS TOMORROW (KELAN)
 func _physics_process(_delta: float) -> void:
+	if GlobalVar.player_health <= 0:
+		game_restart()
+	
+	#handel player and enemy turns
 	if GlobalVar.players_turn == 1:
 		GlobalVar.players_turn = 2
-	
-	if GlobalVar.enemy_turn == 1:
+	elif GlobalVar.enemy_turn == 1:
 		GlobalVar.enemy_turn = 0
 		enemy_turn.enemys_turn($Enemies)
 		GlobalVar.player_actions = GlobalVar.player_max_actions
@@ -71,4 +74,13 @@ func game_restart() -> void:
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
 	
+	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+	
 	unload_level()
+	
+	grid_map.get_random_fight_room()
+	
+	wall_gen.generate_walls($Walls)
+	enemy_gen.generate_enemies($Enemies)
+	
+	emit_signal("spawn_player", GlobalVar.Current_Room)

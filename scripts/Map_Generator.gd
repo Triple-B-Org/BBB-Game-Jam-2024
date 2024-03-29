@@ -8,6 +8,7 @@ func _ready() -> void:
 	pass
 
 func initialize_map() -> void:
+	GlobalVar.selectable_rooms = []
 	# Define the weights for choosing fights and rests
 	while GlobalVar.selectable_rooms.size() != 3:
 		if num_rooms_visited % 5 == 0 && num_rooms_visited != 0:

@@ -18,8 +18,6 @@ var enemies_death: bool = false
 
 # Map arrays
 var selectable_rooms: Array = []
-var fight_rooms = []
-var rest_rooms = []
 
 #
 var player_choice: int = 0

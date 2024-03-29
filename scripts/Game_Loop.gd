@@ -45,6 +45,7 @@ func _physics_process(_delta: float) -> void:
 		
 
 func load_level() -> void:
+	map_generator.initialize_map()
 	enemy_gen.generate_enemies($Enemies)
 	wall_gen.generate_walls($Walls)
 	emit_signal("spawn_player", GlobalVar.Current_Room)

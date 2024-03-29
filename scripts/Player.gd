@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 		#Attack
 		if Input.is_action_just_pressed("hit"):
 			player_hit(get_tree().get_root().get_node("Main/Enemies"))
-			GlobalVar.player_actions -= 1
 			if GlobalVar.player_actions == 0:
 				GlobalVar.players_turn = 0
 				GlobalVar.enemy_turn = 1
@@ -208,6 +207,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y-1, grid_x]:
+				GlobalVar.player_actions -= 1
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y-1][grid_x] = 0
@@ -221,6 +221,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x+1]:
+				GlobalVar.player_actions -= 1
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x+1] = 0
@@ -234,6 +235,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y+1, grid_x]:
+				GlobalVar.player_actions -= 1
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y+1][grid_x] = 0
@@ -247,6 +249,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x-1]:
+				GlobalVar.player_actions -= 1
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x-1] = 0

@@ -13,7 +13,7 @@ func generate_enemies(parent: Node) -> void:
 				var enemy_instance: Node3D = Enemy.instantiate()
 				parent.add_child(enemy_instance)
 				enemy_instance.position = start_position + Vector3(col, 0, row)
-				GlobalVar.enemies.append([row, col])
+				GlobalVar.enemies.append([row, col, 2])
 
 func unload_enemies(parent: Node) -> void:
 	for n: Node in parent.get_children():

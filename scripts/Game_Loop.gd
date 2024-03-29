@@ -64,7 +64,7 @@ func game_restart() -> void:
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
 	
-	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+	var _result: Error = get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
 	
 	unload_level()
 	
@@ -73,4 +73,4 @@ func game_restart() -> void:
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
 	
-	emit_signal("spawn_player", GlobalVar.Current_Room)
+	_result = emit_signal("spawn_player", GlobalVar.Current_Room)

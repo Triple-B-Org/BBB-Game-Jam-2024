@@ -43,23 +43,6 @@ func _physics_process(_delta: float) -> void:
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
 		
-	if Input.is_action_just_pressed("ui_end"):
-		unload_level()
-		grid_map.get_random_fight_room()
-		load_level()
-		var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
-	
-	if GlobalVar.player_choice > 0:
-		print(GlobalVar.player_choice)
-		GlobalVar.player_choice = 0
-		unload_level()
-		load_level()
-		$UI/MapMenu.visible = false
-		enemies_spawned = true
-	elif enemies_spawned == false:
-		$UI/MapMenu.visible = true
-	elif enemies_spawned == true and GlobalVar.enemies == []:
-		enemies_spawned = false
 
 func load_level() -> void:
 	enemy_gen.generate_enemies($Enemies)

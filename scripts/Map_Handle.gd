@@ -11,6 +11,8 @@ var grid_map: Grid_Map = Grid_Map.new()
 
 func _ready() -> void:
 	self.visible = false
+	grid_map.load_fight_rooms()
+	grid_map.load_rest_rooms()
 	pass
 
 func on_left_pressed() -> void:
@@ -19,8 +21,8 @@ func on_left_pressed() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
-	emit_signal("load_map")
 	emit_signal("unload_map")
+	emit_signal("load_map")
 	self.visible = false
 	print(GlobalVar.player_choice)
 	
@@ -30,8 +32,8 @@ func on_middle_pressed() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
-	emit_signal("load_map")
 	emit_signal("unload_map")
+	emit_signal("load_map")
 	self.visible = false
 	print(GlobalVar.player_choice)
 	
@@ -41,7 +43,7 @@ func on_right_pressed() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
-	emit_signal("load_map")
 	emit_signal("unload_map")
+	emit_signal("load_map")
 	self.visible = false
 	print(GlobalVar.player_choice)

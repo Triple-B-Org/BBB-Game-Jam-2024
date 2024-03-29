@@ -212,6 +212,8 @@ func player_hit(enemies: Node) -> void:
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y-1][grid_x] = 0
 					GlobalVar.enemies.pop_at(enemy)
+					if GlobalVar.enemies == []:
+						get_node("../UI/MapMenu").visible = true
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 				break
@@ -223,6 +225,8 @@ func player_hit(enemies: Node) -> void:
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x+1] = 0
 					GlobalVar.enemies.pop_at(enemy)
+					if GlobalVar.enemies == []:
+						get_node("../UI/MapMenu").visible = true
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 				break
@@ -234,6 +238,8 @@ func player_hit(enemies: Node) -> void:
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y+1][grid_x] = 0
 					GlobalVar.enemies.pop_at(enemy)
+					if GlobalVar.enemies == []:
+						get_node("../UI/MapMenu").visible = true
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 				break
@@ -245,6 +251,8 @@ func player_hit(enemies: Node) -> void:
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x-1] = 0
 					GlobalVar.enemies.pop_at(enemy)
+					if GlobalVar.enemies == []:
+						get_node("../UI/MapMenu").visible = true
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 				break

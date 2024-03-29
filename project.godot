@@ -38,6 +38,12 @@ window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="viewport"
 
+[importer_defaults]
+
+animation_library={
+"animation/fps": 25.0
+}
+
 [input]
 
 move_forward={

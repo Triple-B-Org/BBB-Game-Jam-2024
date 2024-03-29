@@ -12,3 +12,11 @@ var player_health: int = 3;
 #1 = start turn, 2 = on turn, 0 = not turn
 var players_turn: int = 1
 var enemy_turn: int = 0
+
+# Map arrays
+var selectable_rooms: Array = []
+var fight_rooms = []
+var rest_rooms = []
+
+#
+var player_choice: int = 0

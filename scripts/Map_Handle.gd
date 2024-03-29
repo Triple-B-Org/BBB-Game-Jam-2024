@@ -21,10 +21,13 @@ func on_left_pressed() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
+	GlobalVar.player_actions = GlobalVar.player_max_actions
+	GlobalVar.players_turn = 1
+	GlobalVar.enemy_turn = 0
 	emit_signal("unload_map")
 	emit_signal("load_map")
 	self.visible = false
-	print(GlobalVar.player_choice)
+	
 	
 func on_middle_pressed() -> void:
 	GlobalVar.player_choice = map_generator.get_middle_option()
@@ -32,10 +35,13 @@ func on_middle_pressed() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
+	GlobalVar.player_actions = GlobalVar.player_max_actions
+	GlobalVar.players_turn = 1
+	GlobalVar.enemy_turn = 0
 	emit_signal("unload_map")
 	emit_signal("load_map")
 	self.visible = false
-	print(GlobalVar.player_choice)
+	
 	
 func on_right_pressed() -> void:
 	GlobalVar.player_choice = map_generator.get_right_option()
@@ -43,7 +49,10 @@ func on_right_pressed() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
+	GlobalVar.player_actions = GlobalVar.player_max_actions
+	GlobalVar.players_turn = 1
+	GlobalVar.enemy_turn = 0
 	emit_signal("unload_map")
 	emit_signal("load_map")
 	self.visible = false
-	print(GlobalVar.player_choice)
+	

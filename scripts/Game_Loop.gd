@@ -23,6 +23,9 @@ func _ready() -> void:
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
 	
+	$UI/MapMenu.connect("unload_map", unload_level)
+	$UI/MapMenu.connect("load_map", load_level)
+	
 	#spawns player
 	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
 
@@ -48,13 +51,11 @@ func _physics_process(_delta: float) -> void:
 	
 	if GlobalVar.player_choice > 0:
 		print(GlobalVar.player_choice)
-		if GlobalVar.player_choice == 1:
-			grid_map.get_random_fight_room()
-		if GlobalVar.player_choice == 2:
-			grid_map.get_random_rest_room()
 		GlobalVar.player_choice = 0
 		unload_level()
 		load_level()
+		$UI/MapMenu.visible = false
+		enemies_spawned = true
 	elif enemies_spawned == false:
 		$UI/MapMenu.visible = true
 	elif enemies_spawned == true and GlobalVar.enemies == []:

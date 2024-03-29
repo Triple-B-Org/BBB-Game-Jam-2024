@@ -1,42 +1,49 @@
-[gd_scene load_steps=13 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=14 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
+[ext_resource type="Environment" uid="uid://dudksep7s6q0c" path="res://scenes/Graphics/WorldEnvironment.tres" id="3_eoxxv"]
 [ext_resource type="Script" path="res://scripts/UI/FPSCounter.gd" id="3_mbl4p"]
 [ext_resource type="Script" path="res://scripts/UI/UI.gd" id="4_jqup2"]
+[ext_resource type="Script" path="res://scripts/Camera3D.gd" id="4_sesmw"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
-[ext_resource type="Texture2D" uid="uid://wk7b18gp24ma" path="res://assets/stonebrickfloor_displacement.png" id="6_w1gc6"]
 [ext_resource type="PackedScene" uid="uid://7onwkhkw62ni" path="res://scenes/UI/PauseMenu.tscn" id="8_q074q"]
 [ext_resource type="Script" path="res://scripts/Enemy_Turn.gd" id="9_jff1q"]
-[ext_resource type="Script" path="res://scripts/Environment/Floor.gd" id="9_rpc1u"]
-[ext_resource type="PackedScene" uid="uid://ckjxpj6f0kw3k" path="res://scenes/Environment/Fountain.tscn" id="10_j3qcd"]
+[ext_resource type="PackedScene" uid="uid://fnqpogkvslqx" path="res://scenes/UI/MapMenu.tscn" id="9_lp2jq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuoc6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
 albedo_texture = ExtResource("5_x2hxo")
-metallic_specular = 0.0
-emission_enabled = true
-emission_energy_multiplier = 0.1
-emission_texture = ExtResource("5_x2hxo")
-heightmap_enabled = true
-heightmap_deep_parallax = true
-heightmap_min_layers = 8
-heightmap_max_layers = 32
-heightmap_texture = ExtResource("6_w1gc6")
-uv1_scale = Vector3(25, 25, 25)
+uv1_scale = Vector3(8, 8, 8)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_4u8x5"]
-size = Vector2(25, 25)
+[sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]
+size = Vector2(20, 20)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("player")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b88c8"]
+size = Vector3(20, 0, 20)
+
+[node name="Main" type="Node3D"]
 script = ExtResource("1_j7vjs")
-player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("2_58ysq")]
 
+[node name="Camera3D2" type="Camera3D" parent="Player"]
+environment = ExtResource("3_eoxxv")
+script = ExtResource("4_sesmw")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0174351, 0.0404975, -0.00386429)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = SubResource("StandardMaterial3D_em84r")
+mesh = SubResource("PlaneMesh_hikpt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0135899, 0.0135741, 0.000415802)
+shape = SubResource("BoxShape3D_b88c8")
+
 [node name="top down light" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.957213, -0.248232, 0.148742, -0.000546587, 0.512443, 0.858721, -0.289384, -0.82206, 0.490382, 0, 5.93865, 0)
-visible = false
-shadow_enabled = true
+transform = Transform3D(0.999999, 0.00141808, -0.000209732, 0.00010911, 0.0705877, 0.997506, 0.00142935, -0.997505, 0.0705874, 0, 5.93865, 0)
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("pause_menu")]
 process_mode = 3
@@ -59,20 +66,13 @@ script = ExtResource("3_mbl4p")
 visible = false
 layout_mode = 1
 
+[node name="MapMenu" parent="UI" instance=ExtResource("9_lp2jq")]
+layout_mode = 1
+
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Enemies" type="Node3D" parent="."]
 script = ExtResource("9_jff1q")
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0174351, 0.0404975, -0.00386429)
-material_override = SubResource("StandardMaterial3D_nuoc6")
-mesh = SubResource("PlaneMesh_4u8x5")
-skeleton = NodePath("")
-script = ExtResource("9_rpc1u")
-
-[node name="Fountain" parent="." instance=ExtResource("10_j3qcd")]
-
 [connection signal="spawn_player" from="." to="Player" method="spawn_player"]
-[connection signal="done_moving" from="Player" to="Floor" method="_on_player_done_moving"]
 [connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]

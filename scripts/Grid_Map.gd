@@ -9,10 +9,19 @@ var rest_rooms = []
 # Returns a random room to be generated
 func get_random_fight_room() -> void:
 	rng.randomize()
-	GlobalVar.Current_Room = fight_rooms[rng.randf_range(0, 5)]
+	if fight_rooms == []:
+		load_fight_rooms()
+	var random_room = rng.randf_range(0, fight_rooms.size())
+	GlobalVar.Current_Room = fight_rooms[random_room]
+	fight_rooms.pop_at(random_room)
 
 func get_random_rest_room() -> void:
-	GlobalVar.Current_Room = rest_rooms[0]
+	rng.randomize()
+	if rest_rooms == []:
+		load_rest_rooms()
+	var random_room = rng.randf_range(0, rest_rooms.size())
+	GlobalVar.Current_Room = rest_rooms[random_room]
+	rest_rooms.pop_at(random_room)
 
 #this function is for putting in your room layouts
 func load_fight_rooms() -> void:

@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	audioplayer.stop()
-	var _result: Error = get_tree().change_scene_to_file("res://scenes/UI/MapMenu.tscn")
+	var _result: Error = get_tree().change_scene_to_file(start_game_scene)
 
 
 func _on_settings_button_pressed() -> void:

@@ -1,6 +1,5 @@
 extends Node
 
-
 signal spawn_player(current_room: Array)
 
 @export var player: Node
@@ -10,11 +9,22 @@ var grid_map: Grid_Map = Grid_Map.new()
 var wall_gen: Wall_Gen = Wall_Gen.new()
 var enemy_gen: Enemy_Gen = Enemy_Gen.new()
 var enemy_turn: Enemy_Turn = Enemy_Turn.new()
+var map_generator: Map_Gen = Map_Gen.new()
+var map_handle: Map_Handle = Map_Handle.new()
+
+var enemies_spawned: bool = true
 
 func _ready() -> void:
+	map_generator.initialize_map()
+	grid_map.load_fight_rooms()
+	grid_map.load_rest_rooms()
+	grid_map.get_random_fight_room()
 	#gnerates walls and enemies
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
+	
+	$UI/MapMenu.connect("unload_map", unload_level)
+	$UI/MapMenu.connect("load_map", load_level)
 	
 	#spawns player
 	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
@@ -38,10 +48,24 @@ func _physics_process(_delta: float) -> void:
 		grid_map.get_random_fight_room()
 		load_level()
 		var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
+	
+	if GlobalVar.player_choice > 0:
+		print(GlobalVar.player_choice)
+		GlobalVar.player_choice = 0
+		unload_level()
+		load_level()
+		$UI/MapMenu.visible = false
+		enemies_spawned = true
+	elif enemies_spawned == false:
+		$UI/MapMenu.visible = true
+	elif enemies_spawned == true and GlobalVar.enemies == []:
+		enemies_spawned = false
 
 func load_level() -> void:
-	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
+	wall_gen.generate_walls($Walls)
+	emit_signal("spawn_player", GlobalVar.Current_Room)
+	
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)
@@ -58,16 +82,8 @@ func game_restart() -> void:
 	GlobalVar.players_turn = 1
 	GlobalVar.enemy_turn = 0
 	
-	#reset grid maps
-	grid_map.fight_rooms = []
-	grid_map.rest_rooms = []
-	grid_map.load_fight_rooms()
-	grid_map.load_rest_rooms()
-	
-	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
-	
 	unload_level()
-	
+	get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
 	grid_map.get_random_fight_room()
 	
 	wall_gen.generate_walls($Walls)

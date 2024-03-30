@@ -12,10 +12,13 @@ var grid_map: Grid_Map = Grid_Map.new()
 @onready var left_button: Button = $Menu_Controller/MarginContainer/HBoxContainer/Left_Choice
 @onready var middle_button: Button = $Menu_Controller/MarginContainer/HBoxContainer/Middle_Choice
 @onready var right_button: Button = $Menu_Controller/MarginContainer/HBoxContainer/Right_Choice
+@onready var audio_player: AudioStreamPlayer = $"../../AudioStreamPlayer"
 
 var fight_icon: Texture2D = preload("res://assets/fight-icon.png")
 var rest_icon: Texture2D = preload("res://assets/resticon.png")
 var boss_icon: Texture2D = preload("res://assets/boss-icon.png")
+
+var rest_room_music = preload("res://assets/aShortRest.wav")
 
 func _ready() -> void:
 	left_button.visibility_changed.connect(self.change_icon)
@@ -46,6 +49,8 @@ func do_map_loading() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
+		audio_player.stream = rest_room_music
+		audio_player.play()
 	GlobalVar.player_actions = GlobalVar.player_max_actions
 	GlobalVar.players_turn = 1
 	GlobalVar.enemy_turn = 0

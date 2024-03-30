@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Node3D
 
 
 signal done_moving(pos: Vector3)
@@ -26,14 +26,17 @@ var grid_y: int = -1
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var ui_manager: Control = $"../UI"
 
-func reset_audio() -> void:
-	if audio_player.playing == true:
-		audio_player.stop()
-
 var footsteps: AudioStreamWAV = preload("res://assets/footsteps.wav")
 var reverseFootsteps: AudioStreamWAV = preload("res://assets/footstepsReverse.wav")
 
 var _result: Error
+
+
+func play_footsteps(sound_file: AudioStreamWAV) -> void:
+	if !audio_player.playing:
+		audio_player.stream = sound_file
+		audio_player.play()
+
 
 func _physics_process(delta: float) -> void:
 	if GlobalVar.players_turn == 2:
@@ -52,8 +55,7 @@ func _physics_process(delta: float) -> void:
 						start_position = position
 						end_position = start_position - Vector3(direction.x, 0, direction.y)
 						t_movement = 0
-						audio_player.stream = footsteps
-						audio_player.play()
+						play_footsteps(footsteps)
 						
 						GlobalVar.player_actions -= 1
 						_result = emit_signal("player_moved")
@@ -66,8 +68,7 @@ func _physics_process(delta: float) -> void:
 						start_position = position
 						end_position = start_position + Vector3(direction.x, 0, direction.y)
 						t_movement = 0
-						audio_player.stream = reverseFootsteps
-						audio_player.play()
+						play_footsteps(reverseFootsteps)
 						
 						GlobalVar.player_actions -= 1
 						_result = emit_signal("player_moved")
@@ -123,8 +124,7 @@ func _physics_process(delta: float) -> void:
 				if check_move_forward() == true:
 					position.x -= direction.x
 					position.z -= direction.y
-					audio_player.stream = footsteps
-					audio_player.play()
+					play_footsteps(footsteps)
 					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					_result = emit_signal("player_moved")
@@ -135,8 +135,7 @@ func _physics_process(delta: float) -> void:
 				if check_move_backward() == true:
 					position.x += direction.x
 					position.z += direction.y
-					audio_player.stream = reverseFootsteps
-					audio_player.play()
+					play_footsteps(reverseFootsteps)
 					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					_result = emit_signal("player_moved")

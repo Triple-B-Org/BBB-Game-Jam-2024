@@ -8,12 +8,18 @@ var map_generator: Map_Gen = Map_Gen.new()
 var grid_map: Grid_Map = Grid_Map.new()
 
 @onready var left_button: Button = $Menu_Controller/MarginContainer/HBoxContainer/Left_Choice
+@onready var middle_button: Button = $Menu_Controller/MarginContainer/HBoxContainer/Middle_Choice
+@onready var right_button: Button = $Menu_Controller/MarginContainer/HBoxContainer/Right_Choice
 
 var fight_icon: Texture2D = preload("res://assets/fight-icon.png")
 var rest_icon: Texture2D = preload("res://assets/resticon.png")
+var boss_icon: Texture2D = preload("res://assets/boss-icon.png")
 
 func _ready() -> void:
-	#left_button.connect("icon_change", change_icon)
+	left_button.visibility_changed.connect(self.change_icon)
+	middle_button.visibility_changed.connect(self.change_icon)
+	right_button.visibility_changed.connect(self.change_icon)
+	visible = false
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
 
@@ -46,9 +52,7 @@ func do_map_loading() -> void:
 	$"..".close_map_menu()
 
 func change_icon() -> void:
-	if GlobalVar.selectable_rooms[0] == 1:
-		left_button.get_button_icon()
-		left_button.set_button_icon(fight_icon)
-	if GlobalVar.selectable_rooms[0] == 2:
-		left_button.get_button_icon()
-		left_button.set_button_icon(rest_icon)
+	var buttons = [left_button, middle_button, right_button]
+	var room_icons = [fight_icon, rest_icon, boss_icon]
+	for i in range(3):
+		buttons[i].icon = room_icons[GlobalVar.selectable_rooms[i] - 1]

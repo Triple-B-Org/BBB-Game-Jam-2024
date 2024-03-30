@@ -236,6 +236,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
+						GlobalVar.players_turn = 0
 						ui_manager.open_map_menu()
 				break
 	elif facing == "E":

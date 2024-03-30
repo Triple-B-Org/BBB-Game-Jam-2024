@@ -8,38 +8,39 @@ var start_position: Vector3 = Vector3(-9.5,1,-9.5)
 
 func enemys_turn(parent: Node) -> void:
 	for enemy: int in range(parent.get_children().size()):
-		var enemy_pos: Array = [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]]
-		var move: String = find_shortest_path(enemy_pos)
-		var enemy_node: Node3D = parent.get_child(enemy)
-		var enemy_position: Vector2i = Vector2i(enemy_pos[0], enemy_pos[1])
-		var direction: Vector2i =  Vector2i.ZERO
-		
-		if move == "N":
-			direction.x = -1
-		elif  move == "S":
-			direction.x = 1
-		elif move == "E":
-			direction.y = -1
-		elif move == "W":
-			direction.y = 1
-		
-		GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 0
-		enemy_position += direction
-		GlobalVar.enemies[enemy][0] = enemy_position.x
-		GlobalVar.enemies[enemy][1] = enemy_position.y
-		GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 2
-		enemy_node.position = start_position + Vector3(enemy_position.y, 0, enemy_position.x)
-	
-	var _result: Error = emit_signal("enemy_moved")
+		for actions in range(GlobalVar.enemies[enemy][3]):
+			var enemy_pos: Array = [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]]
+			var move: String = find_shortest_path(enemy_pos, GlobalVar.enemies[enemy][4], GlobalVar.enemies[enemy][5])
+			var enemy_node: Node3D = parent.get_child(enemy)
+			var enemy_position: Vector2i = Vector2i(round(enemy_pos[0]), round(enemy_pos[1]))
+			var direction: Vector2i =  Vector2i.ZERO
+			
+			if move == "N":
+				direction.x = -1
+			elif  move == "S":
+				direction.x = 1
+			elif move == "E":
+				direction.y = -1
+			elif move == "W":
+				direction.y = 1
+			
+			GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 0
+			enemy_position += direction
+			GlobalVar.enemies[enemy][0] = enemy_position.x
+			GlobalVar.enemies[enemy][1] = enemy_position.y
+			GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 2
+			enemy_node.position = start_position + Vector3(enemy_position.y, 0, enemy_position.x)
 
 
-func find_shortest_path(enemy: Array) -> String:
+func find_shortest_path(enemy: Array, range: int, damage: int) -> String:
 	var player_found: bool = false
 	var room_check: Array = GlobalVar.Current_Room.duplicate(true)
 	var current_check: Array = [enemy]
 	var next_check: Array = []
 	var current_offset: int =  0
 	var player_position: Array = [-1, -1]
+	var line_check: bool = false
+	var check_direction = -1;
 	
 	while !player_found:
 		current_offset -= 1
@@ -83,20 +84,46 @@ func find_shortest_path(enemy: Array) -> String:
 				return ""
 
 	if current_offset == -1:
-		hit_player()
+		hit_player(damage)
 		return ""
+		
+	if range > 1 and current_offset == -range:
+		line_check = true
+		check_direction = -1;
 		
 	while current_offset != -1:
 		if room_check[player_position[0] - 1][player_position[1]] > current_offset and room_check[player_position[0] - 1][player_position[1]] < 0:
 			player_position = [player_position[0] - 1, player_position[1]]
+			if line_check == true:
+				if check_direction != 0 and check_direction != -1:
+					line_check = false
+				check_direction = 0
 		elif room_check[player_position[0]][player_position[1]+1] > current_offset and room_check[player_position[0]][player_position[1]+1] < 0:
 			player_position = [player_position[0], player_position[1] + 1]
+			if line_check == true:
+				if check_direction != 1  and check_direction != -1:
+					line_check = false
+				check_direction = 1
 		elif room_check[player_position[0] + 1][player_position[1]] > current_offset and room_check[player_position[0] + 1][player_position[1]] < 0:
 			player_position = [player_position[0] + 1, player_position[1]]
+			if line_check == true:
+				if check_direction != 2  and check_direction != -1:
+					line_check = false
+				check_direction = 2
 		elif room_check[player_position[0]][player_position[1] -1] > current_offset and room_check[player_position[0]][player_position[1]-1] < 0:
 			player_position = [player_position[0], player_position[1]-1]
+			if line_check == true:
+				if check_direction != 3 and check_direction != -1:
+					line_check = false
+				check_direction = 3
 		current_offset += 1
 			
+	if line_check == true:
+		print(enemy)
+		print("ranged hit")
+		hit_player(damage)
+		return ""
+	
 	if enemy[0] < player_position[0]:
 		return "S"
 	elif enemy[0] > player_position[0]:
@@ -109,6 +136,6 @@ func find_shortest_path(enemy: Array) -> String:
 		return ""
 
 
-func hit_player() -> void:
-	GlobalVar.player_health -= 1
+func hit_player(damage: int) -> void:
+	GlobalVar.player_health -= damage
 	var _result: Error = emit_signal("player_hit")

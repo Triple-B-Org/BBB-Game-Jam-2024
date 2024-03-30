@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://fnqpogkvslqx"]
+[gd_scene load_steps=8 format=3 uid="uid://fnqpogkvslqx"]
 
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_vu2st"]
 [ext_resource type="Script" path="res://scripts/Map_Handle.gd" id="2_cy48f"]
 [ext_resource type="Texture2D" uid="uid://jn8wukf6blkx" path="res://assets/fight-icon.png" id="3_l1gih"]
+[ext_resource type="Texture2D" uid="uid://vlkgx0eucjoy" path="res://assets/tunnel.png" id="4_d2jdn"]
+[ext_resource type="Texture2D" uid="uid://dtgu4jvw8lfrd" path="res://assets/resticon.png" id="4_gqawg"]
+[ext_resource type="Texture2D" uid="uid://cdg3bh24y1ofw" path="res://assets/boss-icon.png" id="5_ghxrk"]
 
 [sub_resource type="Theme" id="Theme_sfskt"]
 default_font = ExtResource("1_vu2st")
@@ -34,20 +37,34 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="MarginContainer3" type="MarginContainer" parent="Menu_Controller"]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 537.0
+offset_bottom = 224.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu_Controller/MarginContainer3"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "A series of paths reveal themselves, select which you shall travel down...
+
+The choice is yours..."
+
 [node name="MarginContainer" type="MarginContainer" parent="Menu_Controller"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
 offset_top = -96.0
-offset_right = 250.0
+offset_right = 500.0
 offset_bottom = 96.0
-grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 12
+theme_override_constants/margin_left = 210
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
@@ -68,20 +85,34 @@ icon_alignment = 1
 [node name="Middle_Choice" type="Button" parent="Menu_Controller/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
+icon = ExtResource("4_gqawg")
 
 [node name="Right_Choice" type="Button" parent="Menu_Controller/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-text = "test 3"
+icon = ExtResource("5_ghxrk")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Menu_Controller"]
+[node name="MarginContainer2" type="MarginContainer" parent="Menu_Controller"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_bottom = 250.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="Menu_Controller/MarginContainer2"]
 layout_mode = 2
-offset_left = 12.0
-offset_top = 87.0
-offset_right = 1268.0
-offset_bottom = 232.0
-theme_override_font_sizes/normal_font_size = 30
-text = "New paths reveal themselves, select which you shall travel down..."
+texture = ExtResource("4_d2jdn")
+expand_mode = 1
 
 [connection signal="pressed" from="Menu_Controller/MarginContainer/HBoxContainer/Left_Choice" to="." method="on_left_pressed"]
 [connection signal="pressed" from="Menu_Controller/MarginContainer/HBoxContainer/Middle_Choice" to="." method="on_middle_pressed"]

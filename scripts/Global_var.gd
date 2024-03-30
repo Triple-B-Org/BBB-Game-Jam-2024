@@ -16,8 +16,7 @@ var players_turn: int = 1
 var enemy_turn: int = 0
 var enemies_death: bool = false
 
-# Map arrays
+# Map stuffs
 var selectable_rooms: Array = []
-
-#
 var player_choice: int = 0
+var num_rooms_visited: int = 1

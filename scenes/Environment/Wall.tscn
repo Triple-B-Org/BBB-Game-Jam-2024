@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0q31tpx8dhfw"]
+
+[ext_resource type="Script" path="res://scripts/Environment/Wall.gd" id="1_gelv4"]
+
+[node name="Wall" type="Node3D"]
+script = ExtResource("1_gelv4")

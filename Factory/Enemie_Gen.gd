@@ -10,10 +10,12 @@ func generate_enemies(parent: Node) -> void:
 	for row: int in range(array.size()):
 		for col: int in range(one_row.size()):
 			if array[row][col] == 2:
+				#this is the basic enemy, more can be added the same way
 				var enemy_instance: Node3D = Enemy.instantiate()
 				parent.add_child(enemy_instance)
 				enemy_instance.position = start_position + Vector3(col, 0, row)
-				GlobalVar.enemies.append([row, col, 2])
+				#[x, y, health, actions, range, damage]
+				GlobalVar.enemies.append([row, col, 2, 1, 1, 1])
 
 func unload_enemies(parent: Node) -> void:
 	for n: Node in parent.get_children():

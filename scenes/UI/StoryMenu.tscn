@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ugnop5hki01m"]
+[gd_scene load_steps=5 format=3 uid="uid://bsg38q1fqxioo"]
 
 [ext_resource type="Script" path="res://scripts/UI/StoryMenu.gd" id="1_3bsaa"]
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_p8fhh"]
@@ -82,5 +82,6 @@ text = "Begin your descent..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jukct")
+volume_db = -15.0
 
 [connection signal="pressed" from="Story Controller/decent_button" to="." method="_on_decent_button_pressed"]

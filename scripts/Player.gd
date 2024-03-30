@@ -24,7 +24,7 @@ var grid_y: int = -1
 
 #Adding this audio player for player noises
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
-@onready var map_menu: Control = $"../UI/MapMenu"
+@onready var ui_manager: Control = $"../UI"
 
 func reset_audio() -> void:
 	if audio_player.playing == true:
@@ -235,7 +235,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						ui_manager.open_map_menu()
 				break
 	elif facing == "E":
 		for enemy_node: Node in enemies.get_children():
@@ -250,7 +250,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						ui_manager.open_map_menu()
 				break
 	elif facing == "S":
 		for enemy_node: Node in enemies.get_children():
@@ -265,7 +265,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						ui_manager.open_map_menu()
 				break
 	else:
 		for enemy_node: Node in enemies.get_children():
@@ -280,7 +280,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						ui_manager.open_map_menu()
 				break
 
 func spawn_player(grid: Array) -> void:

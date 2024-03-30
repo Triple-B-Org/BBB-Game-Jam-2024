@@ -1,5 +1,3 @@
-class_name Map_Handle
-
 extends Control
 
 signal load_map
@@ -16,7 +14,6 @@ var rest_icon: Texture2D = preload("res://assets/resticon.png")
 
 func _ready() -> void:
 	#left_button.connect("icon_change", change_icon)
-	self.visible = false
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
 
@@ -46,8 +43,8 @@ func do_map_loading() -> void:
 	GlobalVar.enemy_turn = 0
 	emit_signal("unload_map")
 	emit_signal("load_map")
-	self.visible = false
-	
+	$"..".close_map_menu()
+
 func change_icon() -> void:
 	if GlobalVar.selectable_rooms[0] == 1:
 		left_button.get_button_icon()

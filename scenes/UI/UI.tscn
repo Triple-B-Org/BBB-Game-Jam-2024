@@ -23,15 +23,15 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("2_a66w3")
 
+[node name="PlayerHUD" parent="." instance=ExtResource("5_xhrct")]
+layout_mode = 1
+
 [node name="PauseMenu" parent="." instance=ExtResource("3_thoaa")]
 visible = false
 layout_mode = 1
 
 [node name="MapMenu" parent="." instance=ExtResource("4_1lof2")]
 visible = false
-layout_mode = 1
-
-[node name="PlayerHUD" parent="." instance=ExtResource("5_xhrct")]
 layout_mode = 1
 
 [connection signal="pause_menu_reset" from="." to="PauseMenu" method="_on_ui_pause_menu_reset"]

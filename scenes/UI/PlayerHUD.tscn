@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3oo3emnyry5f"]
+[gd_scene load_steps=5 format=3 uid="uid://d3oo3emnyry5f"]
 
 [ext_resource type="Script" path="res://scripts/UI/HealthContainer.gd" id="1_b1jo2"]
 [ext_resource type="Script" path="res://scripts/UI/Turns.gd" id="2_3http"]
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="2_wc0uy"]
+[ext_resource type="Script" path="res://scripts/UI/Enemies.gd" id="4_cqwfe"]
 
 [node name="PlayerHUD" type="Control"]
 layout_mode = 3
@@ -27,13 +28,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_3http")
 
-[node name="Enemies" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="HealthContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-offset_right = 579.0
-offset_bottom = 169.0
+offset_right = 597.0
+offset_bottom = 119.0
 script = ExtResource("1_b1jo2")
+
+[node name="Enemies" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -495.0
+offset_top = -94.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wc0uy")
+theme_override_font_sizes/font_size = 35
+text = "There are enemies nearby!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_cqwfe")

@@ -18,6 +18,16 @@ func toggle_pause() -> void:
 	var _result: Error = emit_signal("pause_menu_reset")
 
 
+func open_map_menu() -> void:
+	$PlayerHUD.visible = false
+	$MapMenu.visible = true
+
+
+func close_map_menu() -> void:
+	$MapMenu.visible = false
+	$PlayerHUD.visible = true
+
+
 func _on_continue_button_pressed() -> void:
 	toggle_pause()
 
@@ -36,3 +46,7 @@ func _on_player_player_moved() -> void:
 
 func _on_enemies_enemy_moved():
 	$PlayerHUD/Turns.reset_turns()
+
+
+func _on_main_spawn_player(_current_room: Array) -> void:
+	_on_enemies_enemy_moved()

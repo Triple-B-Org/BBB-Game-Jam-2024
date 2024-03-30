@@ -1,6 +1,7 @@
-extends Node
+extends Node3D
 
-class_name Enemy_Turn
+signal player_hit
+signal enemy_moved
 
 var start_position: Vector3 = Vector3(-9.5,1,-9.5)
 
@@ -28,6 +29,9 @@ func enemys_turn(parent: Node) -> void:
 		GlobalVar.enemies[enemy][1] = enemy_position.y
 		GlobalVar.Current_Room[enemy_position.x][enemy_position.y] = 2
 		enemy_node.position = start_position + Vector3(enemy_position.y, 0, enemy_position.x)
+	
+	var _result: Error = emit_signal("enemy_moved")
+	print(_result)
 
 
 func find_shortest_path(enemy: Array) -> String:
@@ -108,4 +112,6 @@ func find_shortest_path(enemy: Array) -> String:
 
 func hit_player() -> void:
 	GlobalVar.player_health -= 1
+	var _result: Error = emit_signal("player_hit")
+	print(_result)
 	print(GlobalVar.player_health)

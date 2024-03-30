@@ -8,7 +8,7 @@ signal spawn_player(current_room: Array)
 var grid_map: Grid_Map = Grid_Map.new()
 var wall_gen: Wall_Gen = Wall_Gen.new()
 var enemy_gen: Enemy_Gen = Enemy_Gen.new()
-var enemy_turn: Enemy_Turn = Enemy_Turn.new()
+@export var enemy_turn: Node3D
 var map_generator: Map_Gen = Map_Gen.new()
 var map_handle: Map_Handle = Map_Handle.new()
 

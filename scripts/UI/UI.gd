@@ -20,3 +20,19 @@ func toggle_pause() -> void:
 
 func _on_continue_button_pressed() -> void:
 	toggle_pause()
+
+
+func _on_enemies_player_hit() -> void:
+	$PlayerHUD/HealthContainer.update_health()
+
+
+func _on_player_reset_health() -> void:
+	$PlayerHUD/HealthContainer.reset_health()
+
+
+func _on_player_player_moved() -> void:
+	$PlayerHUD/Turns.update_turns()
+
+
+func _on_enemies_enemy_moved():
+	$PlayerHUD/Turns.reset_turns()

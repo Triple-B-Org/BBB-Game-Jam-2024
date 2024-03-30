@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 signal done_moving(pos: Vector3)
+signal player_moved
 
 
 var direction: Vector2 = Vector2.DOWN
@@ -32,6 +33,8 @@ func reset_audio() -> void:
 var footsteps: AudioStreamWAV = preload("res://assets/footsteps.wav")
 var reverseFootsteps: AudioStreamWAV = preload("res://assets/footstepsReverse.wav")
 
+var _result: Error
+
 func _physics_process(delta: float) -> void:
 	if GlobalVar.players_turn == 2:
 		#Attack
@@ -53,6 +56,7 @@ func _physics_process(delta: float) -> void:
 						audio_player.play()
 						
 						GlobalVar.player_actions -= 1
+						_result = emit_signal("player_moved")
 						if GlobalVar.player_actions == 0:
 							GlobalVar.players_turn = 0
 							GlobalVar.enemy_turn = 1
@@ -66,6 +70,7 @@ func _physics_process(delta: float) -> void:
 						audio_player.play()
 						
 						GlobalVar.player_actions -= 1
+						_result = emit_signal("player_moved")
 						if GlobalVar.player_actions == 0:
 							GlobalVar.players_turn = 0
 							GlobalVar.enemy_turn = 1
@@ -122,6 +127,7 @@ func _physics_process(delta: float) -> void:
 					audio_player.play()
 					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
+					_result = emit_signal("player_moved")
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
 						GlobalVar.enemy_turn = 1
@@ -133,6 +139,7 @@ func _physics_process(delta: float) -> void:
 					audio_player.play()
 					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
+					_result = emit_signal("player_moved")
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
 						GlobalVar.enemy_turn = 1
@@ -220,6 +227,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y-1, grid_x]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y-1][grid_x] = 0
@@ -234,6 +242,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x+1]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x+1] = 0
@@ -248,6 +257,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y+1, grid_x]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y+1][grid_x] = 0
@@ -262,6 +272,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x-1]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x-1] = 0

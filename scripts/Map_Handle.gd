@@ -15,7 +15,7 @@ var fight_icon: Texture2D = preload("res://assets/fight-icon.png")
 var rest_icon: Texture2D = preload("res://assets/resticon.png")
 
 func _ready() -> void:
-	left_button.connect("icon_change", change_icon)
+	#left_button.connect("icon_change", change_icon)
 	self.visible = false
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()

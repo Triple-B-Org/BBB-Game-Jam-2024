@@ -2,7 +2,7 @@ extends Node
 
 var Current_Room = []
 
-#[x, y, health]
+#[x, y, health, actions, range, damage]
 var enemies = []
 
 #player stats

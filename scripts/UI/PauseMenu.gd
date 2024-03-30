@@ -6,7 +6,6 @@ signal set_options_2
 
 
 @export var main_menu_scene: String
-
 @export var pause_menu_ui: Control
 @export var settings_menu_ui: Control
 

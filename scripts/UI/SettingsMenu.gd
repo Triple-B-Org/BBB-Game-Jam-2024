@@ -15,12 +15,24 @@ var resolution_lookup: Array[Vector2i] = [Vector2i(2560, 1440), Vector2i(1920, 1
 
 
 func set_options() -> void:
-	Settings.fullscreen = false
 	fullscreen_button.button_pressed = Settings.fullscreen
-	_on_fullscreen_button_toggled(false)
 	resolution_option.selected = Settings.resolution_index
 	smooth_movement_button.button_pressed = Settings.smooth_movement
 	smooth_value_bar.value = Settings.move_speed
+
+
+func set_fullscreen(toggled_on: bool) -> void:
+	Settings.fullscreen = toggled_on
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func set_resolution(index: int) -> void:
+	get_window().size = resolution_lookup[index]
+	get_window().content_scale_size = resolution_lookup[index]
+	Settings.resolution_index = index
 
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
@@ -37,20 +49,11 @@ func _on_h_slider_value_changed(value: float) -> void:
 
 
 func _on_option_button_item_selected(index: int) -> void:
-	get_window().size = resolution_lookup[index]
-	get_window().content_scale_size = resolution_lookup[index]
-	Settings.resolution_index = index
-	Settings.fullscreen = false
-	fullscreen_button.button_pressed = Settings.fullscreen
-	_on_fullscreen_button_toggled(false)
+	set_resolution(index)
+	set_fullscreen(Settings.fullscreen)
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
-	Settings.fullscreen = toggled_on
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	get_window().size = resolution_lookup[Settings.resolution_index]
-	get_window().content_scale_size = resolution_lookup[Settings.resolution_index]
+	set_fullscreen(toggled_on)
+	set_resolution(Settings.resolution_index)
 

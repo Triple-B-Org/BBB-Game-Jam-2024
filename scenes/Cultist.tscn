@@ -19,6 +19,7 @@ orientation = 2
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_30yl3")
 enemy = NodePath("MeshInstance3D")
+enemy_type = ExtResource("5_qippi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_bafsb")

@@ -2,9 +2,12 @@ extends Node3D
 
 @onready var player: Node3D = $"../../Player"
 @export var enemy: MeshInstance3D
+@export var enemy_type: CompressedTexture2D
 
 var time: float = 0
 
+func _ready() -> void:
+	$MeshInstance3D/EnemyHUD/TypeImage.texture = enemy_type
 
 func _process(_delta: float) -> void:
 	enemy.rotation.y = -atan2(position.z - player.position.z, position.x - player.position.x)

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdg3bh24y1ofw"
-path.bptc="res://.godot/imported/boss-icon.png-ceafef919c412e583fa2e87e2e33a13b.bptc.ctex"
+uid="uid://cub33a2kulxnt"
+path.bptc="res://.godot/imported/empty-heart.png-d241ccdfe2d43f342d69743fb704a812.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/boss-icon.png"
-dest_files=["res://.godot/imported/boss-icon.png-ceafef919c412e583fa2e87e2e33a13b.bptc.ctex"]
+source_file="res://assets/empty-heart.png"
+dest_files=["res://.godot/imported/empty-heart.png-d241ccdfe2d43f342d69743fb704a812.bptc.ctex"]
 
 [params]
 

@@ -23,6 +23,7 @@ var grid_y: int = -1
 
 #Adding this audio player for player noises
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var map_menu: Control = $"../UI/MapMenu"
 
 func reset_audio() -> void:
 	if audio_player.playing == true:
@@ -128,7 +129,7 @@ func _physics_process(delta: float) -> void:
 				if check_move_backward() == true:
 					position.x += direction.x
 					position.z += direction.y
-					audio_player.stream = footsteps
+					audio_player.stream = reverseFootsteps
 					audio_player.play()
 					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
@@ -226,7 +227,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						get_node("../UI/MapMenu").visible = true
+						map_menu.visible = true
 				break
 	elif facing == "E":
 		for enemy_node: Node in enemies.get_children():
@@ -240,7 +241,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						get_node("../UI/MapMenu").visible = true
+						map_menu.visible = true
 				break
 	elif facing == "S":
 		for enemy_node: Node in enemies.get_children():
@@ -254,7 +255,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						get_node("../UI/MapMenu").visible = true
+						map_menu.visible = true
 				break
 	else:
 		for enemy_node: Node in enemies.get_children():
@@ -268,7 +269,7 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						get_node("../UI/MapMenu").visible = true
+						map_menu.visible = true
 				break
 
 func spawn_player(grid: Array) -> void:

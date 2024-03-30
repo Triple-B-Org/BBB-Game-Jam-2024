@@ -10,7 +10,7 @@ func enemys_turn(parent: Node) -> void:
 		var enemy_pos: Array = [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]]
 		var move: String = find_shortest_path(enemy_pos)
 		var enemy_node: Node3D = parent.get_child(enemy)
-		var enemy_position: Vector2i = Vector2i(round(enemy_pos[0]), round(enemy_pos[1]))
+		var enemy_position: Vector2i = Vector2i(enemy_pos[0], enemy_pos[1])
 		var direction: Vector2i =  Vector2i.ZERO
 		
 		if move == "N":

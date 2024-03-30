@@ -13,6 +13,7 @@ var map_generator: Map_Gen = Map_Gen.new()
 var map_handle: Map_Handle = Map_Handle.new()
 
 var enemies_spawned: bool = true
+var _result: Error
 
 func _ready() -> void:
 	map_generator.initialize_map()
@@ -23,11 +24,11 @@ func _ready() -> void:
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
 	
-	$UI/MapMenu.connect("unload_map", unload_level)
-	$UI/MapMenu.connect("load_map", load_level)
+	_result = $UI/MapMenu.connect("unload_map", unload_level)
+	_result = $UI/MapMenu.connect("load_map", load_level)
 	
 	#spawns player
-	var _result: Error = emit_signal("spawn_player", GlobalVar.Current_Room)
+	_result = emit_signal("spawn_player", GlobalVar.Current_Room)
 
 #REMOVE AFTER TESTING ONLY WAY FOR NOW, ILL DO TURNS TOMORROW (KELAN)
 func _physics_process(_delta: float) -> void:
@@ -42,19 +43,20 @@ func _physics_process(_delta: float) -> void:
 		enemy_turn.enemys_turn($Enemies)
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
-		
+
 
 func load_level() -> void:
 	map_generator.initialize_map()
 	enemy_gen.generate_enemies($Enemies)
 	wall_gen.generate_walls($Walls)
-	emit_signal("spawn_player", GlobalVar.Current_Room)
-	
+	_result = emit_signal("spawn_player", GlobalVar.Current_Room)
+
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)
 	enemy_gen.unload_enemies($Enemies)
-	
+
+
 func game_restart() -> void:
 	#reset global variables
 	GlobalVar.Current_Room = []
@@ -67,7 +69,7 @@ func game_restart() -> void:
 	GlobalVar.enemy_turn = 0
 	
 	unload_level()
-	var _result: Error = get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
+	_result = get_tree().change_scene_to_file("res://scenes/UI/MainMenu.tscn")
 	grid_map.get_random_fight_room()
 	
 	wall_gen.generate_walls($Walls)

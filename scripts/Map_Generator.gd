@@ -2,6 +2,7 @@ extends Node
 class_name Map_Gen
 
 var num_rooms_visited: int = 0
+signal icon_change
 
 func _ready() -> void:
 	initialize_map()
@@ -20,6 +21,8 @@ func initialize_map() -> void:
 			GlobalVar.selectable_rooms.append(1)
 		else:
 			GlobalVar.selectable_rooms.append(2)
+	emit_signal("icon_change")
+	
 	print(GlobalVar.selectable_rooms)
 
 func reset_selectable_rooms() -> void:

@@ -72,4 +72,5 @@ script = ExtResource("9_rpc1u")
 
 [connection signal="spawn_player" from="." to="Player" method="spawn_player"]
 [connection signal="done_moving" from="Player" to="Floor" method="_on_player_done_moving"]
+[connection signal="pause_menu_reset" from="UI" to="UI/PauseMenu" method="_on_ui_pause_menu_reset"]
 [connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]

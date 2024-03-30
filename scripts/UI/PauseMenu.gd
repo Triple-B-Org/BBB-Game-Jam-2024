@@ -28,3 +28,8 @@ func _on_back_button_pressed() -> void:
 
 func _on_continue_button_pressed() -> void:
 	var _result: Error = emit_signal("continue_game")
+
+
+func _on_ui_pause_menu_reset() -> void:
+	pause_menu_ui.visible = true
+	settings_menu_ui.visible = false

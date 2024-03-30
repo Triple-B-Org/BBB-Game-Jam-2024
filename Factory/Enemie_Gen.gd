@@ -27,6 +27,7 @@ func generate_enemies(parent: Node) -> void:
 					GlobalVar.enemies.append([row, col, 3, 1, 1, 1])
 				parent.add_child(enemy_instance)
 				enemy_instance.position = start_position + Vector3(col, 0, row)
+				enemy_instance.update_health()
 
 
 func unload_enemies(parent: Node) -> void:

@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
 				if check_move_backward() == true:
 					position.x += direction.x
 					position.z += direction.y
-					audio_player.stream = footsteps
+					audio_player.stream = reverseFootsteps
 					audio_player.play()
 					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1

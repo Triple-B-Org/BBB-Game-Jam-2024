@@ -54,5 +54,5 @@ func do_map_loading() -> void:
 func change_icon() -> void:
 	var buttons = [left_button, middle_button, right_button]
 	var room_icons = [fight_icon, rest_icon, boss_icon]
-	for i in range(3):
+	for i: int in range(3):
 		buttons[i].icon = room_icons[GlobalVar.selectable_rooms[i] - 1]

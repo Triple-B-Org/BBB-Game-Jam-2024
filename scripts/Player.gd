@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 				t_movement = clamp((Settings.move_speed * delta) + t_movement, 0, 1)
 				position = start_position.lerp(end_position, t_movement)
 				if t_movement >= 1:
-					var _result: Error = emit_signal("done_moving", position)
+					_result = emit_signal("done_moving", position)
 			elif t_movement >= 1:
 				t_rotation = clamp((Settings.move_speed * delta) + t_rotation, 0, 1)
 				rotation.y = lerp(start_rotation, end_rotation, t_rotation)
@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 					position.x -= direction.x
 					position.z -= direction.y
 					play_footsteps(footsteps)
-					var _result: Error = emit_signal("done_moving", position)
+					_result = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					_result = emit_signal("player_moved")
 					if GlobalVar.player_actions == 0:
@@ -136,7 +136,7 @@ func _physics_process(delta: float) -> void:
 					position.x += direction.x
 					position.z += direction.y
 					play_footsteps(reverseFootsteps)
-					var _result: Error = emit_signal("done_moving", position)
+					_result = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					_result = emit_signal("player_moved")
 					if GlobalVar.player_actions == 0:

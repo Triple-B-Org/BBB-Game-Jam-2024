@@ -7,7 +7,7 @@
 [sub_resource type="Theme" id="Theme_5fdiq"]
 default_font = ExtResource("1_oee6s")
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("pause_menu_ui", "settings_menu_ui")]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("settings_menu_ui")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,6 @@ grow_vertical = 2
 theme = SubResource("Theme_5fdiq")
 script = ExtResource("1_ino1b")
 main_menu_scene = "res://scenes/UI/MainMenu.tscn"
-pause_menu_ui = NodePath("PauseMenuButtons")
 settings_menu_ui = NodePath("SettingsMenu")
 
 [node name="PauseMenuButtons" type="Control" parent="."]

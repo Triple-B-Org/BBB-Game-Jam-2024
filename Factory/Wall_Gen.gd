@@ -11,7 +11,7 @@ func generate_walls(parent: Node) -> void:
 	for row: int in range(array.size()):
 		for col: int in range(one_row.size()):
 			if array[row][col] == 3:
-				var wall_instance: StaticBody3D = Wall.instantiate()
+				var wall_instance: MeshInstance3D = Wall.instantiate()
 				parent.add_child(wall_instance)
 				wall_instance.position = start_position + Vector3(col, 0, row)
 

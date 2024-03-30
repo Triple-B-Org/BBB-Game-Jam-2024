@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://5glq8xtb6woi"
+path="res://.godot/imported/eye.obj-2aebb3eb171021d0686d506697f271ef.mesh"
+
+[deps]
+
+files=["res://.godot/imported/eye.obj-2aebb3eb171021d0686d506697f271ef.mesh"]
+
+source_file="res://blends/eye.obj"
+dest_files=["res://.godot/imported/eye.obj-2aebb3eb171021d0686d506697f271ef.mesh", "res://.godot/imported/eye.obj-2aebb3eb171021d0686d506697f271ef.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(7, -1.5, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

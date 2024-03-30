@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ipc7ld2xduph"]
+
+[ext_resource type="ArrayMesh" uid="uid://vwuiw3wpu86r" path="res://blends/suzanne.obj" id="1_jjksh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7550"]
+
+[node name="Suzanne" type="MeshInstance3D"]
+mesh = ExtResource("1_jjksh")
+surface_material_override/0 = SubResource("StandardMaterial3D_l7550")

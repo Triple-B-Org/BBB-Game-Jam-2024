@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b12r0qau0imns"]
+
+[ext_resource type="ArrayMesh" uid="uid://drf86y668xwf2" path="res://blends/angel.obj" id="1_ukqor"]
+[ext_resource type="Texture2D" uid="uid://rq2a5fdgfn1g" path="res://assets/eye_cut.jpg" id="2_5epkb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1ncn"]
+albedo_texture = ExtResource("2_5epkb")
+
+[node name="Angel" type="MeshInstance3D"]
+mesh = ExtResource("1_ukqor")
+surface_material_override/0 = SubResource("StandardMaterial3D_i1ncn")

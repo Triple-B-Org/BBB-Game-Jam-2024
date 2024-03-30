@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5v2dobdi14wr"]
+
+[ext_resource type="ArrayMesh" uid="uid://5glq8xtb6woi" path="res://blends/eye.obj" id="1_mr84e"]
+[ext_resource type="Texture2D" uid="uid://cvdauc8t0wdgy" path="res://assets/eye.jpg" id="2_g2u4n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25f8s"]
+albedo_texture = ExtResource("2_g2u4n")
+
+[node name="Eye" type="MeshInstance3D"]
+mesh = ExtResource("1_mr84e")
+surface_material_override/0 = SubResource("StandardMaterial3D_25f8s")

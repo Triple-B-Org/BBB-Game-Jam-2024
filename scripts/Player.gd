@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
 
+signal done_moving(pos: Vector3)
+
+
 var direction: Vector2 = Vector2.DOWN
 
 #GABOR the direction values where unreliable for checking on the grid, Im sorry
@@ -98,6 +101,8 @@ func _physics_process(delta: float) -> void:
 			elif t_rotation >= 1:
 				t_movement = clamp((Settings.move_speed * delta) + t_movement, 0, 1)
 				position = start_position.lerp(end_position, t_movement)
+				if t_movement >= 1:
+					var _result: Error = emit_signal("done_moving", position)
 			elif t_movement >= 1:
 				t_rotation = clamp((Settings.move_speed * delta) + t_rotation, 0, 1)
 				rotation.y = lerp(start_rotation, end_rotation, t_rotation)
@@ -112,6 +117,9 @@ func _physics_process(delta: float) -> void:
 				if check_move_forward() == true:
 					position.x -= direction.x
 					position.z -= direction.y
+					audio_player.stream = footsteps
+					audio_player.play()
+					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
@@ -120,6 +128,9 @@ func _physics_process(delta: float) -> void:
 				if check_move_backward() == true:
 					position.x += direction.x
 					position.z += direction.y
+					audio_player.stream = footsteps
+					audio_player.play()
+					var _result: Error = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
@@ -283,3 +294,5 @@ func spawn_player(grid: Array) -> void:
 				grid_x = col
 				grid_y = row
 				position = start_position_2 + Vector3(col, 0, row)
+	
+	var _result: Error = emit_signal("done_moving", position)

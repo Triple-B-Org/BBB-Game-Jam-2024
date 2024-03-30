@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckjxpj6f0kw3k"]
+
+[ext_resource type="ArrayMesh" uid="uid://cow1oxnx4lw6m" path="res://blends/fountain.obj" id="1_juu70"]
+[ext_resource type="Script" path="res://scripts/Environment/Fountain.gd" id="2_wfs0i"]
+[ext_resource type="PackedScene" uid="uid://c5v2dobdi14wr" path="res://scenes/Environment/Eye.tscn" id="3_bsmk5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5mmk"]
+albedo_color = Color(0.223529, 0.223529, 0.223529, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lugll"]
+albedo_color = Color(0.137255, 0.403922, 0.54902, 1)
+
+[node name="Fountain" type="MeshInstance3D" node_paths=PackedStringArray("eye")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("1_juu70")
+surface_material_override/0 = SubResource("StandardMaterial3D_f5mmk")
+surface_material_override/1 = SubResource("StandardMaterial3D_lugll")
+script = ExtResource("2_wfs0i")
+eye = NodePath("Eye")
+
+[node name="Eye" parent="." instance=ExtResource("3_bsmk5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

@@ -9,42 +9,29 @@ var map_gen: Map_Gen = Map_Gen.new()
 var map_generator: Map_Gen = Map_Gen.new()
 var grid_map: Grid_Map = Grid_Map.new()
 
+
 func _ready() -> void:
-	self.visible = false
+	visible = false
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
-	pass
+
 
 func on_left_pressed() -> void:
 	GlobalVar.player_choice = map_generator.get_left_option()
-	if GlobalVar.player_choice == 1:
-		grid_map.get_random_fight_room()
-	elif GlobalVar.player_choice == 2:
-		grid_map.get_random_rest_room()
-	GlobalVar.player_actions = GlobalVar.player_max_actions
-	GlobalVar.players_turn = 1
-	GlobalVar.enemy_turn = 0
-	emit_signal("unload_map")
-	emit_signal("load_map")
-	self.visible = false
-	
-	
+	do_map_loading()
+
+
 func on_middle_pressed() -> void:
 	GlobalVar.player_choice = map_generator.get_middle_option()
-	if GlobalVar.player_choice == 1:
-		grid_map.get_random_fight_room()
-	elif GlobalVar.player_choice == 2:
-		grid_map.get_random_rest_room()
-	GlobalVar.player_actions = GlobalVar.player_max_actions
-	GlobalVar.players_turn = 1
-	GlobalVar.enemy_turn = 0
-	emit_signal("unload_map")
-	emit_signal("load_map")
-	self.visible = false
-	
-	
+	do_map_loading()
+
+
 func on_right_pressed() -> void:
 	GlobalVar.player_choice = map_generator.get_right_option()
+	do_map_loading()
+
+
+func do_map_loading() -> void:
 	if GlobalVar.player_choice == 1:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
@@ -52,7 +39,6 @@ func on_right_pressed() -> void:
 	GlobalVar.player_actions = GlobalVar.player_max_actions
 	GlobalVar.players_turn = 1
 	GlobalVar.enemy_turn = 0
-	emit_signal("unload_map")
-	emit_signal("load_map")
-	self.visible = false
-	
+	var _result: Error = emit_signal("unload_map")
+	_result = emit_signal("load_map")
+	visible = false

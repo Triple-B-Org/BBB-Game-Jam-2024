@@ -63,7 +63,7 @@ func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
 	set_resolution(Settings.resolution_index)
 
 
-func _on_audio_h_slider_value_changed(value: float):
+func _on_audio_h_slider_value_changed(value: float) -> void:
 	Settings.audio_volume = value
 	audio_value_label.text = str(value * 100)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))

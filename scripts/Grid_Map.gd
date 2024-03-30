@@ -11,7 +11,7 @@ func get_random_fight_room() -> void:
 	rng.randomize()
 	if fight_rooms == []:
 		load_fight_rooms()
-	var random_room = rng.randf_range(0, fight_rooms.size())
+	var random_room: int = rng.randi_range(0, fight_rooms.size())
 	GlobalVar.Current_Room = fight_rooms[random_room]
 	fight_rooms.pop_at(random_room)
 
@@ -19,7 +19,7 @@ func get_random_rest_room() -> void:
 	rng.randomize()
 	if rest_rooms == []:
 		load_rest_rooms()
-	var random_room = rng.randf_range(0, rest_rooms.size())
+	var random_room: int = rng.randi_range(0, rest_rooms.size())
 	GlobalVar.Current_Room = rest_rooms[random_room]
 	rest_rooms.pop_at(random_room)
 

@@ -42,19 +42,20 @@ func _physics_process(_delta: float) -> void:
 		enemy_turn.enemys_turn($Enemies)
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
-		
+
 
 func load_level() -> void:
 	map_generator.initialize_map()
 	enemy_gen.generate_enemies($Enemies)
 	wall_gen.generate_walls($Walls)
 	emit_signal("spawn_player", GlobalVar.Current_Room)
-	
+
 
 func unload_level() -> void:
 	wall_gen.unload_walls($Walls)
 	enemy_gen.unload_enemies($Enemies)
-	
+
+
 func game_restart() -> void:
 	#reset global variables
 	GlobalVar.Current_Room = []

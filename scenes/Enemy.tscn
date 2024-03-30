@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://w8vasahkp6c"]
+[gd_scene load_steps=8 format=3 uid="uid://w8vasahkp6c"]
 
 [ext_resource type="Script" path="res://scripts/Enemy_rotation.gd" id="1_5nfx0"]
 [ext_resource type="Texture2D" uid="uid://bfp68iupj68v6" path="res://assets/wiz.png" id="1_kp8aq"]
+[ext_resource type="Texture2D" uid="uid://jvu2usl2uyes" path="res://assets/full-heart.png" id="3_rrlxp"]
+[ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="4_m3ooc"]
+[ext_resource type="Texture2D" uid="uid://cdg3bh24y1ofw" path="res://assets/boss-icon.png" id="5_qippi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3tcx"]
 transparency = 1
@@ -19,3 +22,25 @@ enemy = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_bafsb")
+
+[node name="EnemyHUD" type="Node3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67954, 0)
+
+[node name="HealthImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.143903, 0, 6.29018e-09)
+shaded = true
+texture = ExtResource("3_rrlxp")
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="HealthText" type="Label3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.333774, 0, 1.45897e-08)
+shaded = true
+text = "2"
+font = ExtResource("4_m3ooc")
+font_size = 100
+
+[node name="TypeImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.172146, 0, -7.52474e-09)
+shaded = true
+texture = ExtResource("5_qippi")
+region_rect = Rect2(0, 0, 512, 512)

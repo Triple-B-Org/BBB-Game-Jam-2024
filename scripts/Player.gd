@@ -195,7 +195,7 @@ func check_move_forward() -> bool:
 
 func check_move_backward() -> bool:
 	var can_move: bool = false
-
+	
 	if facing == "N" and GlobalVar.Current_Room[grid_y + 1][grid_x] == 0:
 		can_move = true
 		GlobalVar.Current_Room[grid_y + 1][grid_x] = 1
@@ -216,9 +216,10 @@ func check_move_backward() -> bool:
 		GlobalVar.Current_Room[grid_y][grid_x + 1] = 1
 		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_x += 1
-		
-	return can_move
 	
+	return can_move
+
+
 func player_hit(enemies: Node) -> void:
 	var enemy: int = -1;
 	if facing == "N":
@@ -228,6 +229,7 @@ func player_hit(enemies: Node) -> void:
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y-1][grid_x] = 0
 					GlobalVar.enemies.pop_at(enemy)
@@ -243,6 +245,7 @@ func player_hit(enemies: Node) -> void:
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x+1] = 0
 					GlobalVar.enemies.pop_at(enemy)
@@ -258,6 +261,7 @@ func player_hit(enemies: Node) -> void:
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y+1][grid_x] = 0
 					GlobalVar.enemies.pop_at(enemy)
@@ -273,6 +277,7 @@ func player_hit(enemies: Node) -> void:
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("player_moved")
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x-1] = 0
 					GlobalVar.enemies.pop_at(enemy)
@@ -282,8 +287,8 @@ func player_hit(enemies: Node) -> void:
 						ui_manager.open_map_menu()
 				break
 
+
 func spawn_player(grid: Array) -> void:
-	
 	if facing == "W":
 		rotation.y -= PI/2
 		direction = Vector2(sin(rotation.y), cos(rotation.y))
@@ -306,4 +311,4 @@ func spawn_player(grid: Array) -> void:
 				grid_y = row
 				position = start_position_2 + Vector3(col, 0, row)
 	
-	var _result: Error = emit_signal("done_moving", position)
+	_result = emit_signal("done_moving", position)

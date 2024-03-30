@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd2pfebxyr66d"]
+
+[ext_resource type="ArrayMesh" uid="uid://h30wg6b1i1ax" path="res://blends/pot.obj" id="1_l1bh1"]
+
+[node name="Pot" type="MeshInstance3D"]
+mesh = ExtResource("1_l1bh1")

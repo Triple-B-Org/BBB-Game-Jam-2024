@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsi5616hcjdh5"]
+[gd_scene load_steps=6 format=3 uid="uid://dsi5616hcjdh5"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_uvies"]
 [ext_resource type="Environment" uid="uid://dudksep7s6q0c" path="res://scenes/Graphics/WorldEnvironment.tres" id="2_fcja8"]
 [ext_resource type="Script" path="res://scripts/Environment/Camera3D.gd" id="3_he672"]
 [ext_resource type="AudioStream" uid="uid://br8b2gulpnl43" path="res://assets/Sword_slash_sound_effect.wav" id="4_x26t5"]
+[ext_resource type="AudioStream" uid="uid://djok66jvw2nji" path="res://assets/sounds6.wav" id="5_cs5dr"]
 
 [node name="Player" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5)
@@ -26,3 +27,6 @@ spot_angle_attenuation = 19.0273
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_x26t5")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cs5dr")

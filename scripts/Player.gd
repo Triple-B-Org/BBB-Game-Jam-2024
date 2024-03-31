@@ -371,3 +371,4 @@ func activate_angel() -> void:
 
 func _on_enemies_player_hit() -> void:
 	t_color = 0
+	$AudioStreamPlayer2.play()

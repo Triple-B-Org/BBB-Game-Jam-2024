@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm0mrhxtudtpn"]
+[gd_scene load_steps=4 format=3 uid="uid://bm0mrhxtudtpn"]
 
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_2upvb"]
+[ext_resource type="Script" path="res://scripts/UI/continue button.gd" id="2_2i8jr"]
+[ext_resource type="PackedScene" uid="uid://cq125elvxkix5" path="res://scenes/UI/MainMenu.tscn" id="3_q7ico"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -14,17 +16,38 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Controls" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -166.0
+offset_right = 138.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="controls title" type="RichTextLabel" parent="Controls"]
-layout_mode = 0
-offset_left = 505.0
-offset_top = 206.0
-offset_right = 630.0
-offset_bottom = 248.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 7.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
@@ -32,11 +55,18 @@ text = "Controls"
 fit_content = true
 
 [node name="controls" type="RichTextLabel" parent="Controls"]
-layout_mode = 0
-offset_left = 457.0
-offset_top = 252.0
-offset_right = 689.0
-offset_bottom = 378.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -105.0
+offset_right = 117.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 text = "W/up 		= move forward
 S/down 	= move backward
@@ -46,73 +76,122 @@ space		= Attack
 "
 
 [node name="gameplay" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = -333.0
+offset_right = 277.0
+offset_bottom = -183.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Gameplay title" type="RichTextLabel" parent="gameplay"]
-layout_mode = 0
-offset_left = 526.0
-offset_top = 14.0
-offset_right = 680.0
-offset_bottom = 62.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 3.0
+offset_right = 70.0
+offset_bottom = 45.0
+grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 theme_override_font_sizes/normal_font_size = 30
 text = "Gameplay"
 
 [node name="Gameplay description" type="RichTextLabel" parent="gameplay"]
 layout_mode = 1
-anchors_preset = -1
-offset_left = 340.0
-offset_top = 70.0
-offset_right = 851.0
-offset_bottom = 196.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -254.0
+offset_top = -106.0
+offset_right = 254.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 text = "on your turn you have 3 actions. these actions can be a move to an empty space or an attack on an enemy. once all 3 of your moves are used up its the enemies turn, they only have one action but can be very powerfull so be careful!
 Good luck traveler."
 
 [node name="symobls" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = 9.0
+offset_right = 344.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Symobls title" type="RichTextLabel" parent="symobls"]
-layout_mode = 0
-offset_left = 505.0
-offset_top = 379.0
-offset_right = 631.0
-offset_bottom = 432.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 10.0
+offset_right = 64.0
+offset_bottom = 43.0
+grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 theme_override_font_sizes/normal_font_size = 30
-text = "symbols"
+text = "Symbols"
 
 [node name="Health symbol" type="TextureRect" parent="symobls"]
-layout_mode = 0
-offset_left = 376.0
-offset_top = 419.0
-offset_right = 416.0
-offset_bottom = 459.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
 
 [node name="Range symbol" type="TextureRect" parent="symobls"]
-layout_mode = 0
-offset_left = 258.0
-offset_top = 444.0
-offset_right = 318.0
-offset_bottom = 484.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 20.0
+grow_vertical = 2
 
 [node name="Damage symbol" type="TextureRect" parent="symobls"]
-layout_mode = 0
-offset_left = 382.0
-offset_top = 501.0
-offset_right = 418.0
-offset_bottom = 541.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 36.0
+offset_bottom = 20.0
+grow_vertical = 2
 
 [node name="symbols text" type="RichTextLabel" parent="symobls"]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 431.0
-offset_right = 915.0
-offset_bottom = 554.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -463.0
+offset_top = -42.0
+offset_right = -4.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_2upvb")
 text = "ammount of health the enemy has left
 
 distance that the enemy can hit you from in a straight line
@@ -120,10 +199,21 @@ distance that the enemy can hit you from in a straight line
 how much damage the enemy will do if they hit you"
 
 [node name="continue button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 482.0
-offset_top = 619.0
-offset_right = 633.0
-offset_bottom = 687.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.5
+offset_top = -131.0
+offset_right = 75.5
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_2upvb")
 text = "Continue..."
+script = ExtResource("2_2i8jr")
+main_menu = ExtResource("3_q7ico")
+
+[connection signal="pressed" from="continue button" to="continue button" method="_on_pressed"]

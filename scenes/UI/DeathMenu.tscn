@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq77i1t7ivjgv"]
+[gd_scene load_steps=5 format=3 uid="uid://r0pweh7tpvby"]
 
 [ext_resource type="Script" path="res://scripts/UI/DeathMenu.gd" id="1_vgmsx"]
 [ext_resource type="Texture2D" uid="uid://daukjkrw75tp" path="res://assets/gameoverman.png" id="2_u0goj"]

@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 				GlobalVar.player_max_health += 1
 				GlobalVar.player_health = GlobalVar.player_max_health
 			else:
-				GlobalVar.player_health += 1
+				GlobalVar.player_health = GlobalVar.player_max_health
 			$"../../UI"._on_player_reset_health()
 			GlobalVar.players_turn = 0
 			$"../../UI".open_map_menu()

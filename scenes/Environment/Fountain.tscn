@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckjxpj6f0kw3k"]
+[gd_scene load_steps=7 format=3 uid="uid://ckjxpj6f0kw3k"]
 
 [ext_resource type="ArrayMesh" uid="uid://cow1oxnx4lw6m" path="res://blends/fountain.obj" id="1_juu70"]
 [ext_resource type="Script" path="res://scripts/Environment/Fountain.gd" id="2_wfs0i"]
 [ext_resource type="PackedScene" uid="uid://c5v2dobdi14wr" path="res://scenes/Environment/Eye.tscn" id="3_bsmk5"]
+[ext_resource type="AudioStream" uid="uid://drsg2rc6sbalf" path="res://assets/aShortRest.wav" id="4_ilqhp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5mmk"]
 albedo_color = Color(0.223529, 0.223529, 0.223529, 1)
@@ -23,3 +24,8 @@ eye = NodePath("Eye")
 
 [node name="Eye" parent="." instance=ExtResource("3_bsmk5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ilqhp")
+volume_db = 1.0
+autoplay = true

@@ -77,7 +77,7 @@ Humanity clings to survival in the unforgiving Shattered Realm.
 
 A rumor. A map. A promise of power hidden deep within the ruins of the Cosmic Delve.
 
-O' cosmic traveller, will you traverse the Delve and restore balance? Or just become yet another conduit of the void..."
+O' lonely cosmic traveller, will you traverse the Delve and restore balance? Or just become yet another conduit of the void..."
 
 [node name="Button" type="Button" parent="Menu_Controller"]
 layout_mode = 1

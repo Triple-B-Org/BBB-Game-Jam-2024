@@ -9,6 +9,7 @@ signal set_options
 @export var main_menu_ui: Control
 @export var settings_menu_ui: Control
 @export var credits_menu_ui: Control
+@export var controls_menu_ui: Control
 
 @onready var audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -41,3 +42,7 @@ func _on_back_button_pressed() -> void:
 func _on_credits_button_pressed() -> void:
 	main_menu_ui.visible = false
 	credits_menu_ui.visible = true
+
+func _on_controls_button_pressed() -> void:
+	main_menu_ui.visible = false
+	controls_menu_ui.visible = true

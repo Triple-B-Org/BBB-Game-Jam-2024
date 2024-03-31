@@ -15,9 +15,6 @@ var start_position: Vector3
 var end_position: Vector3
 
 
-func _ready() -> void:
-	$MeshInstance3D/EnemyHUD/TypeImage.texture = enemy_type
-
 
 func _process(delta: float) -> void:
 	enemy.rotation.y = -atan2(position.z - player.position.z, position.x - player.position.x)

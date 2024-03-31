@@ -31,11 +31,20 @@ var reverseFootsteps: AudioStreamWAV = preload("res://assets/footstepsReverse.wa
 
 var _result: Error
 
+var t_color: float = 1
+var start_colour: Color = Color.FIREBRICK
+
 
 func play_footsteps(sound_file: AudioStreamWAV) -> void:
 	if !audio_player.playing:
 		audio_player.stream = sound_file
 		audio_player.play()
+
+
+func _process(delta: float) -> void:
+	if t_color != 1:
+		t_color = clamp((1 * delta) + t_color, 0, 1)
+		$SpotLight3D.light_color = start_colour.lerp(Color.WHITE, t_color)
 
 
 func _physics_process(delta: float) -> void:
@@ -358,3 +367,8 @@ func spawn_player(grid: Array) -> void:
 
 func activate_angel() -> void:
 	_result = emit_signal("start_boss")
+
+
+func _on_enemies_player_hit() -> void:
+	t_color = 0
+	$AudioStreamPlayer2.play()

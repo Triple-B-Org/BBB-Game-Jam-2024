@@ -2,6 +2,8 @@ class_name Enemy_Gen
 
 var Cultist: PackedScene = preload("res://scenes/Cultist.tscn")
 var Flesh_blob: PackedScene = preload("res://scenes/Flesh_blob.tscn")
+var Beholder: PackedScene = preload("res://scenes/Beholder.tscn")
+var Steve: PackedScene = preload("res://scenes/Steve.tscn")
 
 var rand: RandomNumberGenerator = RandomNumberGenerator.new()
 #generates walls
@@ -20,18 +22,30 @@ func generate_enemies(parent: Node) -> void:
 					#this is used to check what enemies should spawn based on how far the player has gone
 					if GlobalVar.num_rooms_visited <= 2:
 						enemy_choice = 0
-					else:
+					elif GlobalVar.num_rooms_visited <= 4:
 						enemy_choice = rand.randi_range(0,1)
+					elif GlobalVar.num_rooms_visited <= 6:
+						enemy_choice = rand.randi_range(0,2)
+					else:
+						enemy_choice = rand.randi_range(0,3)
 					
 					#this is the enemies, more can be added the same way
 					if enemy_choice == 0:
 						enemy_instance = Cultist.instantiate()
 						#[x, y, health, actions, range, damage]
 						GlobalVar.enemies.append([row, col, 2, 1, 1, 1])
-					else:
+					elif enemy_choice == 1:
 						enemy_instance = Flesh_blob.instantiate()
 						#[x, y, health, actions, range, damage]
 						GlobalVar.enemies.append([row, col, 3, 1, 1, 1])
+					elif enemy_choice == 2:
+						enemy_instance = Beholder.instantiate()
+						#[x, y, health, actions, range, damage]
+						GlobalVar.enemies.append([row, col, 2, 1, 2, 1])
+					else:
+						enemy_instance = Steve.instantiate()
+						#[x, y, health, actions, range, damage]
+						GlobalVar.enemies.append([row, col, 2, 1, 1, 2])
 					parent.add_child(enemy_instance)
 					enemy_instance.position = start_position + Vector3(col, 0, row)
 					enemy_instance.update_health()
@@ -47,10 +61,18 @@ func generate_enemies(parent: Node) -> void:
 						#[x, y, health, actions, range, damage]
 						GlobalVar.enemies.append([row + 1, col, 2, 1, 1, 1])
 						
-					else:
+					elif enemy_choice == 1:
 						enemy_instance = Flesh_blob.instantiate()
 						#[x, y, health, actions, range, damage]
 						GlobalVar.enemies.append([row + 1, col, 3, 1, 1, 1])
+					elif enemy_choice == 2:
+						enemy_instance = Beholder.instantiate()
+						#[x, y, health, actions, range, damage]
+						GlobalVar.enemies.append([row + 1, col, 2, 1, 2, 1])
+					else:
+						enemy_instance = Steve.instantiate()
+						#[x, y, health, actions, range, damage]
+						GlobalVar.enemies.append([row + 1, col, 2, 1, 1, 2])
 					parent.add_child(enemy_instance)
 					enemy_instance.position = start_position + Vector3(col, 0, row + 1)
 					enemy_instance.update_health()

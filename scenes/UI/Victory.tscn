@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b88sj3sxyxhgk"]
 
 [ext_resource type="Script" path="res://scripts/UI/DeathMenu.gd" id="1_arb0r"]
-[ext_resource type="Texture2D" uid="uid://daukjkrw75tp" path="res://assets/gameoverman.png" id="2_ta23j"]
+[ext_resource type="Texture2D" uid="uid://bnn58j027eekn" path="res://assets/knight-rest.png" id="2_i5x6e"]
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="3_l4ovs"]
 [ext_resource type="AudioStream" uid="uid://dtqwosmn0qtd8" path="res://assets/MetalClang.wav" id="4_2td3u"]
 
@@ -50,7 +50,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TextureRect" type="TextureRect" parent="Menu_Controller/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_ta23j")
+texture = ExtResource("2_i5x6e")
 expand_mode = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="Menu_Controller"]
@@ -68,8 +68,14 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="Menu_Controller/MarginContainer2"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_l4ovs")
-theme_override_font_sizes/normal_font_size = 100
-text = "YAY"
+theme_override_font_sizes/normal_font_size = 30
+text = "With his minions defeated, Baas grip on the Cosmic Delve weakens. 
+
+The echoes of his zealotry fade with the final tremors of his defeat, as he casts himself back into the void.
+
+Your body heavy and mind weary, you find a nice dank corner to huddle yourself into.
+
+As you rest, strange whispers seem to emanate from the very walls of the Delve. Are they taunts from a defeated foe, or cryptic warnings of what lies deeper?"
 
 [node name="Button" type="Button" parent="Menu_Controller"]
 layout_mode = 1
@@ -82,7 +88,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_l4ovs")
 theme_override_font_sizes/font_size = 30
-text = "The void consumes you..."
+text = "To be continued..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2td3u")

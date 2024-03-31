@@ -42,7 +42,7 @@ layout_mode = 1
 offset_left = 7.0
 offset_top = 1.0
 offset_right = 537.0
-offset_bottom = 224.0
+offset_bottom = 262.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -51,7 +51,9 @@ theme_override_constants/margin_bottom = 20
 [node name="RichTextLabel" type="RichTextLabel" parent="Menu_Controller/MarginContainer3"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "A series of paths reveal themselves, select which you shall travel down...
+text = "The room is cleared.
+
+A series of paths reveal themselves, select which you shall travel down...
 
 The choice is yours..."
 

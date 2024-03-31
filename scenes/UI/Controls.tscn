@@ -102,19 +102,10 @@ offset_bottom = 484.0
 
 [node name="Damage symbol" type="TextureRect" parent="symobls"]
 layout_mode = 0
-<<<<<<< HEAD
-offset_left = 385.0
-offset_top = 557.0
-offset_right = 910.0
-offset_bottom = 1082.0
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("4_5ypi3")
-=======
 offset_left = 382.0
 offset_top = 501.0
 offset_right = 418.0
 offset_bottom = 541.0
->>>>>>> 2713f5dc20e3fb85a60fb84c83d52ab288f5e42e
 
 [node name="symbols text" type="RichTextLabel" parent="symobls"]
 layout_mode = 0

@@ -2,10 +2,6 @@ extends Node
 class_name Map_Gen
 
 
-func _ready() -> void:
-	initialize_map()
-
-
 func initialize_map() -> void:
 	GlobalVar.selectable_rooms = []
 	# Define the weights for choosing fights and rests

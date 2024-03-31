@@ -40,7 +40,7 @@ func _on_player_reset_health() -> void:
 	$PlayerHUD/HealthContainer.reset_health()
 
 
-func _on_player_player_moved() -> void:
+func _on_player_player_moved(_pos: Vector3) -> void:
 	$PlayerHUD/Turns.update_turns()
 
 

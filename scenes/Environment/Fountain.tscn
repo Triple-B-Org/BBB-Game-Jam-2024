@@ -9,9 +9,12 @@ albedo_color = Color(0.223529, 0.223529, 0.223529, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lugll"]
 albedo_color = Color(0.137255, 0.403922, 0.54902, 1)
+emission_enabled = true
+emission = Color(0.137255, 0.403922, 0.54902, 1)
+emission_energy_multiplier = 0.1
 
 [node name="Fountain" type="MeshInstance3D" node_paths=PackedStringArray("eye")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 mesh = ExtResource("1_juu70")
 surface_material_override/0 = SubResource("StandardMaterial3D_f5mmk")
 surface_material_override/1 = SubResource("StandardMaterial3D_lugll")

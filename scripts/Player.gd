@@ -2,7 +2,6 @@ extends Node3D
 
 
 signal done_moving(pos: Vector3)
-signal player_moved
 
 
 var direction: Vector2 = Vector2.DOWN
@@ -44,8 +43,9 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("hit"):
 			player_hit(get_tree().get_root().get_node("Main/Enemies"))
 			if GlobalVar.player_actions == 0:
-				GlobalVar.players_turn = 0
-				GlobalVar.enemy_turn = 1
+				GlobalVar.player_actions = GlobalVar.player_max_actions
+				GlobalVar.players_turn = 1
+				_result = emit_signal("done_moving", position)
 		
 		#Movement
 		if Settings.smooth_movement:
@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 						play_footsteps(footsteps)
 						
 						GlobalVar.player_actions -= 1
-						_result = emit_signal("player_moved")
+						_result = emit_signal("done_moving", position)
 						if GlobalVar.player_actions == 0:
 							GlobalVar.players_turn = 0
 							GlobalVar.enemy_turn = 1
@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 						play_footsteps(reverseFootsteps)
 						
 						GlobalVar.player_actions -= 1
-						_result = emit_signal("player_moved")
+						_result = emit_signal("done_moving", position)
 						if GlobalVar.player_actions == 0:
 							GlobalVar.players_turn = 0
 							GlobalVar.enemy_turn = 1
@@ -127,7 +127,6 @@ func _physics_process(delta: float) -> void:
 					play_footsteps(footsteps)
 					_result = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
-					_result = emit_signal("player_moved")
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
 						GlobalVar.enemy_turn = 1
@@ -138,7 +137,6 @@ func _physics_process(delta: float) -> void:
 					play_footsteps(reverseFootsteps)
 					_result = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
-					_result = emit_signal("player_moved")
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
 						GlobalVar.enemy_turn = 1
@@ -227,7 +225,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y-1, grid_x]:
 				GlobalVar.player_actions -= 1
-				_result = emit_signal("player_moved")
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
 				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
@@ -244,7 +242,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x+1]:
 				GlobalVar.player_actions -= 1
-				_result = emit_signal("player_moved")
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
 				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
@@ -260,7 +258,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y+1, grid_x]:
 				GlobalVar.player_actions -= 1
-				_result = emit_signal("player_moved")
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
 				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
@@ -276,7 +274,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x-1]:
 				GlobalVar.player_actions -= 1
-				_result = emit_signal("player_moved")
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
 				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:

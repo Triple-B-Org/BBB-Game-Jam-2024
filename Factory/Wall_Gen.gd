@@ -2,6 +2,7 @@ class_name Wall_Gen
 
 
 var Wall: PackedScene = preload("res://scenes/Environment/Wall.tscn")
+var fountain_scene: PackedScene = preload("res://scenes/Environment/Fountain.tscn")
 
 #generates walls
 func generate_walls(parent: Node) -> void:
@@ -15,6 +16,10 @@ func generate_walls(parent: Node) -> void:
 				parent.add_child(wall_instance)
 				wall_instance.position = start_position + Vector3(col, 0, row)
 				wall_instance.set_mesh_and_objects(pack_neighbour_data(row, col, array.size(), one_row.size()))
+			if array[row][col] == 4:
+				var fountain: Node3D = fountain_scene.instantiate()
+				parent.add_child(fountain)
+				fountain.position = start_position + Vector3(col, -1, row)
 
 
 func unload_walls(parent: Node) -> void:

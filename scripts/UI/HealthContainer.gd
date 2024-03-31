@@ -18,8 +18,15 @@ func _ready() -> void:
 
 
 func reset_health() -> void:
-	for heart_texture_instance: TextureRect in hearts_textures:
-		heart_texture_instance.texture = full_heart
+	for index: int in GlobalVar.player_max_health:
+		if index > hearts_textures.size() - 1:
+			var heart_texture_instance: TextureRect = TextureRect.new()
+			add_child(heart_texture_instance)
+			heart_texture_instance.texture = full_heart
+			heart_texture_instance.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			hearts_textures.append(heart_texture_instance)
+		else:
+			hearts_textures[index].texture = full_heart
 
 
 func update_health() -> void:

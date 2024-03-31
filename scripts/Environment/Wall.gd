@@ -1,8 +1,7 @@
 extends Node3D
 
 
-@onready var wall_plane: PackedScene = preload("res://scenes/Environment/WallPlane.tscn")
-
+@export var wall_plane: PackedScene
 @export var scattered_items: Array[PackedScene]
 
 

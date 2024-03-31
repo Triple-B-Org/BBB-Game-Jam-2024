@@ -2,8 +2,8 @@
 
 [ext_resource type="VideoStream" path="res://assets/boot.ogv" id="1_08lej"]
 [ext_resource type="Script" path="res://scripts/UI/BootVideo.gd" id="2_sp7h1"]
-[ext_resource type="PackedScene" uid="uid://bm0mrhxtudtpn" path="res://scenes/UI/Controls.tscn" id="3_0do5b"]
 [ext_resource type="Texture2D" uid="uid://ctyg6a5aens4q" path="res://assets/boot.png" id="3_0nsys"]
+[ext_resource type="PackedScene" uid="uid://cq125elvxkix5" path="res://scenes/UI/MainMenu.tscn" id="3_4xyq5"]
 
 [node name="Startup" type="Control"]
 layout_mode = 3
@@ -25,7 +25,7 @@ expand = true
 script = ExtResource("2_sp7h1")
 boot_picture = NodePath("../BootPicture")
 end_timer = NodePath("../EndTimer")
-main_menu = ExtResource("3_0do5b")
+main_menu = ExtResource("3_4xyq5")
 
 [node name="BootPicture" type="TextureRect" parent="."]
 z_index = -1

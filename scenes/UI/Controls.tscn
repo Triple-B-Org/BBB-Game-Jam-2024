@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/UI/continue button.gd" id="2_2i8jr"]
 [ext_resource type="Texture2D" uid="uid://jvu2usl2uyes" path="res://assets/full-heart.png" id="2_4b8b3"]
 [ext_resource type="Texture2D" uid="uid://4n7dkkm78p30" path="res://assets/1-rRange.png" id="3_7sqy3"]
-[ext_resource type="PackedScene" uid="uid://cq125elvxkix5" path="res://scenes/UI/MainMenu.tscn" id="3_q7ico"]
 [ext_resource type="Texture2D" uid="uid://swg607b1u4tv" path="res://assets/damage1.png" id="4_sxmsg"]
+[ext_resource type="PackedScene" uid="uid://m4uc2i7tr5u8" path="res://scenes/UI/StoryMenu.tscn" id="6_p1i3b"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -231,6 +231,6 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_2upvb")
 text = "Continue..."
 script = ExtResource("2_2i8jr")
-main_menu = ExtResource("3_q7ico")
+main_menu = ExtResource("6_p1i3b")
 
 [connection signal="pressed" from="continue button" to="continue button" method="_on_pressed"]

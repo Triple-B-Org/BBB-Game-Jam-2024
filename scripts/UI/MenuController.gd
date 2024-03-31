@@ -9,7 +9,6 @@ signal set_options
 @export var main_menu_ui: Control
 @export var settings_menu_ui: Control
 @export var credits_menu_ui: Control
-@export var controls_menu_ui: Control
 
 @onready var audioplayer: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -20,7 +19,7 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	audioplayer.stop()
-	var _result: Error = get_tree().change_scene_to_file("res://scenes/UI/StoryMenu.tscn")
+	var _result: Error = get_tree().change_scene_to_file("res://scenes/UI/Controls.tscn")
 
 
 func _on_settings_button_pressed() -> void:
@@ -43,6 +42,3 @@ func _on_credits_button_pressed() -> void:
 	main_menu_ui.visible = false
 	credits_menu_ui.visible = true
 
-func _on_controls_button_pressed() -> void:
-	main_menu_ui.visible = false
-	controls_menu_ui.visible = true

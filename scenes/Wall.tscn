@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbc0tatdkpef5"]
+
+[ext_resource type="Texture2D" uid="uid://28d2adouarlf" path="res://assets/wall.png" id="1_iwlde"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sqgh"]
+albedo_texture = ExtResource("1_iwlde")
+uv1_scale = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vpy0t"]
+size = Vector3(1, 2, 1)
+
+[node name="Wall" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_0sqgh")
+mesh = SubResource("BoxMesh_vpy0t")

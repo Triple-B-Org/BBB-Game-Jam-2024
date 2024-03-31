@@ -69,5 +69,6 @@ autostart = true
 [connection signal="done_moving" from="Player" to="Floor" method="_on_player_done_moving"]
 [connection signal="start_boss" from="Player" to="Walls" method="_on_player_start_boss"]
 [connection signal="enemy_moved" from="Enemies" to="UI" method="_on_enemies_enemy_moved"]
+[connection signal="player_hit" from="Enemies" to="Player" method="_on_enemies_player_hit"]
 [connection signal="player_hit" from="Enemies" to="UI" method="_on_enemies_player_hit"]
 [connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="_on_timer_timeout"]

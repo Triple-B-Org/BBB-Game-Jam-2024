@@ -237,8 +237,16 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						GlobalVar.players_turn = 0
-						ui_manager.open_map_menu()
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								pass
 				break
 	elif facing == "E":
 		for enemy_node: Node in enemies.get_children():
@@ -254,7 +262,16 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						ui_manager.open_map_menu()
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								pass
 				break
 	elif facing == "S":
 		for enemy_node: Node in enemies.get_children():
@@ -270,7 +287,16 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						ui_manager.open_map_menu()
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								pass
 				break
 	else:
 		for enemy_node: Node in enemies.get_children():
@@ -286,7 +312,16 @@ func player_hit(enemies: Node) -> void:
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						ui_manager.open_map_menu()
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								pass
 				break
 
 

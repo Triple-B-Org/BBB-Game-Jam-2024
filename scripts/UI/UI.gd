@@ -46,9 +46,13 @@ func _on_player_player_moved(_pos: Vector3) -> void:
 	$PlayerHUD/Turns.update_turns()
 
 
-func _on_enemies_enemy_moved():
+func _on_enemies_enemy_moved()-> void:
 	$PlayerHUD/Turns.reset_turns()
 
 
 func _on_main_spawn_player(_current_room: Array) -> void:
 	_on_enemies_enemy_moved()
+
+
+func update_boss_health() -> void:
+	$PlayerHUD/ProgressBar.value = GlobalVar.boss_health

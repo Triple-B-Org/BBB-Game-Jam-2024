@@ -69,6 +69,11 @@ func game_restart() -> void:
 	GlobalVar.player_health = 3
 	GlobalVar.players_turn = 1
 	GlobalVar.enemy_turn = 0
+	GlobalVar.boss_room = false
+	GlobalVar.boss_intro = false
+	GlobalVar.boss_health = 90
+	GlobalVar.wave_spawned = false
+	GlobalVar.num_rooms_visited = 1
 	
 	unload_level()
 	_result = get_tree().change_scene_to_file("res://scenes/UI/DeathMenu.tscn")

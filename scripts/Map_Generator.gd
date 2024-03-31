@@ -9,7 +9,7 @@ func initialize_map() -> void:
 		if GlobalVar.num_rooms_visited % 10 == 0:
 				GlobalVar.selectable_rooms.append(3)
 		else:
-			var fight_weight: int = 3  # Adjust this value to increase or decrease the likelihood of picking fight
+			var fight_weight: int = 4  # Adjust this value to increase or decrease the likelihood of picking fight
 			var rest_weight: int = 1  # Adjust this value to increase or decrease the likelihood of picking rest
 			var random_room_value: int = randi() % (fight_weight + rest_weight)
 			if random_room_value < fight_weight:

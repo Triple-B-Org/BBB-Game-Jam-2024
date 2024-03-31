@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/UI/continue button.gd" id="2_2i8jr"]
 [ext_resource type="Texture2D" uid="uid://jvu2usl2uyes" path="res://assets/full-heart.png" id="2_4b8b3"]
 [ext_resource type="Texture2D" uid="uid://4n7dkkm78p30" path="res://assets/1-rRange.png" id="3_7sqy3"]
-[ext_resource type="PackedScene" uid="uid://cq125elvxkix5" path="res://scenes/UI/MainMenu.tscn" id="3_q7ico"]
 [ext_resource type="Texture2D" uid="uid://swg607b1u4tv" path="res://assets/damage1.png" id="4_sxmsg"]
+[ext_resource type="PackedScene" uid="uid://m4uc2i7tr5u8" path="res://scenes/UI/StoryMenu.tscn" id="6_p1i3b"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -71,11 +71,11 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
-text = "W/up 		= move forward
-S/down 	= move backward
-A/left 		= turn left
-D/right	= turn right
-space		= Attack
+text = "W/Up 		= Move forward
+S/Down 	= Move backward
+A/Left 		= Turn left
+D/Right	= Turn right
+Space		= Attack
 "
 
 [node name="gameplay" type="Control" parent="."]
@@ -116,12 +116,13 @@ anchor_bottom = 1.0
 offset_left = -254.0
 offset_top = -106.0
 offset_right = 254.0
-offset_bottom = -20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
-text = "on your turn you have 3 actions. these actions can be a move to an empty space or an attack on an enemy. once all 3 of your moves are used up its the enemies turn, they only have one action but can be very powerfull so be careful!
-Good luck traveler."
+text = "On your turn you have 3 actions. These actions can be a move to an empty space or an attack on an enemy. Once all 3 of your moves are used up it's the enemies turn, they only have one action but can be very powerfull so be careful!
+
+Good luck cosmic traveller!"
 
 [node name="symobls" type="Control" parent="."]
 layout_mode = 1
@@ -204,15 +205,15 @@ offset_bottom = 100.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
-text = "ammount of health the enemy has left
+text = "The amount of health you/your enemy has left.
 
 
 
-distance that the enemy can hit you from in a straight line
+Distance that the enemy can hit you from in a straight line.
 
 
 
-how much damage the enemy will do if they hit you"
+How much damage the enemy will do to you on a hit."
 
 [node name="continue button" type="Button" parent="."]
 layout_mode = 1
@@ -230,6 +231,6 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_2upvb")
 text = "Continue..."
 script = ExtResource("2_2i8jr")
-main_menu = ExtResource("3_q7ico")
+main_menu = ExtResource("6_p1i3b")
 
 [connection signal="pressed" from="continue button" to="continue button" method="_on_pressed"]

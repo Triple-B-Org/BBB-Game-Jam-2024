@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func reset_health() -> void:
-	for index: int in GlobalVar.player_max_health:
+	for index: int in range(GlobalVar.player_max_health):
 		if index > hearts_textures.size() - 1:
 			var heart_texture_instance: TextureRect = TextureRect.new()
 			add_child(heart_texture_instance)

@@ -16,6 +16,7 @@ size = Vector2(1.2, 1.2)
 orientation = 2
 
 [node name="Enemy" type="Node3D" node_paths=PackedStringArray("enemy")]
+process_mode = 3
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_a2hcd")
 enemy = NodePath("MeshInstance3D")

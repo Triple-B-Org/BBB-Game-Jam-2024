@@ -41,7 +41,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MenuController/MainMenu"]
+[node name="Title" type="RichTextLabel" parent="MenuController/MainMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -55,6 +55,18 @@ theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 50
 theme_override_font_sizes/bold_font_size = 0
 text = "The Cosmic Delve"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MenuController/MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -309.0
+offset_right = 407.0
+grow_vertical = 0
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 0
 
 [node name="StartButton" type="Button" parent="MenuController/MainMenu"]
 layout_mode = 1
@@ -132,6 +144,31 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Credits"
 
+[node name="Padding2" type="Control" parent="MenuController/MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 200.0
+grow_vertical = 0
+
+[node name="ControlsButton" type="Button" parent="MenuController/MainMenu/Padding2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -25.0
+offset_right = 70.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Controls"
+
 [node name="SettingsMenu" parent="MenuController" instance=ExtResource("3_xks8n")]
 visible = false
 layout_mode = 1
@@ -153,16 +190,25 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -192.5
-offset_top = -34.5
+offset_top = -284.0
 offset_right = 192.5
-offset_bottom = 34.5
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "NotYetTerminal
+theme_override_font_sizes/font_size = 40
+text = "Triple B:
+NotYetTerminal
 VitoFuji
 Qadeer1813
-Nalekrm"
+Nalekrm
+
+Textures:
+Spacescape
+
+Music:
+Darren Curtis"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Padding" type="Control" parent="MenuController/CreditsMenu"]
 layout_mode = 1
@@ -201,5 +247,6 @@ stream = ExtResource("3_1fb5w")
 [connection signal="pressed" from="MenuController/MainMenu/SettingsButton" to="MenuController" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuController/MainMenu/QuitButton" to="MenuController" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MenuController/MainMenu/Padding/CreditsButton" to="MenuController" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuController/MainMenu/Padding2/ControlsButton" to="MenuController" method="_on_credits_button_pressed"]
 [connection signal="close_settings" from="MenuController/SettingsMenu" to="MenuController" method="_on_back_button_pressed"]
 [connection signal="pressed" from="MenuController/CreditsMenu/Padding/BackButton" to="MenuController" method="_on_back_button_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://d301habj1ujig"]
+
+[ext_resource type="Script" path="res://scripts/UI/UI.gd" id="1_kaixm"]
+[ext_resource type="Script" path="res://scripts/UI/FPSCounter.gd" id="2_a66w3"]
+[ext_resource type="PackedScene" uid="uid://7onwkhkw62ni" path="res://scenes/UI/PauseMenu.tscn" id="3_thoaa"]
+[ext_resource type="PackedScene" uid="uid://fnqpogkvslqx" path="res://scenes/UI/MapMenu.tscn" id="4_1lof2"]
+[ext_resource type="PackedScene" uid="uid://d3oo3emnyry5f" path="res://scenes/UI/PlayerHUD.tscn" id="5_xhrct"]
+[ext_resource type="AudioStream" uid="uid://drleo44g5aq7v" path="res://assets/mixkit-aggressive-beast-roar-13.wav" id="6_vd17l"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("pause_menu")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kaixm")
+pause_menu = NodePath("PauseMenu")
+
+[node name="FPSCounter" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_a66w3")
+
+[node name="PlayerHUD" parent="." instance=ExtResource("5_xhrct")]
+layout_mode = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_thoaa")]
+visible = false
+layout_mode = 1
+
+[node name="MapMenu" parent="." instance=ExtResource("4_1lof2")]
+visible = false
+layout_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vd17l")
+
+[connection signal="pause_menu_reset" from="." to="PauseMenu" method="_on_ui_pause_menu_reset"]
+[connection signal="continue_game" from="PauseMenu" to="." method="_on_continue_button_pressed"]

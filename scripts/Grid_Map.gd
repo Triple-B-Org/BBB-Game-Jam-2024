@@ -14,6 +14,7 @@ func get_random_fight_room() -> void:
 	var random_room: int = rng.randi_range(0, fight_rooms.size() - 1)
 	GlobalVar.Current_Room = fight_rooms[random_room]
 	fight_rooms.pop_at(random_room)
+	GlobalVar.boss_room = false
 
 func get_random_rest_room() -> void:
 	rng.randomize()
@@ -22,6 +23,28 @@ func get_random_rest_room() -> void:
 	var random_room: int = rng.randi_range(0, rest_rooms.size() - 1)
 	GlobalVar.Current_Room = rest_rooms[random_room]
 	rest_rooms.pop_at(random_room)
+	GlobalVar.boss_room = false
+
+
+func get_boss_room() -> void:
+	GlobalVar.Current_Room = [
+		[3,3,3,3,3,3,3,3,3,3,3],
+		[3,3,6,6,6,8,6,6,6,3,3],
+		[3,7,7,6,6,6,6,6,7,7,3],
+		[3,0,0,0,0,0,0,0,0,0,3],
+		[3,0,0,0,0,0,0,0,0,0,3],
+		[3,0,0,0,0,0,0,0,0,0,3],
+		[3,0,0,0,0,0,0,0,0,0,3],
+		[3,0,0,0,0,1,0,0,0,0,3],
+		[3,3,3,3,3,0,3,3,3,3,3],
+		[3,3,3,3,3,0,3,3,3,3,3],
+		[3,3,3,3,3,0,3,3,3,3,3],
+		[3,3,3,3,3,3,3,3,3,3,3],
+	]
+	GlobalVar.boss_room = true
+	GlobalVar.boss_intro = true
+	GlobalVar.boss_health = 90
+	GlobalVar.wave_spawned = false
 
 #this function is for putting in your room layouts
 func load_fight_rooms() -> void:
@@ -96,11 +119,10 @@ func load_fight_rooms() -> void:
 
 func load_rest_rooms() -> void:
 	rest_rooms.append([
-		[3,3,3,3,3,3,3],
-		[3,0,0,0,0,0,3],
-		[3,0,3,0,3,0,3],
-		[3,0,0,0,0,0,3],
-		[3,0,3,0,3,0,3],
-		[3,0,0,1,0,0,3],
-		[3,3,3,3,3,3,3]
+		[3,3,3,3,3],
+		[3,0,4,0,3],
+		[3,0,0,0,3],
+		[3,0,0,0,3],
+		[3,0,1,0,3],
+		[3,3,3,3,3]
 	]);

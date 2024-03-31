@@ -1,8 +1,8 @@
-extends CharacterBody3D
+extends Node3D
 
 
 signal done_moving(pos: Vector3)
-
+signal start_boss
 
 var direction: Vector2 = Vector2.DOWN
 
@@ -23,23 +23,32 @@ var grid_y: int = -1
 
 #Adding this audio player for player noises
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
-@onready var map_menu: Control = $"../UI/MapMenu"
-
-func reset_audio() -> void:
-	if audio_player.playing == true:
-		audio_player.stop()
+@onready var ui_manager: Control = $"../UI"
 
 var footsteps: AudioStreamWAV = preload("res://assets/footsteps.wav")
 var reverseFootsteps: AudioStreamWAV = preload("res://assets/footstepsReverse.wav")
 
+var _result: Error
+
+
+func play_footsteps(sound_file: AudioStreamWAV) -> void:
+	if !audio_player.playing:
+		audio_player.stream = sound_file
+		audio_player.play()
+
+
 func _physics_process(delta: float) -> void:
+	if GlobalVar.boss_intro:
+		get_tree().paused = true
+		return
 	if GlobalVar.players_turn == 2:
 		#Attack
 		if Input.is_action_just_pressed("hit"):
 			player_hit(get_tree().get_root().get_node("Main/Enemies"))
 			if GlobalVar.player_actions == 0:
-				GlobalVar.players_turn = 0
-				GlobalVar.enemy_turn = 1
+				GlobalVar.player_actions = GlobalVar.player_max_actions
+				GlobalVar.players_turn = 1
+				_result = emit_signal("done_moving", position)
 		
 		#Movement
 		if Settings.smooth_movement:
@@ -49,10 +58,10 @@ func _physics_process(delta: float) -> void:
 						start_position = position
 						end_position = start_position - Vector3(direction.x, 0, direction.y)
 						t_movement = 0
-						audio_player.stream = footsteps
-						audio_player.play()
+						play_footsteps(footsteps)
 						
 						GlobalVar.player_actions -= 1
+						_result = emit_signal("done_moving", position)
 						if GlobalVar.player_actions == 0:
 							GlobalVar.players_turn = 0
 							GlobalVar.enemy_turn = 1
@@ -62,10 +71,10 @@ func _physics_process(delta: float) -> void:
 						start_position = position
 						end_position = start_position + Vector3(direction.x, 0, direction.y)
 						t_movement = 0
-						audio_player.stream = reverseFootsteps
-						audio_player.play()
+						play_footsteps(reverseFootsteps)
 						
 						GlobalVar.player_actions -= 1
+						_result = emit_signal("done_moving", position)
 						if GlobalVar.player_actions == 0:
 							GlobalVar.players_turn = 0
 							GlobalVar.enemy_turn = 1
@@ -103,7 +112,7 @@ func _physics_process(delta: float) -> void:
 				t_movement = clamp((Settings.move_speed * delta) + t_movement, 0, 1)
 				position = start_position.lerp(end_position, t_movement)
 				if t_movement >= 1:
-					var _result: Error = emit_signal("done_moving", position)
+					_result = emit_signal("done_moving", position)
 			elif t_movement >= 1:
 				t_rotation = clamp((Settings.move_speed * delta) + t_rotation, 0, 1)
 				rotation.y = lerp(start_rotation, end_rotation, t_rotation)
@@ -118,9 +127,8 @@ func _physics_process(delta: float) -> void:
 				if check_move_forward() == true:
 					position.x -= direction.x
 					position.z -= direction.y
-					audio_player.stream = footsteps
-					audio_player.play()
-					var _result: Error = emit_signal("done_moving", position)
+					play_footsteps(footsteps)
+					_result = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
@@ -129,9 +137,8 @@ func _physics_process(delta: float) -> void:
 				if check_move_backward() == true:
 					position.x += direction.x
 					position.z += direction.y
-					audio_player.stream = reverseFootsteps
-					audio_player.play()
-					var _result: Error = emit_signal("done_moving", position)
+					play_footsteps(reverseFootsteps)
+					_result = emit_signal("done_moving", position)
 					GlobalVar.player_actions -= 1
 					if GlobalVar.player_actions == 0:
 						GlobalVar.players_turn = 0
@@ -189,7 +196,7 @@ func check_move_forward() -> bool:
 
 func check_move_backward() -> bool:
 	var can_move: bool = false
-
+	
 	if facing == "N" and GlobalVar.Current_Room[grid_y + 1][grid_x] == 0:
 		can_move = true
 		GlobalVar.Current_Room[grid_y + 1][grid_x] = 1
@@ -210,9 +217,10 @@ func check_move_backward() -> bool:
 		GlobalVar.Current_Room[grid_y][grid_x + 1] = 1
 		GlobalVar.Current_Room[grid_y][grid_x] = 0
 		grid_x += 1
-		
-	return can_move
 	
+	return can_move
+
+
 func player_hit(enemies: Node) -> void:
 	var enemy: int = -1;
 	if facing == "N":
@@ -220,61 +228,104 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y-1, grid_x]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y-1][grid_x] = 0
 					GlobalVar.enemies.pop_at(enemy)
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						GlobalVar.players_turn = 0
-						map_menu.visible = true
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 	elif facing == "E":
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x+1]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x+1] = 0
 					GlobalVar.enemies.pop_at(enemy)
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 	elif facing == "S":
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y+1, grid_x]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y+1][grid_x] = 0
 					GlobalVar.enemies.pop_at(enemy)
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 	else:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x-1]:
 				GlobalVar.player_actions -= 1
+				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
+				enemy_node.update_health()
 				if GlobalVar.enemies[enemy][2] <= 0:
 					GlobalVar.Current_Room[grid_y][grid_x-1] = 0
 					GlobalVar.enemies.pop_at(enemy)
 					enemies.remove_child(enemy_node)
 					enemy_node.queue_free()
 					if GlobalVar.enemies == [] or get_node("../Enemies").get_child_count() == 0:
-						map_menu.visible = true
+						if !GlobalVar.boss_room:
+							GlobalVar.players_turn = 0
+							ui_manager.open_map_menu()
+						else:
+							GlobalVar.boss_health -= 30
+							if GlobalVar.boss_health != 0:
+								$"../UI".update_boss_health()
+								GlobalVar.wave_spawned = false
+							else:
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 
+
 func spawn_player(grid: Array) -> void:
-	
 	if facing == "W":
 		rotation.y -= PI/2
 		direction = Vector2(sin(rotation.y), cos(rotation.y))
@@ -297,4 +348,8 @@ func spawn_player(grid: Array) -> void:
 				grid_y = row
 				position = start_position_2 + Vector3(col, 0, row)
 	
-	var _result: Error = emit_signal("done_moving", position)
+	_result = emit_signal("done_moving", position)
+
+
+func activate_angel() -> void:
+	_result = emit_signal("start_boss")

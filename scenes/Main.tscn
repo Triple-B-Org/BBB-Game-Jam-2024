@@ -1,14 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=11 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
-[ext_resource type="Script" path="res://scripts/UI/FPSCounter.gd" id="3_mbl4p"]
-[ext_resource type="Script" path="res://scripts/UI/UI.gd" id="4_jqup2"]
+[ext_resource type="PackedScene" uid="uid://d301habj1ujig" path="res://scenes/UI/UI.tscn" id="3_kgd5u"]
+[ext_resource type="Script" path="res://scripts/Environment/Walls.gd" id="4_hnuqb"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
-[ext_resource type="PackedScene" uid="uid://7onwkhkw62ni" path="res://scenes/UI/PauseMenu.tscn" id="8_q074q"]
 [ext_resource type="Texture2D" uid="uid://wk7b18gp24ma" path="res://assets/stonebrickfloor_displacement.png" id="9_iu1v6"]
 [ext_resource type="Script" path="res://scripts/Enemy_Turn.gd" id="9_jff1q"]
-[ext_resource type="PackedScene" uid="uid://fnqpogkvslqx" path="res://scenes/UI/MapMenu.tscn" id="9_lp2jq"]
 [ext_resource type="Script" path="res://scripts/Environment/Floor.gd" id="9_rpc1u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
@@ -27,38 +25,17 @@ uv1_scale = Vector3(25, 25, 25)
 [sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]
 size = Vector2(25, 25)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "enemy_turn")]
 script = ExtResource("1_j7vjs")
 player = NodePath("Player")
+enemy_turn = NodePath("Enemies")
 
 [node name="Player" parent="." instance=ExtResource("2_58ysq")]
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("pause_menu")]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_jqup2")
-pause_menu = NodePath("PauseMenu")
-
-[node name="FPSCounter" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("3_mbl4p")
-
-[node name="PauseMenu" parent="UI" instance=ExtResource("8_q074q")]
-visible = false
-layout_mode = 1
-
-[node name="MapMenu" parent="UI" instance=ExtResource("9_lp2jq")]
-visible = false
-layout_mode = 1
+[node name="UI" parent="." instance=ExtResource("3_kgd5u")]
 
 [node name="Walls" type="Node3D" parent="."]
+script = ExtResource("4_hnuqb")
 
 [node name="Enemies" type="Node3D" parent="."]
 script = ExtResource("9_jff1q")
@@ -71,6 +48,10 @@ skeleton = NodePath("")
 script = ExtResource("9_rpc1u")
 
 [connection signal="spawn_player" from="." to="Player" method="spawn_player"]
+[connection signal="spawn_player" from="." to="UI" method="_on_main_spawn_player"]
+[connection signal="done_moving" from="Player" to="UI" method="_on_player_player_moved"]
+[connection signal="done_moving" from="Player" to="Enemies" method="_on_player_done_moving"]
 [connection signal="done_moving" from="Player" to="Floor" method="_on_player_done_moving"]
-[connection signal="pause_menu_reset" from="UI" to="UI/PauseMenu" method="_on_ui_pause_menu_reset"]
-[connection signal="continue_game" from="UI/PauseMenu" to="UI" method="_on_continue_button_pressed"]
+[connection signal="start_boss" from="Player" to="Walls" method="_on_player_start_boss"]
+[connection signal="enemy_moved" from="Enemies" to="UI" method="_on_enemies_enemy_moved"]
+[connection signal="player_hit" from="Enemies" to="UI" method="_on_enemies_player_hit"]

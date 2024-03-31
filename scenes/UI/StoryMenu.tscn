@@ -94,5 +94,6 @@ text = "Begin your decent..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jukct")
+volume_db = -15.0
 
 [connection signal="pressed" from="Menu_Controller/Button" to="." method="_on_decent_button_pressed"]

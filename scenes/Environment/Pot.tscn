@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd2pfebxyr66d"]
+[gd_scene load_steps=3 format=3 uid="uid://cd2pfebxyr66d"]
 
 [ext_resource type="ArrayMesh" uid="uid://h30wg6b1i1ax" path="res://blends/pot.obj" id="1_l1bh1"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcrlu"]
+albedo_color = Color(0.54902, 0.309804, 0.109804, 1)
+
 [node name="Pot" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, -1, 0.271)
 mesh = ExtResource("1_l1bh1")
+surface_material_override/0 = SubResource("StandardMaterial3D_qcrlu")

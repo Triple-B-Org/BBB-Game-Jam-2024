@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv82ciu62gfl2"]
+
+[ext_resource type="Texture2D" uid="uid://28d2adouarlf" path="res://assets/wall.png" id="1_rjqld"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ane8f"]
+albedo_texture = ExtResource("1_rjqld")
+uv1_scale = Vector3(1, 2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8irxc"]
+material = SubResource("StandardMaterial3D_ane8f")
+size = Vector2(1, 2)
+center_offset = Vector3(0.5, 0, 0)
+orientation = 0
+
+[node name="WallPlane" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_8irxc")

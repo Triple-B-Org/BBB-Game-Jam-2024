@@ -5,5 +5,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7550"]
 
 [node name="Suzanne" type="MeshInstance3D"]
+transform = Transform3D(0.386367, -0.149483, 0.279956, 0, 0.441063, 0.235506, -0.317365, -0.181983, 0.340825, 0.7, -1, 0)
 mesh = ExtResource("1_jjksh")
 surface_material_override/0 = SubResource("StandardMaterial3D_l7550")

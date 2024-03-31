@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbfr0l5u7dxd4"]
 
 [ext_resource type="ArrayMesh" uid="uid://bc1towfkg4r3l" path="res://blends/pillar.obj" id="1_g4wcj"]
-[ext_resource type="Script" path="res://PillarCore.gd" id="2_gyfcu"]
+[ext_resource type="Script" path="res://scripts/Environment/PillarCore.gd" id="2_gyfcu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_iuvsx"]
 size = Vector3(0.75, 0.6, 0.75)
@@ -12,6 +12,8 @@ emission_enabled = true
 emission = Color(0, 0.74902, 1, 1)
 
 [node name="Pillar" type="MeshInstance3D"]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = ExtResource("1_g4wcj")
 
 [node name="PillarCore" type="MeshInstance3D" parent="."]

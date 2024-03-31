@@ -1,9 +1,6 @@
 extends Node
 class_name Map_Gen
 
-func _ready() -> void:
-	initialize_map()
-	pass
 
 func initialize_map() -> void:
 	GlobalVar.selectable_rooms = []
@@ -22,10 +19,12 @@ func initialize_map() -> void:
 	
 	print(GlobalVar.selectable_rooms)
 
+
 func reset_selectable_rooms() -> void:
 	var _result: int = GlobalVar.selectable_rooms.resize(0)
 	print(GlobalVar.selectable_rooms)
-	
+
+
 func get_left_option() -> int:
 	print(GlobalVar.selectable_rooms)
 	var left_room: int = GlobalVar.selectable_rooms[0]
@@ -33,12 +32,14 @@ func get_left_option() -> int:
 	print(GlobalVar.num_rooms_visited)
 	return left_room
 
+
 func get_middle_option() -> int:
 	var middle_room: int = GlobalVar.selectable_rooms[1]
 	GlobalVar.num_rooms_visited += 1
 	print(GlobalVar.num_rooms_visited)
 	return middle_room
-	
+
+
 func get_right_option() -> int:
 	var right_room: int = GlobalVar.selectable_rooms[2]
 	GlobalVar.num_rooms_visited += 1

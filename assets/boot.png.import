@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctyg6a5aens4q"
-path="res://.godot/imported/boot.png-55a70ecd5ccd77de3bbd5ed4bc1fc599.ctex"
+path.bptc="res://.godot/imported/boot.png-55a70ecd5ccd77de3bbd5ed4bc1fc599.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/boot.png"
-dest_files=["res://.godot/imported/boot.png-55a70ecd5ccd77de3bbd5ed4bc1fc599.ctex"]
+dest_files=["res://.godot/imported/boot.png-55a70ecd5ccd77de3bbd5ed4bc1fc599.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

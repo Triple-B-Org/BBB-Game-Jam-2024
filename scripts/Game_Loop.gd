@@ -8,9 +8,8 @@ signal spawn_player(current_room: Array)
 var grid_map: Grid_Map = Grid_Map.new()
 var wall_gen: Wall_Gen = Wall_Gen.new()
 var enemy_gen: Enemy_Gen = Enemy_Gen.new()
-var enemy_turn: Enemy_Turn = Enemy_Turn.new()
+@export var enemy_turn: Node3D
 var map_generator: Map_Gen = Map_Gen.new()
-var map_handle: Map_Handle = Map_Handle.new()
 
 var enemies_spawned: bool = true
 var _result: Error
@@ -40,14 +39,17 @@ func _physics_process(_delta: float) -> void:
 		GlobalVar.players_turn = 2
 	elif GlobalVar.enemy_turn == 1:
 		GlobalVar.enemy_turn = 0
-		enemy_turn.enemys_turn($Enemies)
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
+	if GlobalVar.boss_room and !GlobalVar.boss_intro and !GlobalVar.wave_spawned:
+		enemy_gen.generate_enemies($Enemies)
+		GlobalVar.wave_spawned = true
 
 
 func load_level() -> void:
 	map_generator.initialize_map()
-	enemy_gen.generate_enemies($Enemies)
+	if !GlobalVar.boss_room:
+		enemy_gen.generate_enemies($Enemies)
 	wall_gen.generate_walls($Walls)
 	_result = emit_signal("spawn_player", GlobalVar.Current_Room)
 

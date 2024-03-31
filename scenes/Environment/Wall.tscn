@@ -1,0 +1,13 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0q31tpx8dhfw"]
+
+[ext_resource type="Script" path="res://scripts/Environment/Wall.gd" id="1_gelv4"]
+[ext_resource type="PackedScene" uid="uid://cd2pfebxyr66d" path="res://scenes/Environment/Pot.tscn" id="2_pda3f"]
+[ext_resource type="PackedScene" uid="uid://cv82ciu62gfl2" path="res://scenes/Environment/WallPlane.tscn" id="2_ycqxs"]
+[ext_resource type="PackedScene" uid="uid://ipc7ld2xduph" path="res://scenes/Environment/Suzanne.tscn" id="3_0b7p4"]
+[ext_resource type="PackedScene" uid="uid://maiwq60mrlpw" path="res://scenes/Environment/Sword.tscn" id="4_hhll6"]
+[ext_resource type="PackedScene" uid="uid://hegory2emoqq" path="res://scenes/Environment/Torch.tscn" id="5_job63"]
+
+[node name="Wall" type="Node3D"]
+script = ExtResource("1_gelv4")
+wall_plane = ExtResource("2_ycqxs")
+scattered_items = Array[PackedScene]([ExtResource("2_pda3f"), ExtResource("3_0b7p4"), ExtResource("4_hhll6"), ExtResource("5_job63")])

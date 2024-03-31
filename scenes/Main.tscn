@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
-[ext_resource type="PackedScene" uid="uid://d301habj1ujig" path="res://scenes/UI/UI.tscn" id="3_kgd5u"]
+[ext_resource type="PackedScene" path="res://scenes/UI/UI.tscn" id="3_kgd5u"]
 [ext_resource type="Script" path="res://scripts/Environment/Walls.gd" id="4_hnuqb"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
 [ext_resource type="Texture2D" uid="uid://wk7b18gp24ma" path="res://assets/stonebrickfloor_displacement.png" id="9_iu1v6"]

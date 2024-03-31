@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/UI/DeathMenu.gd" id="1_arb0r"]
 [ext_resource type="Texture2D" uid="uid://bnn58j027eekn" path="res://assets/knight-rest.png" id="2_i5x6e"]
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="3_l4ovs"]
-[ext_resource type="AudioStream" uid="uid://dtqwosmn0qtd8" path="res://assets/MetalClang.wav" id="4_2td3u"]
+[ext_resource type="AudioStream" uid="uid://e8f6cf3g8eer" path="res://assets/musicHigh.wav" id="4_5nfnq"]
 
 [node name="DeathMenu" type="Control"]
 layout_mode = 3
@@ -91,6 +91,6 @@ theme_override_font_sizes/font_size = 30
 text = "To be continued..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_2td3u")
+stream = ExtResource("4_5nfnq")
 
 [connection signal="pressed" from="Menu_Controller/Button" to="." method="on_fail_button_pressed"]

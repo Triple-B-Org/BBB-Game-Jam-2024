@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://baka1lfkr3ogv"]
+[gd_scene load_steps=9 format=3 uid="uid://cwbv36ixmayse"]
 
 [ext_resource type="Script" path="res://scripts/Enemy_rotation.gd" id="1_fgn6f"]
 [ext_resource type="Texture2D" uid="uid://dt56buke2cpnr" path="res://assets/NOTbeholder.png" id="2_lqqfr"]
 [ext_resource type="Texture2D" uid="uid://jvu2usl2uyes" path="res://assets/full-heart.png" id="3_hv8xr"]
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="4_82kk2"]
-[ext_resource type="Texture2D" uid="uid://cdg3bh24y1ofw" path="res://assets/boss-icon.png" id="5_dq5cp"]
+[ext_resource type="Texture2D" uid="uid://byrv0lxfp7ga1" path="res://assets/2-rRange.png" id="4_bk7jj"]
+[ext_resource type="Texture2D" uid="uid://swg607b1u4tv" path="res://assets/damage1.png" id="5_5myd4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3tcx"]
 transparency = 1
@@ -24,12 +25,24 @@ enemy = NodePath("MeshInstance3D")
 mesh = SubResource("PlaneMesh_bafsb")
 
 [node name="EnemyHUD" type="Node3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67954, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0202227, 0.67954, -8.83962e-10)
 
 [node name="HealthImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.144, 0, 0)
 shaded = true
 texture = ExtResource("3_hv8xr")
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="rangeImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.0782794, 0, -9.71614e-09)
+shaded = true
+texture = ExtResource("4_bk7jj")
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="rangeImage2" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.266998, 0, -1.79653e-08)
+shaded = true
+texture = ExtResource("5_5myd4")
 region_rect = Rect2(0, 0, 512, 512)
 
 [node name="HealthText" type="Label3D" parent="MeshInstance3D/EnemyHUD"]
@@ -38,9 +51,3 @@ shaded = true
 text = "2"
 font = ExtResource("4_82kk2")
 font_size = 100
-
-[node name="TypeImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.172, 0, 0)
-shaded = true
-texture = ExtResource("5_dq5cp")
-region_rect = Rect2(0, 0, 512, 512)

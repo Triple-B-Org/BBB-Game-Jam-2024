@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt828al5uymtb"]
+[gd_scene load_steps=10 format=3 uid="uid://bt828al5uymtb"]
 
 [ext_resource type="Script" path="res://scripts/Enemy_rotation.gd" id="1_a2hcd"]
 [ext_resource type="Texture2D" uid="uid://bhsihges03iio" path="res://assets/FleshEatingMonster.png" id="2_80pe7"]
 [ext_resource type="Texture2D" uid="uid://jvu2usl2uyes" path="res://assets/full-heart.png" id="3_c6nob"]
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="4_qs47f"]
 [ext_resource type="Texture2D" uid="uid://cdg3bh24y1ofw" path="res://assets/boss-icon.png" id="5_pknrb"]
+[ext_resource type="Texture2D" uid="uid://4n7dkkm78p30" path="res://assets/1-rRange.png" id="6_kc3bm"]
+[ext_resource type="Texture2D" uid="uid://swg607b1u4tv" path="res://assets/damage1.png" id="7_658my"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3tcx"]
 transparency = 1
@@ -30,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 mesh = SubResource("PlaneMesh_bafsb")
 
 [node name="EnemyHUD" type="Node3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46551, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.466, 0)
 
 [node name="HealthImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.144, 0, 0)
@@ -45,8 +47,14 @@ text = "2"
 font = ExtResource("4_qs47f")
 font_size = 100
 
-[node name="TypeImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.172, 0, 0)
+[node name="rangeImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.119394, 0, 2.2995e-09)
 shaded = true
-texture = ExtResource("5_pknrb")
+texture = ExtResource("6_kc3bm")
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="damageImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.320776, 0, -6.50322e-09)
+shaded = true
+texture = ExtResource("7_658my")
 region_rect = Rect2(0, 0, 512, 512)

@@ -51,3 +51,37 @@ text = "There are enemies nearby!"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_cqwfe")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -496.0
+offset_top = -61.0
+offset_right = 496.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 90.0
+value = 90.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -203.0
+offset_top = -116.0
+offset_right = 203.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_wc0uy")
+theme_override_font_sizes/font_size = 40
+text = "BAA - Follower of God"

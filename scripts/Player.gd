@@ -2,7 +2,7 @@ extends Node3D
 
 
 signal done_moving(pos: Vector3)
-
+signal start_boss
 
 var direction: Vector2 = Vector2.DOWN
 
@@ -38,6 +38,9 @@ func play_footsteps(sound_file: AudioStreamWAV) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if GlobalVar.boss_intro:
+		get_tree().paused = true
+		return
 	if GlobalVar.players_turn == 2:
 		#Attack
 		if Input.is_action_just_pressed("hit"):
@@ -311,3 +314,7 @@ func spawn_player(grid: Array) -> void:
 				position = start_position_2 + Vector3(col, 0, row)
 	
 	_result = emit_signal("done_moving", position)
+
+
+func activate_angel() -> void:
+	_result = emit_signal("start_boss")

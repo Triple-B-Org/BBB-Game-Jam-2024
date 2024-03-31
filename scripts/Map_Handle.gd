@@ -44,12 +44,15 @@ func do_map_loading() -> void:
 		grid_map.get_random_fight_room()
 	elif GlobalVar.player_choice == 2:
 		grid_map.get_random_rest_room()
+	elif GlobalVar.player_choice == 3:
+		grid_map.get_boss_room()
 	GlobalVar.player_actions = GlobalVar.player_max_actions
 	GlobalVar.players_turn = 1
 	GlobalVar.enemy_turn = 0
 	emit_signal("unload_map")
 	emit_signal("load_map")
 	$"..".close_map_menu()
+
 
 func change_icon() -> void:
 	var buttons = [left_button, middle_button, right_button]

@@ -18,8 +18,8 @@ func _ready() -> void:
 	map_generator.initialize_map()
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
-	grid_map.get_random_rest_room()
 	#grid_map.get_random_fight_room()
+	grid_map.get_boss_room()
 	#gnerates walls and enemies
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)
@@ -42,6 +42,9 @@ func _physics_process(_delta: float) -> void:
 		GlobalVar.enemy_turn = 0
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
+	if GlobalVar.boss_room and !GlobalVar.boss_intro and !GlobalVar.wave_spawned:
+		enemy_gen.generate_enemies($Enemies)
+		GlobalVar.wave_spawned = true
 
 
 func load_level() -> void:

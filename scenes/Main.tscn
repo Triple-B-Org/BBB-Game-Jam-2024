@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=11 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
 [ext_resource type="PackedScene" uid="uid://d301habj1ujig" path="res://scenes/UI/UI.tscn" id="3_kgd5u"]
+[ext_resource type="Script" path="res://scripts/Environment/Walls.gd" id="4_hnuqb"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
 [ext_resource type="Texture2D" uid="uid://wk7b18gp24ma" path="res://assets/stonebrickfloor_displacement.png" id="9_iu1v6"]
 [ext_resource type="Script" path="res://scripts/Enemy_Turn.gd" id="9_jff1q"]
@@ -34,6 +35,7 @@ enemy_turn = NodePath("Enemies")
 [node name="UI" parent="." instance=ExtResource("3_kgd5u")]
 
 [node name="Walls" type="Node3D" parent="."]
+script = ExtResource("4_hnuqb")
 
 [node name="Enemies" type="Node3D" parent="."]
 script = ExtResource("9_jff1q")
@@ -50,5 +52,6 @@ script = ExtResource("9_rpc1u")
 [connection signal="done_moving" from="Player" to="UI" method="_on_player_player_moved"]
 [connection signal="done_moving" from="Player" to="Enemies" method="_on_player_done_moving"]
 [connection signal="done_moving" from="Player" to="Floor" method="_on_player_done_moving"]
+[connection signal="start_boss" from="Player" to="Walls" method="_on_player_start_boss"]
 [connection signal="enemy_moved" from="Enemies" to="UI" method="_on_enemies_enemy_moved"]
 [connection signal="player_hit" from="Enemies" to="UI" method="_on_enemies_player_hit"]

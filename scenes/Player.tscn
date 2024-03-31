@@ -9,6 +9,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0.5)
 script = ExtResource("1_uvies")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+process_mode = 3
 environment = ExtResource("2_fcja8")
 script = ExtResource("3_he672")
 

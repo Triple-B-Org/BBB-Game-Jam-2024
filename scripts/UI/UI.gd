@@ -10,6 +10,8 @@ signal pause_menu_reset
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause_game"):
 		toggle_pause()
+	if GlobalVar.boss_intro:
+		visible = false
 
 
 func toggle_pause() -> void:

@@ -20,3 +20,9 @@ var enemies_death: bool = false
 var selectable_rooms: Array = []
 var player_choice: int = 0
 var num_rooms_visited: int = 1
+
+# Boss stuff
+var boss_room: bool = false
+var boss_intro: bool = false
+var boss_health: int = 90
+var wave_spawned: bool = false

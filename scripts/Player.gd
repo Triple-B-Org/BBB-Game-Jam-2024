@@ -238,7 +238,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y-1, grid_x]:
 				audio_player_2.play()
-				$Node3D.go()
+				$Camera3D/Node3D.go()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
@@ -265,7 +265,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x+1]:
 				audio_player_2.play()
-				$Node3D.go()
+				$Camera3D/Node3D.go()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
@@ -292,7 +292,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y+1, grid_x]:
 				audio_player_2.play()
-				$Node3D.go()
+				$Camera3D/Node3D.go()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
@@ -319,7 +319,7 @@ func player_hit(enemies: Node) -> void:
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x-1]:
 				audio_player_2.play()
-				$Node3D.go()
+				$Camera3D/Node3D.go()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1

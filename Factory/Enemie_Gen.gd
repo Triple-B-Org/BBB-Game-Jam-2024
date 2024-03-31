@@ -16,13 +16,12 @@ func generate_enemies(parent: Node) -> void:
 			for col: int in range(one_row.size()):
 				if array[row][col] == 2:
 					rand.randomize()
-          
-				  #this is used to check what enemies should spawn based on how far the player has gone
-				  if GlobalVar.num_rooms_visited <= 2:
-					  enemy_choice = 0
-				  else:
-					  enemy_choice = rand.randi_range(0,1)
-
+					
+					#this is used to check what enemies should spawn based on how far the player has gone
+					if GlobalVar.num_rooms_visited <= 2:
+						enemy_choice = 0
+					else:
+						enemy_choice = rand.randi_range(0,1)
 					
 					#this is the enemies, more can be added the same way
 					if enemy_choice == 0:

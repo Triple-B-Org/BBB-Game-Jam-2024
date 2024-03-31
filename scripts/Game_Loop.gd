@@ -39,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 		GlobalVar.players_turn = 2
 	elif GlobalVar.enemy_turn == 1:
 		GlobalVar.enemy_turn = 0
-		enemy_turn.enemys_turn($Enemies)
 		GlobalVar.player_actions = GlobalVar.player_max_actions
 		GlobalVar.players_turn = 1
 

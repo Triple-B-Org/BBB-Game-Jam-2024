@@ -20,13 +20,16 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_a2hcd")
 enemy = NodePath("MeshInstance3D")
 enemy_type = ExtResource("5_pknrb")
+bobbing_speed = 0.2
+bobbing_range = 20.0
+bobbing_center = -0.4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 mesh = SubResource("PlaneMesh_bafsb")
 
 [node name="EnemyHUD" type="Node3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67954, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46551, 0)
 
 [node name="HealthImage" type="Sprite3D" parent="MeshInstance3D/EnemyHUD"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.144, 0, 0)

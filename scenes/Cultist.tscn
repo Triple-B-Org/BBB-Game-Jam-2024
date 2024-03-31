@@ -20,6 +20,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_30yl3")
 enemy = NodePath("MeshInstance3D")
 enemy_type = ExtResource("5_qippi")
+bobbing_speed = 0.03
+bobbing_range = 7.0
+bobbing_center = -0.25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_bafsb")

@@ -56,3 +56,4 @@ func _on_main_spawn_player(_current_room: Array) -> void:
 
 func update_boss_health() -> void:
 	$PlayerHUD/ProgressBar.value = GlobalVar.boss_health
+	$AudioStreamPlayer.play()

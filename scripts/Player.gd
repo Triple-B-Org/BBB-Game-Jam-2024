@@ -246,7 +246,7 @@ func player_hit(enemies: Node) -> void:
 								$"../UI".update_boss_health()
 								GlobalVar.wave_spawned = false
 							else:
-								pass
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 	elif facing == "E":
 		for enemy_node: Node in enemies.get_children():
@@ -271,7 +271,7 @@ func player_hit(enemies: Node) -> void:
 								$"../UI".update_boss_health()
 								GlobalVar.wave_spawned = false
 							else:
-								pass
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 	elif facing == "S":
 		for enemy_node: Node in enemies.get_children():
@@ -296,7 +296,7 @@ func player_hit(enemies: Node) -> void:
 								$"../UI".update_boss_health()
 								GlobalVar.wave_spawned = false
 							else:
-								pass
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 	else:
 		for enemy_node: Node in enemies.get_children():
@@ -321,7 +321,7 @@ func player_hit(enemies: Node) -> void:
 								$"../UI".update_boss_health()
 								GlobalVar.wave_spawned = false
 							else:
-								pass
+								get_tree().change_scene_to_file("res://scenes/UI/Victory.tscn")
 				break
 
 

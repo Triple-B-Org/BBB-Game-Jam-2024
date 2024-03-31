@@ -43,6 +43,8 @@ func get_boss_room() -> void:
 	]
 	GlobalVar.boss_room = true
 	GlobalVar.boss_intro = true
+	GlobalVar.boss_health = 90
+	GlobalVar.wave_spawned = false
 
 #this function is for putting in your room layouts
 func load_fight_rooms() -> void:

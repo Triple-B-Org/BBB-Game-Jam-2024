@@ -25,10 +25,10 @@ uv1_scale = Vector3(25, 25, 25)
 [sub_resource type="PlaneMesh" id="PlaneMesh_hikpt"]
 size = Vector2(25, 25)
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("player", "enemy_turn")]
+[node name="Main" type="Node3D"]
 script = ExtResource("1_j7vjs")
-player = NodePath("Player")
-enemy_turn = NodePath("Enemies")
+player = null
+enemy_turn = null
 
 [node name="Player" parent="." instance=ExtResource("2_58ysq")]
 

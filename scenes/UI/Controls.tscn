@@ -113,14 +113,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -254.0
-offset_top = -106.0
-offset_right = 254.0
-offset_bottom = -5.0
+offset_left = -315.0
+offset_top = -113.0
+offset_right = 290.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 text = "On your turn you have 3 actions. These actions can be a move to an empty space or an attack on an enemy. Once all 3 of your moves are used up it's the enemies turn, they only have one action but can be very powerfull so be careful!
+
+Look out for campfires they are rest spots where you can heal or even increase your max hp
 
 Good luck cosmic traveller!"
 

@@ -18,8 +18,7 @@ func _ready() -> void:
 	map_generator.initialize_map()
 	grid_map.load_fight_rooms()
 	grid_map.load_rest_rooms()
-	#grid_map.get_random_fight_room()
-	grid_map.get_boss_room()
+	grid_map.get_random_fight_room()
 	#gnerates walls and enemies
 	wall_gen.generate_walls($Walls)
 	enemy_gen.generate_enemies($Enemies)

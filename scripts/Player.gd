@@ -23,6 +23,7 @@ var grid_y: int = -1
 
 #Adding this audio player for player noises
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var audio_player_2: AudioStreamPlayer = $AudioStreamPlayer
 @onready var ui_manager: Control = $"../UI"
 
 var footsteps: AudioStreamWAV = preload("res://assets/footsteps.wav")
@@ -227,6 +228,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y-1, grid_x]:
+				audio_player_2.play()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
@@ -252,6 +254,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x+1]:
+				audio_player_2.play()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
@@ -277,6 +280,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y+1, grid_x]:
+				audio_player_2.play()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1
@@ -302,6 +306,7 @@ func player_hit(enemies: Node) -> void:
 		for enemy_node: Node in enemies.get_children():
 			enemy += 1
 			if [GlobalVar.enemies[enemy][0], GlobalVar.enemies[enemy][1]] == [grid_y, grid_x-1]:
+				audio_player_2.play()
 				GlobalVar.player_actions -= 1
 				_result = emit_signal("done_moving", position)
 				GlobalVar.enemies[enemy][2] -= 1

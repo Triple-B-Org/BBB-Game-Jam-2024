@@ -1,13 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://wsxrbsbbsvsj"]
+[gd_scene load_steps=18 format=3 uid="uid://wsxrbsbbsvsj"]
 
 [ext_resource type="Script" path="res://scripts/Game_Loop.gd" id="1_j7vjs"]
 [ext_resource type="PackedScene" uid="uid://dsi5616hcjdh5" path="res://scenes/Player.tscn" id="2_58ysq"]
 [ext_resource type="PackedScene" uid="uid://d301habj1ujig" path="res://scenes/UI/UI.tscn" id="3_kgd5u"]
 [ext_resource type="Script" path="res://scripts/Environment/Walls.gd" id="4_hnuqb"]
 [ext_resource type="Texture2D" uid="uid://8xsm3jcmoce" path="res://assets/stonebrickfloor.png" id="5_x2hxo"]
+[ext_resource type="Script" path="res://scripts/AudioStreamPlayer.gd" id="9_7r74r"]
 [ext_resource type="Texture2D" uid="uid://wk7b18gp24ma" path="res://assets/stonebrickfloor_displacement.png" id="9_iu1v6"]
 [ext_resource type="Script" path="res://scripts/Enemy_Turn.gd" id="9_jff1q"]
 [ext_resource type="Script" path="res://scripts/Environment/Floor.gd" id="9_rpc1u"]
+[ext_resource type="AudioStream" uid="uid://crwm4w13p1j30" path="res://assets/sounds1.wav" id="10_jyvmx"]
+[ext_resource type="AudioStream" uid="uid://c8ft6e8hfcnvj" path="res://assets/sounds2.wav" id="11_g0y0t"]
+[ext_resource type="AudioStream" uid="uid://tcqew0qgjwo0" path="res://assets/sounds3.wav" id="12_m2vrv"]
+[ext_resource type="AudioStream" uid="uid://dnl2mu8uhqo7a" path="res://assets/sounds4.wav" id="13_vl7dl"]
+[ext_resource type="AudioStream" uid="uid://cr4s5bkq62775" path="res://assets/sounds5.wav" id="14_4axm8"]
+[ext_resource type="AudioStream" uid="uid://djok66jvw2nji" path="res://assets/sounds6.wav" id="15_rs2u5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_em84r"]
 albedo_texture = ExtResource("5_x2hxo")
@@ -47,6 +54,14 @@ mesh = SubResource("PlaneMesh_hikpt")
 skeleton = NodePath("")
 script = ExtResource("9_rpc1u")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("9_7r74r")
+sounds = Array[AudioStreamWAV]([ExtResource("10_jyvmx"), ExtResource("11_g0y0t"), ExtResource("12_m2vrv"), ExtResource("13_vl7dl"), ExtResource("14_4axm8"), ExtResource("15_rs2u5")])
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="spawn_player" from="." to="Player" method="spawn_player"]
 [connection signal="spawn_player" from="." to="UI" method="_on_main_spawn_player"]
 [connection signal="done_moving" from="Player" to="UI" method="_on_player_player_moved"]
@@ -55,3 +70,4 @@ script = ExtResource("9_rpc1u")
 [connection signal="start_boss" from="Player" to="Walls" method="_on_player_start_boss"]
 [connection signal="enemy_moved" from="Enemies" to="UI" method="_on_enemies_enemy_moved"]
 [connection signal="player_hit" from="Enemies" to="UI" method="_on_enemies_player_hit"]
+[connection signal="timeout" from="Timer" to="AudioStreamPlayer" method="_on_timer_timeout"]

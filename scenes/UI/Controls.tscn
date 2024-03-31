@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm0mrhxtudtpn"]
+[gd_scene load_steps=7 format=3 uid="uid://bm0mrhxtudtpn"]
 
 [ext_resource type="FontFile" uid="uid://cwsttq2b3u42u" path="res://assets/alagard.ttf" id="1_2upvb"]
 [ext_resource type="Script" path="res://scripts/UI/continue button.gd" id="2_2i8jr"]
+[ext_resource type="Texture2D" uid="uid://jvu2usl2uyes" path="res://assets/full-heart.png" id="2_4b8b3"]
+[ext_resource type="Texture2D" uid="uid://4n7dkkm78p30" path="res://assets/1-rRange.png" id="3_7sqy3"]
 [ext_resource type="PackedScene" uid="uid://cq125elvxkix5" path="res://scenes/UI/MainMenu.tscn" id="3_q7ico"]
+[ext_resource type="Texture2D" uid="uid://swg607b1u4tv" path="res://assets/damage1.png" id="4_sxmsg"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -153,30 +156,39 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
+offset_left = 170.0
+offset_top = -53.0
+offset_right = 682.0
+offset_bottom = 459.0
 grow_vertical = 2
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_4b8b3")
 
 [node name="Range symbol" type="TextureRect" parent="symobls"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 60.0
-offset_bottom = 20.0
+offset_left = 170.0
+offset_top = 5.0
+offset_right = 695.0
+offset_bottom = 530.0
 grow_vertical = 2
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_7sqy3")
 
 [node name="Damage symbol" type="TextureRect" parent="symobls"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 36.0
-offset_bottom = 20.0
+offset_left = 170.0
+offset_top = 63.0
+offset_right = 695.0
+offset_bottom = 588.0
 grow_vertical = 2
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("4_sxmsg")
 
 [node name="symbols text" type="RichTextLabel" parent="symobls"]
 layout_mode = 1
@@ -188,13 +200,17 @@ anchor_bottom = 0.5
 offset_left = -463.0
 offset_top = -42.0
 offset_right = -4.0
-offset_bottom = 42.0
+offset_bottom = 100.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("1_2upvb")
 text = "ammount of health the enemy has left
 
+
+
 distance that the enemy can hit you from in a straight line
+
+
 
 how much damage the enemy will do if they hit you"
 
